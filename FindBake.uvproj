@@ -356,6 +356,11 @@
               <FileType>1</FileType>
               <FilePath>.\GPS.c</FilePath>
             </File>
+            <File>
+              <FileName>GPRS.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\GPRS.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

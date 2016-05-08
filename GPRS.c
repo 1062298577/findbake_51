@@ -464,9 +464,7 @@ void main(void)
 	num=0;
 	InitUART();	//串行口初始化
 	gprs_state=RST;
-    UART_TC("bf gprs int\r\n");
 	gprs_init();
-    UART_TC("af gprs int\r\n");
  	clear_buf1();
  	clear_buf2();
 	clear_send_buf(send_buf1);

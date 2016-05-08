@@ -12,6 +12,9 @@
 //					 串口1：GPRS模块（接收和发送数据）
 //					 串口2：GPS模块	（接收GPS数据）
 //
+// 功能说明：
+//			GPS串口不断接收数据，存储到本地GPSINFO变量中
+//			GPRS定时将GPSINFO变量中的数据发送到服务器中	
 //
 
 /*************** 用户定义参数 *****************************/
@@ -40,16 +43,16 @@ sfr IE2   = 0xAF;	//STC12C5A60S2系列
 sfr BRT   = 0x9C;
 
 //串口1读写
-unsigned char 	uart1_wr;		//写指针
-unsigned char 	uart1_rd;		//读指针
-unsigned char 	xdata RX1_Buffer[BUF_LENTH];
+unsigned char 	GPRS_wr;		//写指针
+unsigned char 	GPRS_rd;		//读指针
+unsigned char 	xdata GPRS_Buffer[BUF_LENTH];//接收缓存：
 bit		B_TI;
 
 //串口2读写
-unsigned char 	uart2_wr;		//写指针
-unsigned char 	uart2_rd;		//读指针
-unsigned char 	xdata RX2_Buffer[BUF_LENTH];
-bit		B_TI2;
+unsigned char 	GPS_wr;		//写指针
+unsigned char 	GPS_rd;		//读指针
+unsigned char 	xdata GPS_Buffer[BUF_LENTH];//接收缓存	[0]表示写允许位 [1]表示读允许位
+unsigned char	gps_rev_start;//接收标志
 
 /****************** 编译器自动生成，用户请勿修改 ************************************/
 
@@ -78,7 +81,7 @@ void	GPRS_init(void)
 	TR1  = 1;
 	ES  = 1;
 	EA = 1;
-}
+}													 
 
 //GPS串口初始化
 void	GPS_init(void)
@@ -126,11 +129,8 @@ void GPRS_RCV (void) interrupt 4
 	{
 		RI = 0;
 
-		RX2_Buffer[uart2_wr] = SBUF;
-		if(++uart2_wr >= BUF_LENTH)	uart2_wr = 0;
-
-		RX1_Buffer[uart1_wr] = SBUF;
-		if(++uart1_wr >= BUF_LENTH)	uart1_wr = 0;
+		GPRS_Buffer[GPRS_wr] = SBUF;
+		if(++GPRS_wr >= BUF_LENTH)	GPRS_wr = 0;
 	}
 
 	if(TI)
@@ -145,27 +145,58 @@ void GPRS_RCV (void) interrupt 4
 *************
 接收GPS数据
 *************
-对应--GPS模块
+对应--GPS模块 只解析GPRMC数据
 *************
 **/
 void GPS_RCV (void) interrupt 8
 {
-	if(RI2)
-	{	
-		CLR_RI2();
-		//UART1_TxByte(S2BUF);	
-		RX1_Buffer[uart1_wr] = S2BUF;
-		if(++uart1_wr >= BUF_LENTH)	uart1_wr = 0;
-	}
-
-	if(TI2)
+	uchar ch;	
+	ch=S2BUF;
+	if (ch == '$')  //如果收到字符'$' 标志为1
 	{
-		CLR_TI2();
-		B_TI2 = 1;
+	 	gps_rev_start = 1;
+	}	
+	else if (gps_rev_start == 1 && ch == 'G') //如果 标志位为1,收到字符'G'，判断第2位
+	{
+	 	gps_rev_start = 2;			
 	}
+	else if (gps_rev_start == 2 && ch == 'P')  //如果 标志位为2,收到字符'P'，判断第3位
+	{
+		gps_rev_start = 3;
+	}
+	else if (gps_rev_start == 3 && ch == 'R')  //如果 标志位为3,收到字符'R'，判断第4位
+	{
+		gps_rev_start = 4;
+	}
+	else if (gps_rev_start == 4 && ch == 'M')  //如果 标志位为4,收到字符'M'，判断第5位
+	{
+		gps_rev_start = 5;
+	}
+	else if (gps_rev_start == 5 && ch == 'C')  //如果 标志位为5,收到字符'C'，判断第6位
+	{
+		gps_rev_start = 6;
+	}
+	else if (gps_rev_start == 6 && ch == ',')  //如果 标志位为6,收到字符','，开始接收数据
+	{
+		gps_rev_start = 7;
+		num = 1;
+	}
+
+	if(gps_rev_start == 7)
+	{
+		if(1)  //GPS_Buffer[0]==0
+		{
+			GPS_Buffer[++num] = ch;  //字符存到数组中
+			if (ch == 0x0D)     //如果接收到换行
+			{
+				GPS_Buffer[++num] = '\0';
+				GPS_Buffer[0]=1; //close present write
+				GPS_Buffer[1]=1; //open prensnt read
+			}
+		} 
+	}
+	S2CON&=~S2RI;
 }
-
-
 //入口主函数
 void main(){
 	uart1_rd = 0;
