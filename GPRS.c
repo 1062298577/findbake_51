@@ -7,69 +7,45 @@
 
 #define RST      	0X01
 #define AT     		0X02
-#define STACK     	0X03
-#define APN     	0X04
-#define INIT_PPP    0X05
-#define CHECK_PPP   0X06
-#define LINK     	0X07
-#define CHECK_NET 	0x08
-#define LINK_FINISH 0x09
+#define CCID  		0X03
+#define STACK     	0X04
+#define APN     	0X05
+#define INIT_PPP    0X06
+#define CHECK_PPP   0X07
+#define LINK     	0X08
+#define CHECK_NET 	0x09
+#define LINK_FINISH 0x0A	  
 
+#define MAX_LEN 	128	  	//缓存最大长度
 
 #define uchar unsigned char
 #define uint8 unsigned int
 
-uchar 	gprs_state;
+uchar 	gprs_state;			//初始化状态标志位
 
-#define MAX_LEN 128
-uchar  	rev_buf[MAX_LEN];        //接收缓存
-uchar 	send_buf[MAX_LEN] ;
 
-char 	send_buf_num=2;
+uchar  	rev_buf[MAX_LEN]; 	//接收缓存
+uchar 	send_buf[MAX_LEN];	//发送缓存
 
-uchar 	num_buf=0,num = 0;     	 
+uchar	ccid[MAX_LEN];		//存储CCID   	 
 
-uchar 	retry_count=0;   
+uchar 	retry_count=0; 		//重试次数标记  
 
-uchar 	gprs_state;
-
-uchar 	send_flag=0;
-uchar 	revc_flag=0;
 
 /*=========延时=====================*/
-void delay(int i)               
+void 	delay(int i)               
 {
 	int j,k;
-		for(j=0;j<i;j++)
-			for(k=0;k<990;k++);
+	for(j=0;j<i;j++)
+		for(k=0;k<990;k++);
 }
-
-
-
-/******************************************************************************************
-
- ****/
-
-/******************************************************************************************
-
- ***
- 函数名：UART串口发送字符串函数
- 调  用：UART_TC (?);
- 参  数：需要UART串口发送的数据（8位/1字节）
- 返回值：无 
- 结  果：向串口发送一个字符串,长度不限。
- 备  注：例：UART_TC("d9887321$"); 此函数需要#include <string.h>头文件支持。
-/******************************************************************************************
-
- ****/
 
 //GPRS口发送数据
 void	GPRS_TxByte(unsigned char dat)
 {
-	//B_TI = 0;
-	SBUF = dat;
-	//while(!B_TI);
-	//B_TI = 0;
+	SBUF = dat;	   	//将接收的数据发送回去
+	while(TI == 0);	//检查发送中断标志位
+	TI = 0;			//令发送中断标志位为0（软件清零）
 }
 
 //GPRS口发送一串字符串
@@ -79,24 +55,23 @@ void 	GPRS_TxString(unsigned char code *puts)
 }
 
 //清除接收缓存
-void clear_buf()
+void 	clear_rev_buf()
 {
 	uint8 index=0;
 	 
 	for(index=0;index<MAX_LEN;index++)
 	{
 		rev_buf[index]='\0';
-	}
-	num = 0;       
+	}       
 }
 
 //检查AT指令是否可用 指令AT\r\n
-void gprs_at()
+void 	gprs_at()
 {
    
 	if(gprs_state == RST)
 	{	
-		clear_buf();
+		clear_rev_buf();
 	    retry_count=0;
 		GPRS_TxString("AT\r\n");
 		gprs_state=AT;
@@ -104,23 +79,20 @@ void gprs_at()
 	}
 }
 
-//设置为内部协议 指令AT+XISP=0\r\n
-void gprs_stack()
+//检查SIM卡的CCID号	指令AT+CCID\r\n
+void 	gprs_check_ccid()
 {
-	if(gprs_state != AT)
-		return;
-			
-	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
-	{
-	    clear_buf();
-		retry_count=0;
-		gprs_state=STACK;
-		GPRS_TxString("AT+XISP=0\r\n");
+	if(gprs_state == AT)
+	{	
+		clear_rev_buf();
+	    retry_count=0;
+		GPRS_TxString("AT+CCID\r\n");
+		gprs_state=CCID;
 		delay(500);
 	}
 	else
 	{	
-		clear_buf();
+		clear_rev_buf();
 		GPRS_TxString("AT\r\n");
 		gprs_state=AT;
 		delay(500);
@@ -131,17 +103,45 @@ void gprs_stack()
 		  retry_count=0;
 		}
 	}
-	//	clear_buf2();
+}
+
+//设置为内部协议 指令AT+XISP=0\r\n
+void 	gprs_stack()
+{
+	if(gprs_state != CCID)
+		return;
+			
+	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
+	{
+	    clear_rev_buf();
+		retry_count=0;
+		gprs_state=STACK;
+		GPRS_TxString("AT+XISP=0\r\n");
+		delay(500);
+	}
+	else
+	{	
+		clear_rev_buf();
+		GPRS_TxString("AT+CCID\r\n");
+		gprs_state=CCID;
+		delay(500);
+		retry_count++;
+		if(retry_count == 5)
+		{
+		  gprs_state = RST ;
+		  retry_count=0;
+		}
+	}
 }
 
 //设置访问节点APN	指令 AT+CGDCONT=1,"IP","CMNET"\r\n
-void gprs_apn()
+void 	gprs_apn()
 {
 	if(gprs_state != STACK)
 		return;
 	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
 	{
-	    clear_buf();
+	    clear_rev_buf();
 		retry_count=0;
 	    gprs_state=APN;
 		GPRS_TxString("AT+CGDCONT=1,") ;	
@@ -158,7 +158,7 @@ void gprs_apn()
 	}
 	else
 	{
-      	clear_buf();
+      	clear_rev_buf();
 	    gprs_state=STACK;
 		GPRS_TxString("AT+XISP=0\r\n");
 		delay(500);
@@ -172,13 +172,13 @@ void gprs_apn()
 }
 
 //检查网络状态	指令 AT+CREG?\r\n
-void gprs_check_net()
+void 	gprs_check_net()
 {
 	if(gprs_state != APN)
 		return;
 	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
 	{
-		clear_buf();
+		clear_rev_buf();
 		retry_count=0;
 		gprs_state=CHECK_NET;
 		GPRS_TxString("AT+CREG?\r\n");		  
@@ -186,7 +186,7 @@ void gprs_check_net()
 	}
 	else
 	{
-     	clear_buf();
+     	clear_rev_buf();
 		gprs_state=APN;
 		GPRS_TxString("AT+CGDCONT=1,") ;	
 		GPRS_TxByte('"');
@@ -209,13 +209,13 @@ void gprs_check_net()
 }
 
 //初始化PPP连接	指令 AT+XIIC=1\r\n
-void gprs_init_ppp()
+void 	gprs_init_ppp()
 {
 	if(gprs_state != CHECK_NET)
 		return;
 	if(rev_buf[16] == 'O' && rev_buf[17]=='K')
 	{	   	
-		clear_buf();
+		clear_rev_buf();
 		retry_count=0;
 		gprs_state=INIT_PPP;
 		GPRS_TxString("AT+XIIC=1\r\n");		  
@@ -223,7 +223,7 @@ void gprs_init_ppp()
 	}
 	else
 	{
-	  	clear_buf();
+	  	clear_rev_buf();
 		gprs_state=CHECK_NET;
 		GPRS_TxString("AT+CREG?\r\n");		  
 		delay(500);
@@ -237,20 +237,20 @@ void gprs_init_ppp()
 }
 
 //检查PPP连接状态	指令AT+XIIC?\r\n
-void gprs_check_ppp()
+void 	gprs_check_ppp()
 {
 	if(gprs_state != INIT_PPP)
 		return;
 	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
 	{  
-		clear_buf();
+		clear_rev_buf();
 		retry_count=0;
 		gprs_state=CHECK_PPP;
 		GPRS_TxString("AT+XIIC?\r\n");	   	  
 		delay(500);
 	}
 	else
-	{  	clear_buf();
+	{  	clear_rev_buf();
 		gprs_state=INIT_PPP;
 		GPRS_TxString("AT+XIIC=1\r\n");		  
 		delay(500);
@@ -265,14 +265,14 @@ void gprs_check_ppp()
 }
 
 //建立连接	指令 AT+TCPSETUP=0,120.27.125.31,80\r\n
-void gprs_setup_link()
+void 	gprs_setup_link()
 {
 
 	if(gprs_state != CHECK_PPP)
 		return;	 
 	if(rev_buf[12] == '1' )
 	{		
-		clear_buf();
+		clear_rev_buf();
 		retry_count=0;
 		gprs_state=LINK;
 		GPRS_TxString("AT+TCPSETUP=0,120.27.125.31,80\r\n");		  
@@ -280,7 +280,7 @@ void gprs_setup_link()
 	}
 	else
 	{
-	   	clear_buf();
+	   	clear_rev_buf();
 		gprs_state=CHECK_PPP;
 		GPRS_TxString("AT+XIIC? \r\n");	   	  
 		delay(1000);
@@ -294,7 +294,7 @@ void gprs_setup_link()
 
 }
 
-void gprs_link_finish()
+void 	gprs_link_finish()
 {
 	
 	if(gprs_state != LINK)
@@ -320,15 +320,14 @@ void gprs_link_finish()
 		  	retry_count=0;
 		}
 	}
-	clear_buf();
+	clear_rev_buf();
 }
 
 // gprs模块初始化函数
-void gprs_init()
+void 	gprs_init()
 {
-	num=0;
 	gprs_state=RST;
-	clear_buf();
+	clear_rev_buf();
 	clear_send_buf(send_buf);
 	while(1)
 	{
@@ -347,25 +346,19 @@ void gprs_init()
 	
 }
 
-
-uchar re_enter=0;
-void GPRS_RECEIVE()	//gprs ---> mcu
+//解析接收到的数据
+void 	GPRS_RECEIVE()	//gprs ---> mcu
 {
- 	//send rev_buf2 to mcu
     uchar *p;
 	uint8 len=0;
 	uint8 index=0;
 	if(rev_buf[0]=='\0')
-	return;
-/*	for(index=0;rev_buf2[index] != '\0';index++)
-	{
-	    UART_1SendOneByte(rev_buf2[index] );
-	}  	*/
+		return;
 
-	p=strstr(rev_buf,"TCPRECV");
+	p=strstr(rev_buf,"TCPRECV");//返回匹配点以后的字符串
 	if(p != NULL)
 	{
-		p=strstr(p,",");	//第一个逗号
+		p=strstr(p,",");//第一个逗号
 		if(p!=NULL)	 
 		{
 			p++;
@@ -379,14 +372,12 @@ void GPRS_RECEIVE()	//gprs ---> mcu
 			}
 
 		}
-	 	//UART_TC("\r\nI  find it! \r\n");
-	
 	}
 	else
 	{
-	 	//	UART_TC("I cannot find it! \r\n");
+
 	}
-	clear_buf2();
+	clear_rev_buf();
 }
 
 //发送数据
@@ -445,11 +436,10 @@ void GPRS_SSEND( )  //mcu --->gprs
 	uchar *p;
 	if(send_buf[0]==1)
 	{
-	    send_bu1[1] =1;// now in process
+	    send_bu[1] =1;// now in process
 		p=&send_buf[2];
 		gprs_send_data(p);
-		clear_send_buf(send_buf1);
-		send_buf_num=2;
+		clear_send_buf(send_buf);
 	}
 }
 
@@ -457,17 +447,15 @@ void GPRS_SSEND( )  //mcu --->gprs
 //void main(void)
 //{
 //	//   rev_buf[0]=0;
-//	num=0;
 //	InitUART();	//串行口初始化
 //	gprs_state=RST;
 //	gprs_init();
-// 	clear_buf();
+// 	clear_rev_buf();
 //	clear_send_buf(send_buf);
 //	while(1)
 //	{
 //	 	GPRS_RECEIVE();
 //		GPRS_SSEND( );
 //		delay(50);
-//		LED=~LED;
 //	}
 //}

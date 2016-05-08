@@ -9,8 +9,8 @@
 
 //
 // 模块接口实现说明：
-//					 串口1：GPRS模块（接收和发送数据）
-//					 串口2：GPS模块	（接收GPS数据）
+//					 串口1 	P30,P31：GPRS模块（接收和发送数据）
+//					 串口2	P42：GPS模块	（接收GPS数据）
 //
 // 功能说明：
 //			GPS串口不断接收数据，存储到本地GPSINFO变量中
@@ -102,10 +102,9 @@ void	GPS_init(void)
 //GPRS口发送数据
 void	GPRS_TxByte(unsigned char dat)
 {
-	//B_TI = 0;
-	SBUF = dat;
-	//while(!B_TI);
-	//B_TI = 0;
+	SBUF = dat;	   	//将接收的数据发送回去
+	while(TI == 0);	//检查发送中断标志位
+	TI = 0;			//令发送中断标志位为0（软件清零）
 }
 
 //GPRS口发送一串字符串
@@ -131,12 +130,6 @@ void GPRS_RCV (void) interrupt 4
 
 		GPRS_Buffer[GPRS_wr] = SBUF;
 		if(++GPRS_wr >= BUF_LENTH)	GPRS_wr = 0;
-	}
-
-	if(TI)
-	{
-		TI = 0;
-		B_TI = 1;
 	}
 }
 
