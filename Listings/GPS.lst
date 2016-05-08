@@ -1,0 +1,489 @@
+C51 COMPILER V9.00   GPS                                                                   05/08/2016 11:05:35 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE GPS
+OBJECT MODULE PLACED IN .\Objects\GPS.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE GPS.c COMPACT ROM(COMPACT) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\GPS.l
+                    -st) OBJECT(.\Objects\GPS.obj)
+
+line level    source
+
+   1          #include "GPS.h"
+   2          #include <string.h>
+   3          
+   4          static uchar GetComma(uchar num,char* str);
+   5          static int Get_Int_Number(char *s);
+   6          static double Get_Double_Number(char *s);
+   7          static float Get_Float_Number(char *s);
+   8          static void UTC2BTC(DATE_TIME *GPS);
+   9          
+  10          //====================================================================//
+  11          // 语法格式：int GPS_RMC_Parse(char *line, GPS_INFO *GPS)  
+  12          // 实现功能：把gps模块的GPRMC信息解析为可识别的数据
+  13          // 参    数：存放原始信息字符数组、存储可识别数据的结构体
+  14          // 返 回 值
+  15          //                       1: 解析GPRMC完毕
+  16          //           0: 没有进行解析，或数据无效
+  17          //====================================================================//
+  18          int GPS_RMC_Parse(char *line,GPS_INFO *GPS)
+  19          {
+  20   1              uchar ch, status, tmp;
+  21   1              float lati_cent_tmp, lati_second_tmp;
+  22   1              float long_cent_tmp, long_second_tmp;
+  23   1              float speed_tmp;
+  24   1              char *buf = line;
+  25   1              ch = buf[5];
+  26   1              status = buf[GetComma(2, buf)];
+  27   1      
+  28   1              if (ch == 'C')  //如果第五个字符是C，($GPRMC)
+  29   1              {
+  30   2                      if (status == 'A')  //如果数据有效，则分析
+  31   2                      {
+  32   3                              GPS -> NS       = buf[GetComma(4, buf)];
+  33   3                              GPS -> EW       = buf[GetComma(6, buf)];
+  34   3      
+  35   3                              GPS->latitude   = Get_Double_Number(&buf[GetComma(3, buf)]);
+  36   3                              GPS->longitude  = Get_Double_Number(&buf[GetComma( 5, buf)]);
+  37   3      
+  38   3                      GPS->latitude_Degree  = (int)GPS->latitude / 100;       //分离纬度
+  39   3                              lati_cent_tmp         = (GPS->latitude - GPS->latitude_Degree * 100);
+  40   3                              GPS->latitude_Cent    = (int)lati_cent_tmp;
+  41   3                              lati_second_tmp       = (lati_cent_tmp - GPS->latitude_Cent) * 60;
+  42   3                              GPS->latitude_Second  = (int)lati_second_tmp;
+  43   3      
+  44   3                              GPS->longitude_Degree = (int)GPS->longitude / 100;      //分离经度
+  45   3                              long_cent_tmp         = (GPS->longitude - GPS->longitude_Degree * 100);
+  46   3                              GPS->longitude_Cent   = (int)long_cent_tmp;    
+  47   3                              long_second_tmp       = (long_cent_tmp - GPS->longitude_Cent) * 60;
+  48   3                              GPS->longitude_Second = (int)long_second_tmp;
+  49   3      
+  50   3                              speed_tmp      = Get_Float_Number(&buf[GetComma(7, buf)]);    //速度(单位：海里/时)
+  51   3                              GPS->speed     = speed_tmp * 1.85;                           //1海里=1.85公里
+  52   3                              GPS->direction = Get_Float_Number(&buf[GetComma(8, buf)]); //角度                       
+  53   3      
+  54   3                              GPS->D.hour    = (buf[7] - '0') * 10 + (buf[8] - '0');          //时间
+C51 COMPILER V9.00   GPS                                                                   05/08/2016 11:05:35 PAGE 2   
+
+  55   3                              GPS->D.minute  = (buf[9] - '0') * 10 + (buf[10] - '0');
+  56   3                              GPS->D.second  = (buf[11] - '0') * 10 + (buf[12] - '0');
+  57   3                              tmp = GetComma(9, buf);
+  58   3                              GPS->D.day     = (buf[tmp + 0] - '0') * 10 + (buf[tmp + 1] - '0'); //日期
+  59   3                              GPS->D.month   = (buf[tmp + 2] - '0') * 10 + (buf[tmp + 3] - '0');
+  60   3                              GPS->D.year    = (buf[tmp + 4] - '0') * 10 + (buf[tmp + 5] - '0')+2000;
+  61   3      
+  62   3                              UTC2BTC(&GPS->D);
+  63   3                              
+  64   3                              return 1;
+  65   3                      }               
+  66   2              }
+  67   1              
+  68   1              return 0;
+  69   1      }
+  70          
+  71          //====================================================================//
+  72          // 语法格式: static int Str_To_Int(char *buf)
+  73          // 实现功能： 把一个字符串转化成整数
+  74          // 参    数：字符串
+  75          // 返 回 值：转化后整数值
+  76          //====================================================================//
+  77          static int Str_To_Int(char *buf)
+  78          {
+  79   1              int rev = 0;
+  80   1              int dat;
+  81   1              char *str = buf;
+  82   1              while(*str != '\0')
+  83   1              {
+  84   2                      switch(*str)
+  85   2                      {
+  86   3                              case '0':
+  87   3                                      dat = 0;
+  88   3                                      break;
+  89   3                              case '1':
+  90   3                                      dat = 1;
+  91   3                                      break;
+  92   3                              case '2':
+  93   3                                      dat = 2;
+  94   3                                      break;          
+  95   3                              case '3':
+  96   3                                      dat = 3;
+  97   3                                      break;
+  98   3                              case '4':
+  99   3                                      dat = 4;
+ 100   3                                      break;
+ 101   3                              case '5':
+ 102   3                                      dat = 5;
+ 103   3                                      break;
+ 104   3                              case '6':
+ 105   3                                      dat = 6;
+ 106   3                                      break;
+ 107   3                              case '7':
+ 108   3                                      dat = 7;
+ 109   3                                      break;
+ 110   3                              case '8':
+ 111   3                                      dat = 8;
+ 112   3                                      break;
+ 113   3                              case '9':
+ 114   3                                      dat = 9;
+ 115   3                                      break;
+ 116   3                      }
+C51 COMPILER V9.00   GPS                                                                   05/08/2016 11:05:35 PAGE 3   
+
+ 117   2      
+ 118   2                      rev = rev * 10 + dat;
+ 119   2                      str ++;
+ 120   2              }
+ 121   1      
+ 122   1              return rev;
+ 123   1      }
+ 124          
+ 125          //====================================================================//
+ 126          // 语法格式: static int Get_Int_Number(char *s)
+ 127          // 实现功能：把给定字符串第一个逗号之前的字符转化成整型
+ 128          // 参    数：字符串
+ 129          // 返 回 值：转化后整数值
+ 130          //====================================================================//
+ 131          static int Get_Int_Number(char *s)
+ 132          {
+ 133   1              char buf[10];
+ 134   1              uchar i;
+ 135   1              int rev;
+ 136   1              i=GetComma(1, s);
+ 137   1              i = i - 1;
+ 138   1              strncpy(buf, s, i);
+ 139   1              buf[i] = 0;
+ 140   1              rev=Str_To_Int(buf);
+ 141   1              return rev;     
+ 142   1      }
+ 143          
+ 144          //====================================================================//
+ 145          // 语法格式: static float Str_To_Float(char *buf)
+ 146          // 实现功能： 把一个字符串转化成浮点数
+ 147          // 参    数：字符串
+ 148          // 返 回 值：转化后单精度值
+ 149          //====================================================================//
+ 150          static float Str_To_Float(char *buf)
+ 151          {
+ 152   1              float rev = 0;
+ 153   1              float dat;
+ 154   1              int integer = 1;
+ 155   1              char *str = buf;
+ 156   1              int i;
+ 157   1              while(*str != '\0')
+ 158   1              {
+ 159   2                      switch(*str)
+ 160   2                      {
+ 161   3                              case '0':
+ 162   3                                      dat = 0;
+ 163   3                                      break;
+ 164   3                              case '1':
+ 165   3                                      dat = 1;
+ 166   3                                      break;
+ 167   3                              case '2':
+ 168   3                                      dat = 2;
+ 169   3                                      break;          
+ 170   3                              case '3':
+ 171   3                                      dat = 3;
+ 172   3                                      break;
+ 173   3                              case '4':
+ 174   3                                      dat = 4;
+ 175   3                                      break;
+ 176   3                              case '5':
+ 177   3                                      dat = 5;
+ 178   3                                      break;
+C51 COMPILER V9.00   GPS                                                                   05/08/2016 11:05:35 PAGE 4   
+
+ 179   3                              case '6':
+ 180   3                                      dat = 6;
+ 181   3                                      break;
+ 182   3                              case '7':
+ 183   3                                      dat = 7;
+ 184   3                                      break;
+ 185   3                              case '8':
+ 186   3                                      dat = 8;
+ 187   3                                      break;
+ 188   3                              case '9':
+ 189   3                                      dat = 9;
+ 190   3                                      break;
+ 191   3                              case '.':
+ 192   3                                      dat = '.';
+ 193   3                                      break;
+ 194   3                      }
+ 195   2                      if(dat == '.')
+ 196   2                      {
+ 197   3                              integer = 0;
+ 198   3                              i = 1;
+ 199   3                              str ++;
+ 200   3                              continue;
+ 201   3                      }
+ 202   2                      if( integer == 1 )
+ 203   2                      {
+ 204   3                              rev = rev * 10 + dat;
+ 205   3                      }
+ 206   2                      else
+ 207   2                      {
+ 208   3                              rev = rev + dat / (10 * i);
+ 209   3                              i = i * 10 ;
+ 210   3                      }
+ 211   2                      str ++;
+ 212   2              }
+ 213   1              return rev;
+ 214   1      
+ 215   1      }
+ 216                                                                                                          
+ 217          //====================================================================//
+ 218          // 语法格式: static float Get_Float_Number(char *s)
+ 219          // 实现功能： 把给定字符串第一个逗号之前的字符转化成单精度型
+ 220          // 参    数：字符串
+ 221          // 返 回 值：转化后单精度值
+ 222          //====================================================================//
+ 223          static float Get_Float_Number(char *s)
+ 224          {
+ 225   1              char buf[10];
+ 226   1              uchar i;
+ 227   1              float rev;
+ 228   1              i=GetComma(1, s);
+ 229   1              i = i - 1;
+ 230   1              strncpy(buf, s, i);
+ 231   1              buf[i] = 0;
+ 232   1              rev=Str_To_Float(buf);
+ 233   1              return rev;     
+ 234   1      }
+ 235          
+ 236          //====================================================================//
+ 237          // 语法格式: static double Str_To_Double(char *buf)
+ 238          // 实现功能： 把一个字符串转化成浮点数
+ 239          // 参    数：字符串
+ 240          // 返 回 值：转化后双精度值
+C51 COMPILER V9.00   GPS                                                                   05/08/2016 11:05:35 PAGE 5   
+
+ 241          //====================================================================//
+ 242          static double Str_To_Double(char *buf)
+ 243          {
+ 244   1              double rev = 0;
+ 245   1              double dat;
+ 246   1              int integer = 1;
+ 247   1              char *str = buf;
+ 248   1              int i;
+ 249   1              while(*str != '\0')
+ 250   1              {
+ 251   2                      switch(*str)
+ 252   2                      {
+ 253   3                              case '0':
+ 254   3                                      dat = 0;
+ 255   3                                      break;
+ 256   3                              case '1':
+ 257   3                                      dat = 1;
+ 258   3                                      break;
+ 259   3                              case '2':
+ 260   3                                      dat = 2;
+ 261   3                                      break;          
+ 262   3                              case '3':
+ 263   3                                      dat = 3;
+ 264   3                                      break;
+ 265   3                              case '4':
+ 266   3                                      dat = 4;
+ 267   3                                      break;
+ 268   3                              case '5':
+ 269   3                                      dat = 5;
+ 270   3                                      break;
+ 271   3                              case '6':
+ 272   3                                      dat = 6;
+ 273   3                                      break;
+ 274   3                              case '7':
+ 275   3                                      dat = 7;
+ 276   3                                      break;
+ 277   3                              case '8':
+ 278   3                                      dat = 8;
+ 279   3                                      break;
+ 280   3                              case '9':
+ 281   3                                      dat = 9;
+ 282   3                                      break;
+ 283   3                              case '.':
+ 284   3                                      dat = '.';
+ 285   3                                      break;
+ 286   3                      }
+ 287   2                      if(dat == '.')
+ 288   2                      {
+ 289   3                              integer = 0;
+ 290   3                              i = 1;
+ 291   3                              str ++;
+ 292   3                              continue;
+ 293   3                      }
+ 294   2                      if( integer == 1 )
+ 295   2                      {
+ 296   3                              rev = rev * 10 + dat;
+ 297   3                      }
+ 298   2                      else
+ 299   2                      {
+ 300   3                              rev = rev + dat / (10 * i);
+ 301   3                              i = i * 10 ;
+ 302   3                      }
+C51 COMPILER V9.00   GPS                                                                   05/08/2016 11:05:35 PAGE 6   
+
+ 303   2                      str ++;
+ 304   2              }
+ 305   1              return rev;
+ 306   1      }
+ 307                                                                                                          
+ 308          //====================================================================//
+ 309          // 语法格式: static double Get_Double_Number(char *s)
+ 310          // 实现功能：把给定字符串第一个逗号之前的字符转化成双精度型
+ 311          // 参    数：字符串
+ 312          // 返 回 值：转化后双精度值
+ 313          //====================================================================//
+ 314          static double Get_Double_Number(char *s)
+ 315          {
+ 316   1              char buf[10];
+ 317   1              uchar i;
+ 318   1              double rev;
+ 319   1              i=GetComma(1, s);
+ 320   1              i = i - 1;
+ 321   1              strncpy(buf, s, i);
+ 322   1              buf[i] = 0;
+ 323   1              rev=Str_To_Double(buf);
+ 324   1              return rev;     
+ 325   1      }
+ 326          
+ 327          //====================================================================//
+ 328          // 语法格式：static uchar GetComma(uchar num,char *str)
+ 329          // 实现功能：计算字符串中各个逗号的位置
+ 330          // 参    数：查找的逗号是第几个的个数，需要查找的字符串
+ 331          // 返 回 值：0
+ 332          //====================================================================//
+ 333          static uchar GetComma(uchar num,char *str)
+ 334          {
+ 335   1              uchar i,j = 0;
+ 336   1              int len=strlen(str);
+ 337   1      
+ 338   1              for(i = 0;i < len;i ++)
+ 339   1              {
+ 340   2                      if(str[i] == ',')
+ 341   2                              j++;
+ 342   2                      if(j == num)
+ 343   2                              return i + 1;   
+ 344   2              }
+ 345   1      
+ 346   1              return 0;       
+ 347   1      }
+ 348          
+ 349          //====================================================================//
+ 350          // 语法格式：void UTC2BTC(DATE_TIME *GPS)
+ 351          // 实现功能：转化时间为北京时区的时间
+ 352          // 参    数：存放时间的结构体
+ 353          // 返 回 值：无
+ 354          //====================================================================//
+ 355          static void UTC2BTC(DATE_TIME *GPS)
+ 356          {
+ 357   1              GPS->second ++;  
+ 358   1              if(GPS->second > 59)
+ 359   1              {
+ 360   2                      GPS->second = 0;
+ 361   2                      GPS->minute ++;
+ 362   2                      if(GPS->minute > 59)
+ 363   2                      {
+ 364   3                              GPS->minute = 0;
+C51 COMPILER V9.00   GPS                                                                   05/08/2016 11:05:35 PAGE 7   
+
+ 365   3                              GPS->hour ++;
+ 366   3                      }
+ 367   2              }       
+ 368   1      
+ 369   1          GPS->hour = GPS->hour + 8;
+ 370   1              if(GPS->hour > 23)
+ 371   1              {
+ 372   2                      GPS->hour -= 24;
+ 373   2                      GPS->day += 1;
+ 374   2                      if(GPS->month == 2 ||
+ 375   2                                      GPS->month == 4 ||
+ 376   2                                      GPS->month == 6 ||
+ 377   2                                      GPS->month == 9 ||
+ 378   2                                      GPS->month == 11 )
+ 379   2                      {
+ 380   3                              if(GPS->day > 30)
+ 381   3                              {
+ 382   4                                      GPS->day = 1;
+ 383   4                                      GPS->month++;
+ 384   4                              }
+ 385   3                      }
+ 386   2                      else
+ 387   2                      {
+ 388   3                              if(GPS->day > 31)
+ 389   3                              {       
+ 390   4                                      GPS->day = 1;
+ 391   4                                      GPS->month ++;
+ 392   4                              }
+ 393   3                      }
+ 394   2                      if(GPS->year % 4 == 0 )
+ 395   2                      {
+ 396   3                              if(GPS->day > 29 && GPS->month == 2)
+ 397   3                              {               
+ 398   4                                      GPS->day = 1;
+ 399   4                                      GPS->month ++;
+ 400   4                              }
+ 401   3                      }
+ 402   2                      else
+ 403   2                      {
+ 404   3                              if(GPS->day > 28 &&GPS->month == 2)
+ 405   3                              {
+ 406   4                                      GPS->day = 1;
+ 407   4                                      GPS->month ++;
+ 408   4                              }
+ 409   3                      }
+ 410   2                      if(GPS->month > 12)
+ 411   2                      {
+ 412   3                              GPS->month -= 12;
+ 413   3                              GPS->year ++;
+ 414   3                      }               
+ 415   2              }
+ 416   1      }
+ 417          //====================================================================//
+ 418          //      语法格式：      Int_To_Str(int x,char *Str)
+ 419          //      实现功能：      转化整型值为字符串形式
+ 420          //      参数：          x: 转化的整数
+ 421          //                              Str:转化后的字符串
+ 422          //      返回值：        无
+ 423          //====================================================================//
+ 424          void Int_To_Str(int x,char *Str)
+ 425          {
+ 426   1              int t;
+C51 COMPILER V9.00   GPS                                                                   05/08/2016 11:05:35 PAGE 8   
+
+ 427   1              char *Ptr,Buf[5];
+ 428   1              int i = 0;
+ 429   1              Ptr = Str;
+ 430   1              if(x < 10)              // 当整数小于10时,转化为"0x"的格式
+ 431   1              {
+ 432   2                      *Ptr ++ = '0';
+ 433   2                      *Ptr ++ = x+0x30;
+ 434   2              }
+ 435   1              else
+ 436   1              {
+ 437   2                      while(x > 0)
+ 438   2                      {
+ 439   3                              t = x % 10;
+ 440   3                              x = x / 10;
+ 441   3                              Buf[i++] = t+0x30;      // 通过计算把数字转化成ASCII码形式
+ 442   3                      }
+ 443   2                      i -- ;
+ 444   2                      for(;i >= 0;i --)               // 将得到的字符串倒序
+ 445   2                      {
+ 446   3                              *(Ptr++) = Buf[i];
+ 447   3                      }
+ 448   2              }
+ 449   1              *Ptr = '\0';
+ 450   1      }
+ 451          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   3429    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----     119
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
