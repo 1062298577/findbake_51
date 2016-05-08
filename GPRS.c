@@ -2,45 +2,39 @@
 #include<STC12C5A60S2.h>
 #include "string.h"
 
+#define S2RI 		0x01	//串口2接收中断请求标志位
+#define S2TI 		0x02	//串口2发送中断请求标志位 
 
-#define S2RI 0x01	//串口2接收中断请求标志位
-#define S2TI 0x02	//串口2发送中断请求标志位 
-
-#define RST      0X01
-#define AT     0X02
-#define STACK     0X03
-#define APN     0X04
-#define INIT_PPP     0X05
-#define CHECK_PPP     0X06
-#define LINK     0X07
-#define CHECK_NET 0x08
+#define RST      	0X01
+#define AT     		0X02
+#define STACK     	0X03
+#define APN     	0X04
+#define INIT_PPP    0X05
+#define CHECK_PPP   0X06
+#define LINK     	0X07
+#define CHECK_NET 	0x08
 #define LINK_FINISH 0x09
 
 
 #define uchar unsigned char
 #define uint8 unsigned int
 
-sbit LED = P3^4;
-uchar gprs_state;
-#define MAX_LEN 200
-uchar  rev_buf1[MAX_LEN];        //接收缓存
-uchar  rev_buf2[MAX_LEN];        //接收缓存
+uchar 	gprs_state;
 
+#define MAX_LEN 128
+uchar  	rev_buf[MAX_LEN];        //接收缓存
+uchar 	send_buf[MAX_LEN] ;
 
-uchar send_buf1[MAX_LEN] ;
-uchar send_buf2[MAX_LEN] ;
-char send_buf1_num=2;
-char send_buf2_num=2;
+char 	send_buf_num=2;
 
+uchar 	num_buf=0,num = 0;     	 
 
-uchar num_buf1=0,num = 0;     	 
+uchar 	retry_count=0;   
 
-uchar retry_count=0;   
+uchar 	gprs_state;
 
-uchar gprs_state;
-
-uchar send_flag=0;
-uchar revc_flag=0;
+uchar 	send_flag=0;
+uchar 	revc_flag=0;
 
 /*=========延时=====================*/
 void delay(int i)               
@@ -84,29 +78,30 @@ void 	GPRS_TxString(unsigned char code *puts)
     for (; *puts != 0;	puts++)  GPRS_TxByte(*puts); 	//遇到停止符0结束
 }
 
-/*
-#define RST      0X01
-#define AT     0X02
-#define STACK     0X03
-#define APN     0X04
-#define INIT_PPP     0X05
-#define CHECK_PPP     0X06
-#define LINK     0X07
-
-*/
+//清除接收缓存
+void clear_buf()
+{
+	uint8 index=0;
+	 
+	for(index=0;index<MAX_LEN;index++)
+	{
+		rev_buf[index]='\0';
+	}
+	num = 0;       
+}
 
 //检查AT指令是否可用 指令AT\r\n
 void gprs_at()
 {
    
 	if(gprs_state == RST)
-	{	clear_buf2();
+	{	
+		clear_buf();
 	    retry_count=0;
-		UART2_Write_str("AT\r\n");
+		GPRS_TxString("AT\r\n");
 		gprs_state=AT;
 		delay(500);
 	}
-	//clear_buf2();
 }
 
 //设置为内部协议 指令AT+XISP=0\r\n
@@ -114,11 +109,10 @@ void gprs_stack()
 {
 	if(gprs_state != AT)
 		return;
-	//LED=~LED;
 			
-	if(rev_buf2[2] == 'O' && rev_buf2[3]=='K')
+	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
 	{
-	    clear_buf2();
+	    clear_buf();
 		retry_count=0;
 		gprs_state=STACK;
 		GPRS_TxString("AT+XISP=0\r\n");
@@ -126,7 +120,7 @@ void gprs_stack()
 	}
 	else
 	{	
-		clear_buf2();
+		clear_buf();
 		GPRS_TxString("AT\r\n");
 		gprs_state=AT;
 		delay(500);
@@ -145,9 +139,9 @@ void gprs_apn()
 {
 	if(gprs_state != STACK)
 		return;
-	if(rev_buf2[2] == 'O' && rev_buf2[3]=='K')
+	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
 	{
-	    clear_buf2();
+	    clear_buf();
 		retry_count=0;
 	    gprs_state=APN;
 		GPRS_TxString("AT+CGDCONT=1,") ;	
@@ -164,7 +158,7 @@ void gprs_apn()
 	}
 	else
 	{
-      	clear_buf2();
+      	clear_buf();
 	    gprs_state=STACK;
 		GPRS_TxString("AT+XISP=0\r\n");
 		delay(500);
@@ -182,9 +176,9 @@ void gprs_check_net()
 {
 	if(gprs_state != APN)
 		return;
-	if(rev_buf2[2] == 'O' && rev_buf2[3]=='K')
+	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
 	{
-		clear_buf2();
+		clear_buf();
 		retry_count=0;
 		gprs_state=CHECK_NET;
 		GPRS_TxString("AT+CREG?\r\n");		  
@@ -192,7 +186,7 @@ void gprs_check_net()
 	}
 	else
 	{
-     	clear_buf2();
+     	clear_buf();
 		gprs_state=APN;
 		GPRS_TxString("AT+CGDCONT=1,") ;	
 		GPRS_TxByte('"');
@@ -219,9 +213,9 @@ void gprs_init_ppp()
 {
 	if(gprs_state != CHECK_NET)
 		return;
-	if(rev_buf2[16] == 'O' && rev_buf2[17]=='K')
+	if(rev_buf[16] == 'O' && rev_buf[17]=='K')
 	{	   	
-		clear_buf2();
+		clear_buf();
 		retry_count=0;
 		gprs_state=INIT_PPP;
 		GPRS_TxString("AT+XIIC=1\r\n");		  
@@ -229,7 +223,7 @@ void gprs_init_ppp()
 	}
 	else
 	{
-	  	clear_buf2();
+	  	clear_buf();
 		gprs_state=CHECK_NET;
 		GPRS_TxString("AT+CREG?\r\n");		  
 		delay(500);
@@ -247,16 +241,16 @@ void gprs_check_ppp()
 {
 	if(gprs_state != INIT_PPP)
 		return;
-	if(rev_buf2[2] == 'O' && rev_buf2[3]=='K')
+	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
 	{  
-		clear_buf2();
+		clear_buf();
 		retry_count=0;
 		gprs_state=CHECK_PPP;
 		GPRS_TxString("AT+XIIC?\r\n");	   	  
 		delay(500);
 	}
 	else
-	{  	clear_buf2();
+	{  	clear_buf();
 		gprs_state=INIT_PPP;
 		GPRS_TxString("AT+XIIC=1\r\n");		  
 		delay(500);
@@ -276,9 +270,9 @@ void gprs_setup_link()
 
 	if(gprs_state != CHECK_PPP)
 		return;	 
-	if(rev_buf2[12] == '1' )
+	if(rev_buf[12] == '1' )
 	{		
-		clear_buf2();
+		clear_buf();
 		retry_count=0;
 		gprs_state=LINK;
 		GPRS_TxString("AT+TCPSETUP=0,120.27.125.31,80\r\n");		  
@@ -286,7 +280,7 @@ void gprs_setup_link()
 	}
 	else
 	{
-	   	clear_buf2();
+	   	clear_buf();
 		gprs_state=CHECK_PPP;
 		GPRS_TxString("AT+XIIC? \r\n");	   	  
 		delay(1000);
@@ -305,9 +299,9 @@ void gprs_link_finish()
 	
 	if(gprs_state != LINK)
 		return;	
-	GPRS_TxByte(rev_buf2[20] );
-	GPRS_TxByte(rev_buf2[21] );
-	if(rev_buf2[20] == 'O' && rev_buf2[21]=='K')
+	//GPRS_TxByte(rev_buf[20] );
+	//GPRS_TxByte(rev_buf[21] );
+	if(rev_buf[20] == 'O' && rev_buf[21]=='K')
 	{
 		retry_count=0;
 		gprs_state=LINK_FINISH;
@@ -326,12 +320,16 @@ void gprs_link_finish()
 		  	retry_count=0;
 		}
 	}
-	clear_buf2();
+	clear_buf();
 }
 
 // gprs模块初始化函数
 void gprs_init()
 {
+	num=0;
+	gprs_state=RST;
+	clear_buf();
+	clear_send_buf(send_buf);
 	while(1)
 	{
 		gprs_at() ;
@@ -357,14 +355,14 @@ void GPRS_RECEIVE()	//gprs ---> mcu
     uchar *p;
 	uint8 len=0;
 	uint8 index=0;
-	if(rev_buf2[0]=='\0')
+	if(rev_buf[0]=='\0')
 	return;
 /*	for(index=0;rev_buf2[index] != '\0';index++)
 	{
 	    UART_1SendOneByte(rev_buf2[index] );
 	}  	*/
 
-	p=strstr(rev_buf2,"TCPRECV");
+	p=strstr(rev_buf,"TCPRECV");
 	if(p != NULL)
 	{
 		p=strstr(p,",");	//第一个逗号
@@ -445,56 +443,31 @@ void clear_send_buf(uchar *p)
 void GPRS_SSEND( )  //mcu --->gprs
 {
 	uchar *p;
-	if(send_buf1[0]==1)
+	if(send_buf[0]==1)
 	{
-	    send_buf1[1] =1;// now in process
-		p=&send_buf1[2];
+	    send_bu1[1] =1;// now in process
+		p=&send_buf[2];
 		gprs_send_data(p);
 		clear_send_buf(send_buf1);
-		send_buf1_num=2;
-	    UART_TC("af send  buf1...\r\n");
+		send_buf_num=2;
 	}
 }
 
-/*****************主函数******************/
 
-void main(void)
-{
-	//   rev_buf[0]=0;
-	num=0;
-	InitUART();	//串行口初始化
-	gprs_state=RST;
-	gprs_init();
- 	clear_buf1();
- 	clear_buf2();
-	clear_send_buf(send_buf1);
-	clear_send_buf(send_buf2);
-	while(1)
-	{
- //   DTU_A:
-	 	GPRS_RECEIVE();
-	
-		GPRS_SSEND( );
-		delay(50);
-		LED=~LED;
-	}
-}
-/************串行口1中断处理函数*************/
-void UART_1Interrupt(void) interrupt 4
-{
-	EA=0;
-	if(RI==1)
-	{
-		if(send_buf1[1] !=1)//not in sent process
-       	{
-	   		send_buf1[send_buf1_num++]=SBUF;
-			if(send_buf1_num == MAX_LEN-1)
-	   		{
-	 			send_buf1[1]=1;
-	   		}
-			send_buf1[0]=1;// send_buf have data now
- 		}
-		RI=0;
-	}
-	EA=1;
-}
+//void main(void)
+//{
+//	//   rev_buf[0]=0;
+//	num=0;
+//	InitUART();	//串行口初始化
+//	gprs_state=RST;
+//	gprs_init();
+// 	clear_buf();
+//	clear_send_buf(send_buf);
+//	while(1)
+//	{
+//	 	GPRS_RECEIVE();
+//		GPRS_SSEND( );
+//		delay(50);
+//		LED=~LED;
+//	}
+//}
