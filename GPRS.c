@@ -22,7 +22,7 @@
 #define uint8 unsigned int
 
 uchar 	gprs_state;			//初始化状态标志位
-
+uint8 	num;				//计数
 
 uchar  	rev_buf[MAX_LEN]; 	//接收缓存
 uchar 	send_buf[MAX_LEN];	//发送缓存
@@ -68,7 +68,6 @@ void 	clear_rev_buf()
 //检查AT指令是否可用 指令AT\r\n
 void 	gprs_at()
 {
-   
 	if(gprs_state == RST)
 	{	
 		clear_rev_buf();
@@ -328,7 +327,7 @@ void 	gprs_init()
 {
 	gprs_state=RST;
 	clear_rev_buf();
-	clear_send_buf(send_buf);
+	clear_send_buf();
 	while(1)
 	{
 		gprs_at() ;
@@ -347,15 +346,15 @@ void 	gprs_init()
 }
 
 //解析接收到的数据
-void 	GPRS_RECEIVE()	//gprs ---> mcu
+void 	GPRS_RECEIVE(uchar revBuf[])	//gprs ---> mcu
 {
     uchar *p;
 	uint8 len=0;
 	uint8 index=0;
-	if(rev_buf[0]=='\0')
+	if(revBuf[0]=='\0')
 		return;
 
-	p=strstr(rev_buf,"TCPRECV");//返回匹配点以后的字符串
+	p=strstr(revBuf,"TCPRECV");//返回匹配点以后的字符串
 	if(p != NULL)
 	{
 		p=strstr(p,",");//第一个逗号
@@ -368,7 +367,7 @@ void 	GPRS_RECEIVE()	//gprs ---> mcu
 			{
 			    p++;
 	            while(*p!= '\0')
-				UART_1SendOneByte(*p++);
+				GPRS_TxByte(*p++);
 			}
 
 		}
@@ -381,7 +380,7 @@ void 	GPRS_RECEIVE()	//gprs ---> mcu
 }
 
 //发送数据
-void gprs_send_data(uchar *buf)
+void 	sendData(uchar buf[])
 {
 	uint8 index=0,length=0,tmp ; 
 	
@@ -420,42 +419,18 @@ void gprs_send_data(uchar *buf)
 
 }
 
-//清除发送缓存
-void clear_send_buf(uchar *p)
+
+//设置接收数据
+void	setRevBuf(uchar b)
 {
-    uint8 index=0;
-    for(index=0;index<MAX_LEN;index++)	 
+	if(num==MAX_LEN-1)
 	{
-		p[index]='\0';
+		return;
 	}
+    rev_buf[num++] = b;
 }
 
-
-void GPRS_SSEND( )  //mcu --->gprs
+void	GPRS_StartUp()
 {
-	uchar *p;
-	if(send_buf[0]==1)
-	{
-	    send_bu[1] =1;// now in process
-		p=&send_buf[2];
-		gprs_send_data(p);
-		clear_send_buf(send_buf);
-	}
+	gprs_init();
 }
-
-
-//void main(void)
-//{
-//	//   rev_buf[0]=0;
-//	InitUART();	//串行口初始化
-//	gprs_state=RST;
-//	gprs_init();
-// 	clear_rev_buf();
-//	clear_send_buf(send_buf);
-//	while(1)
-//	{
-//	 	GPRS_RECEIVE();
-//		GPRS_SSEND( );
-//		delay(50);
-//	}
-//}

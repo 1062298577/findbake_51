@@ -21,10 +21,10 @@
 
 #define MAIN_Fosc	22118400L	//define main clock
 
-#define Baudrate1	9600		//define the baudrate, 如果使用BRT做波特率发生器,则波特率跟串口2一样
+#define Baudrate1	19200		//define the baudrate, 如果使用BRT做波特率发生器,则波特率跟串口2一样
 									//12T mode: 600~115200 for 22.1184MHZ, 300~57600 for 11.0592MHZ
 
-#define Baudrate2	19200		//define the baudrate2,
+#define Baudrate2	9600		//define the baudrate2,
 									//12T mode: 600~115200 for 22.1184MHZ, 300~57600 for 11.0592MHZ
 
 #define	BUF_LENTH	128			//定义串口接收缓冲长度
@@ -35,6 +35,9 @@
 #include 	"GPS.h"
 #include 	"GPRS.h"
 
+#define unsigned char uchar;
+
+
 sfr AUXR1 = 0xA2;
 sfr	AUXR  = 0x8E;
 sfr S2CON = 0x9A;	//12C5A60S2双串口系列
@@ -43,16 +46,18 @@ sfr IE2   = 0xAF;	//STC12C5A60S2系列
 sfr BRT   = 0x9C;
 
 //串口1读写
-unsigned char 	GPRS_wr;		//写指针
-unsigned char 	GPRS_rd;		//读指针
-unsigned char 	xdata GPRS_Buffer[BUF_LENTH];//接收缓存：
-bit		B_TI;
+uchar 	GPRS_wr;		//写指针
+uchar 	GPRS_rd;		//读指针
+uchar 	xdata GPRS_Buffer[BUF_LENTH];//接收缓存：
+bit		B_TI;	  		//中断标志位
+uchar	GPRS_Listening;	//启动成功后监听
+
 
 //串口2读写
-unsigned char 	GPS_wr;		//写指针
-unsigned char 	GPS_rd;		//读指针
-unsigned char 	xdata GPS_Buffer[BUF_LENTH];//接收缓存	[0]表示写允许位 [1]表示读允许位
-unsigned char	gps_rev_start;//接收标志
+uchar 	GPS_wr;		//写指针
+uchar 	GPS_rd;		//读指针
+uchar 	xdata GPS_Buffer[BUF_LENTH];//接收缓存	[0]表示写允许位 [1]表示读允许位
+uchar	gps_rev_start;//接收标志
 
 /****************** 编译器自动生成，用户请勿修改 ************************************/
 
@@ -100,7 +105,7 @@ void	GPS_init(void)
 
 
 //GPRS口发送数据
-void	GPRS_TxByte(unsigned char dat)
+void	GPRS_TxByte(uchar dat)
 {
 	SBUF = dat;	   	//将接收的数据发送回去
 	while(TI == 0);	//检查发送中断标志位
@@ -108,11 +113,39 @@ void	GPRS_TxByte(unsigned char dat)
 }
 
 //GPRS口发送一串字符串
-void GPRS_TxString(unsigned char code *puts)		
+void GPRS_TxString(uchar code *puts)		
 {
     for (; *puts != 0;	puts++)  GPRS_TxByte(*puts); 	//遇到停止符0结束
 }
 
+//GPS输出口发送数据 用于调试数据
+void GPS_TxByte(uchar c)
+{
+	S2BUF = c;
+	while(TI2);
+	CLR_TI2();
+}
+
+//GPS口发送一串字符串
+void GPS_TxString(uchar *puts)		
+{
+    for (; *puts != '\0';	puts++)  GPS_TxByte(*puts); 	//遇到停止符0结束
+}
+
+//清除GPRS接收数据缓存
+void clear_gprs_rev_buf()
+{
+	uchar index=0;
+	 
+	for(uchar=0;uchar<MAX_LEN;uchar++)
+	{
+		GPRS_Buffer[uchar]='\0';
+	}
+
+	GPRS_Buffer[0] = 0;		//允许写位
+	GPRS_Buffer[1] = 0;		//允许读位
+	GPRS_wr = 0;			//写指针位
+}
 
 /**
 串口1中断响应
@@ -126,10 +159,48 @@ void GPRS_RCV (void) interrupt 4
 {
 	if(RI)
 	{
-		RI = 0;
+		EA = 0;	//暂停中断
+		RI = 0;	//复位
 
-		GPRS_Buffer[GPRS_wr] = SBUF;
-		if(++GPRS_wr >= BUF_LENTH)	GPRS_wr = 0;
+		uchar ch;
+		ch = SBUF;
+
+		if(GPRS_Listening != 1)	   //GPRS在初始化中,将中断数据返回给GPRS
+		{
+			setRevBuf(ch);	
+		}
+		else
+		{
+		  	if(ch == '{')  // 服务器返回有效数据起始位为'{'
+			{
+				GPRS_Buffer[0] = 1;	//数据缓存允许位置1，表示允许接收
+				GPRS_Buffer[1] = 0;	//数据缓存可读位置0，表示数据不可读
+				GPRS_wr = 0;		
+			}
+			else if (GPRS_Buffer[0] == 1 && ch == '}') //服务器返回有效数据结束位为'}'
+			{
+				GPRS_Buffer[1] = 1;		//数据缓存可读位置1，表示数据可读	
+				GPRS_wr = 1;	
+			}
+			else if (GPRS_Buffer[0] == 1)
+			{
+				if(++GPRS_wr < BUF_LENTH -1)		//防止数据溢出
+				{
+					GPRS_Buffer[GPRS_wr] = ch;
+				}
+				else
+				{
+					clear_gprs_rev_buf();
+				}
+				
+			}
+			else	//无效数据
+			{
+				clear_gprs_rev_buf();
+			}	
+		}
+
+		EA = 1;	//打开中断
 	}
 }
 
@@ -173,6 +244,7 @@ void GPS_RCV (void) interrupt 8
 	{
 		gps_rev_start = 7;
 		num = 1;
+		GPS_Buffer[1]=0;
 	}
 
 	if(gps_rev_start == 7)
@@ -196,18 +268,40 @@ void main(){
 	uart1_wr = 0;
 	uart2_rd = 0;
 	uart2_wr = 0;
+	GPRS_Listening = 0;
 
 	GPRS_init();
 	GPS_init();
+
+	GPRS_StartUp();	   				//启动GPRS初始化功能
+	GPRS_Listening = 1;				//开始监听网络传输数据
 
 	GPRS_TxString("串口1--GPRS");
 
 	while(1)
 	{
-		if(uart1_rd != uart1_wr)	//发送GPRS数据
+		if(GPS_Buffer[1] == 1)	//GPS数据可读时操作
 		{
-			GPRS_TxByte(RX1_Buffer[uart1_rd]);		  //发送数据
-			if(++uart1_rd >= BUF_LENTH)		uart1_rd = 0;
+			uchar datas[256] = "GET / HTTP/1.1\r\n\r\ndata=";
+			for(uchar i = 28;i<256;i++)			//将GPS_Buffer加在datas的尾部
+			{
+				uchar j = i - 28 + 2;
+				if(j > BUF_LEN - 1 || GPS_Buffer[j] == '\0')
+				{
+					datas[i] = '\0';	
+					break;
+				}
+				datas[i] = GPS_Buffer[j];	
+			}
+		   	sendData(datas);
+		}
+
+
+
+		//处理GPRS接收的数据
+		if(GPRS_Buffer[1] == 1)	//数据可读时操作
+		{
+		   	GPS_TxString(&GPRS_Buffer[2]);
 		}
 	}
 }

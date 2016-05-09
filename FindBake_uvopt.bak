@@ -201,6 +201,20 @@
       <PathWithFileName>.\GPS.c</PathWithFileName>
       <FilenameWithoutPath>GPS.c</FilenameWithoutPath>
     </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\GPRS.c</PathWithFileName>
+      <FilenameWithoutPath>GPRS.c</FilenameWithoutPath>
+    </File>
   </Group>
 
   <AlienFiles>
@@ -1600,9 +1614,9 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>12</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>17</CurrentLine>
+          <ColumnNumber>19</ColumnNumber>
+          <TopLine>182</TopLine>
+          <CurrentLine>182</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\GPS.c</Name>
