@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   MAIN                                                                  05/08/2016 11:05:34 PAGE 1   
+C51 COMPILER V9.00   MAIN                                                                  05/10/2016 22:30:52 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
@@ -19,208 +19,338 @@ line level    source
    9          
   10          //
   11          // 模块接口实现说明：
-  12          //                                       串口1：GPRS模块（接收和发送数据）
-  13          //                                       串口2：GPS模块 （接收GPS数据）
+  12          //                                       串口1  P30,P31：GPRS模块（接收和发送数据）
+  13          //                                       串口2  P42：GPS模块    （接收GPS数据）
   14          //
-  15          //
-  16          
-  17          /*************** 用户定义参数 *****************************/
-  18          
-  19          #define MAIN_Fosc       22118400L       //define main clock
-  20          
-  21          #define Baudrate1       9600            //define the baudrate, 如果使用BRT做波特率发生器,则波特率跟串口2一样
-  22                                                                                  //12T mode: 600~115200 for 22.1184MHZ, 300~57600 for 11.0592MHZ
+  15          // 功能说明：
+  16          //                      GPS串口不断接收数据，存储到本地GPSINFO变量中
+  17          //                      GPRS定时将GPSINFO变量中的数据发送到服务器中     
+  18          //
+  19          
+  20          /*************** 用户定义参数 *****************************/
+  21          
+  22          #define MAIN_Fosc       22118400L       //define main clock
   23          
-  24          #define Baudrate2       19200           //define the baudrate2,
+  24          #define Baudrate1       38400           //define the baudrate, 如果使用BRT做波特率发生器,则波特率跟串口2一样
   25                                                                                  //12T mode: 600~115200 for 22.1184MHZ, 300~57600 for 11.0592MHZ
   26          
-  27          #define BUF_LENTH       128                     //定义串口接收缓冲长度
-  28          
-  29          /**********************************************************/
-  30          
-  31          #include        <reg51.h>
-  32          #include        "GPS.h"
-  33          #include        "GPRS.h"
-  34          
-  35          sfr AUXR1 = 0xA2;
-  36          sfr     AUXR  = 0x8E;
-  37          sfr S2CON = 0x9A;       //12C5A60S2双串口系列
-  38          sfr S2BUF = 0x9B;       //12C5A60S2双串口系列
-  39          sfr IE2   = 0xAF;       //STC12C5A60S2系列
-  40          sfr BRT   = 0x9C;
-  41          
-  42          //串口1读写
-  43          unsigned char   uart1_wr;               //写指针
-  44          unsigned char   uart1_rd;               //读指针
-  45          unsigned char   xdata RX1_Buffer[BUF_LENTH];
-  46          bit             B_TI;
+  27          #define Baudrate2       9600            //define the baudrate2,
+  28                                                                                  //12T mode: 600~115200 for 22.1184MHZ, 300~57600 for 11.0592MHZ
+  29          
+  30          #define BUF_LENTH       128                     //定义串口接收缓冲长度
+  31          
+  32          /**********************************************************/
+  33          
+  34          #include        <reg51.h>
+  35          #include        "GPS.h"
+  36          #include        "GPRS.h"
+  37          
+  38          //#define uchar unsigned char;
+  39          
+  40          
+  41          sfr AUXR1 = 0xA2;
+  42          sfr     AUXR  = 0x8E;
+  43          sfr S2CON = 0x9A;       //12C5A60S2双串口系列
+  44          sfr S2BUF = 0x9B;       //12C5A60S2双串口系列
+  45          sfr IE2   = 0xAF;       //STC12C5A60S2系列
+  46          sfr BRT   = 0x9C;
   47          
-  48          //串口2读写
-  49          unsigned char   uart2_wr;               //写指针
-  50          unsigned char   uart2_rd;               //读指针
-  51          unsigned char   xdata RX2_Buffer[BUF_LENTH];
-  52          bit             B_TI2;
-  53          
-  54          /****************** 编译器自动生成，用户请勿修改 ************************************/
-C51 COMPILER V9.00   MAIN                                                                  05/08/2016 11:05:34 PAGE 2   
+  48          //串口1读写
+  49          uchar   GPRS_wr;                //写指针
+  50          uchar   GPRS_rd;                //读指针
+  51          uchar   xdata GPRS_Buffer[BUF_LENTH];//接收缓存：
+  52          bit             B_TI;                   //中断标志位
+  53          uchar   GPRS_Listening; //启动成功后监听
+  54          
+C51 COMPILER V9.00   MAIN                                                                  05/10/2016 22:30:52 PAGE 2   
 
   55          
-  56          #define T1_TimerReload  (256 - MAIN_Fosc / 192 / Baudrate1)                     //Calculate the timer1 reload value     at 12T mo
-             -de
-  57          #define BRT_Reload              (256 - MAIN_Fosc / 12 / 16 / Baudrate2)         //Calculate BRT reload value
-  58          
-  59          #define TimeOut1                (28800 / (unsigned long)Baudrate1 + 2)
-  60          #define TimeOut2                (28800 / (unsigned long)Baudrate2 + 2)
+  56          //串口2读写
+  57          uchar   GPS_wr;         //写指针
+  58          uchar   GPS_rd;         //读指针
+  59          uchar   xdata GPS_Buffer[BUF_LENTH];//接收缓存  [0]表示写允许位 [1]表示读允许位
+  60          uchar   gps_rev_start;//接收标志
   61          
-  62          #define TI2                             (S2CON & 0x02) != 0
-  63          #define RI2                             (S2CON & 0x01) != 0
-  64          #define CLR_TI2()               S2CON &= ~0x02
-  65          #define CLR_RI2()               S2CON &= ~0x01
+  62          /****************** 编译器自动生成，用户请勿修改 ************************************/
+  63          
+  64          #define T1_TimerReload  (256 - MAIN_Fosc / 192 / Baudrate1)                     //Calculate the timer1 reload value     at 12T mo
+             -de
+  65          #define BRT_Reload              (256 - MAIN_Fosc / 12 / 16 / Baudrate2)         //Calculate BRT reload value
   66          
-  67          /**********************************************************/
-  68          
+  67          #define TimeOut1                (28800 / (unsigned long)Baudrate1 + 2)
+  68          #define TimeOut2                (28800 / (unsigned long)Baudrate2 + 2)
   69          
-  70          //GPRS串口初始化
-  71          void    GPRS_init(void)
-  72          {
-  73   1              PCON |= 0x80;           //UART0 Double Rate Enable
-  74   1              SCON = 0x50;            //UART0 set as 10bit , UART0 RX enable
-  75   1              TMOD &= ~(1<<6);                //Timer1 Set as Timer, 12T
-  76   1              TMOD = (TMOD & ~0x30) | 0x20;   //Timer1 set as 8 bits auto relaod
-  77   1              TH1 = T1_TimerReload;           //Load the timer
-  78   1              TR1  = 1;
-  79   1              ES  = 1;
-  80   1              EA = 1;
-  81   1      }
-  82          
-  83          //GPS串口初始化
-  84          void    GPS_init(void)
-  85          {
-  86   1              AUXR1 |= (1<<4);        //将UART2从P1口切换到 RXD2--P1.2切换到P4.2   TXD2---P1.3切换到P4.3
-  87   1              AUXR |=  (1 << 3);              //串口2波特率加倍
-  88   1              //S2CON  = (S2CON & 0x3f) | (1<<6);     //串口2模式1，8位UART，(2^S2SMOD / 32) * BRT溢出率
-  89   1              //S2CON |= 1 << 4;              //允许串2接收
-  90   1              S2CON = 0x50;   //串口2工作在方式1  10位异步收发 S2REN=1允许接收
-  91   1      
-  92   1              AUXR |=  1 << 4;        //baudrate use BRT
-  93   1              BRT = BRT_Reload;
-  94   1      
-  95   1              IE2 |=  1;                      //允许串口2中断
-  96   1      }
-  97          
-  98          
-  99          //GPRS口发送数据
- 100          void    GPRS_TxByte(unsigned char dat)
- 101          {
- 102   1              //B_TI = 0;
- 103   1              SBUF = dat;
- 104   1              //while(!B_TI);
- 105   1              //B_TI = 0;
+  70          //#define       TI2                             (S2CON & 0x02) != 0
+  71          #define RI2                             (S2CON & 0x01) != 0
+  72          //#define       CLR_TI2()               S2CON &= ~0x02
+  73          #define CLR_RI2()               S2CON &= ~0x01
+  74          
+  75          /**********************************************************/
+  76          
+  77          
+  78          //GPRS串口初始化
+  79          void    GPRS_init(void)
+  80          {
+  81   1              TMOD = 0x20;    //定时器1工作在方式2  8位自动重装
+  82   1              //PCON |= 0x80;         //UART0 Double Rate Enable
+  83   1              SCON = 0x50;            //UART0 set as 10bit , UART0 RX enable
+  84   1              //TMOD &= ~(1<<6);              //Timer1 Set as Timer, 12T
+  85   1              //TMOD = (TMOD & ~0x30) | 0x20; //Timer1 set as 8 bits auto relaod
+  86   1              TH1 = T1_TimerReload;           //Load the timer
+  87   1              TL1 = TH1;
+  88   1              TR1  = 1;
+  89   1              ES  = 1;
+  90   1              EA = 1;
+  91   1      }                                                                                                        
+  92          
+  93          //GPS串口初始化
+  94          void    GPS_init(void)
+  95          {
+  96   1              AUXR1 |= (1<<4);        //将UART2从P1口切换到 RXD2--P1.2切换到P4.2   TXD2---P1.3切换到P4.3
+  97   1              AUXR |=  (1 << 3);              //串口2波特率加倍
+  98   1              //S2CON  = (S2CON & 0x3f) | (1<<6);     //串口2模式1，8位UART，(2^S2SMOD / 32) * BRT溢出率
+  99   1              //S2CON |= 1 << 4;              //允许串2接收
+ 100   1              S2CON = 0x50;   //串口2工作在方式1  10位异步收发 S2REN=1允许接收
+ 101   1      
+ 102   1              AUXR |=  1 << 4;        //baudrate use BRT
+ 103   1              BRT = BRT_Reload;
+ 104   1      
+ 105   1              IE2 |=  1;                      //允许串口2中断
  106   1      }
  107          
- 108          //GPRS口发送一串字符串
- 109          void GPRSTxString(unsigned char code *puts)             
- 110          {
- 111   1          for (; *puts != 0;  puts++)  GPRS_TxByte(*puts);    //遇到停止符0结束
- 112   1      }
- 113          
- 114          
- 115          /**
-C51 COMPILER V9.00   MAIN                                                                  05/08/2016 11:05:34 PAGE 3   
+ 108          
+ 109          ////GPRS口发送数据
+ 110          //void  GPRS_TxByte(uchar dat)
+ 111          //{
+ 112          //      SBUF = dat;             //将接收的数据发送回去
+ 113          //      while(TI == 0); //检查发送中断标志位
+ 114          //      TI = 0;                 //令发送中断标志位为0（软件清零）
+ 115          //}
+C51 COMPILER V9.00   MAIN                                                                  05/10/2016 22:30:52 PAGE 3   
 
- 116          串口1中断响应
- 117          *************
- 118          接收GPRS数据
- 119          *************
- 120          对应--GPRS模块
- 121          *************
- 122          **/
- 123          void GPRS_RCV (void) interrupt 4
- 124          {
- 125   1              if(RI)
- 126   1              {
- 127   2                      RI = 0;
- 128   2      
- 129   2                      RX2_Buffer[uart2_wr] = SBUF;
- 130   2                      if(++uart2_wr >= BUF_LENTH)     uart2_wr = 0;
- 131   2      
- 132   2                      RX1_Buffer[uart1_wr] = SBUF;
- 133   2                      if(++uart1_wr >= BUF_LENTH)     uart1_wr = 0;
- 134   2              }
- 135   1      
- 136   1              if(TI)
- 137   1              {
- 138   2                      TI = 0;
- 139   2                      B_TI = 1;
- 140   2              }
- 141   1      }
- 142          
- 143          /**
- 144          串口1中断响应
- 145          *************
- 146          接收GPS数据
- 147          *************
- 148          对应--GPS模块
- 149          *************
- 150          **/
- 151          void GPS_RCV (void) interrupt 8
- 152          {
- 153   1              if(RI2)
- 154   1              {       
- 155   2                      CLR_RI2();
- 156   2                      //UART1_TxByte(S2BUF);  
- 157   2                      RX1_Buffer[uart1_wr] = S2BUF;
- 158   2                      if(++uart1_wr >= BUF_LENTH)     uart1_wr = 0;
- 159   2              }
- 160   1      
- 161   1              if(TI2)
- 162   1              {
- 163   2                      CLR_TI2();
- 164   2                      B_TI2 = 1;
- 165   2              }
- 166   1      }
- 167          
- 168          
- 169          //入口主函数
- 170          void main(){
- 171   1              uart1_rd = 0;
- 172   1              uart1_wr = 0;
- 173   1              uart2_rd = 0;
- 174   1              uart2_wr = 0;
- 175   1      
- 176   1              GPRS_init();
- 177   1              GPS_init();
-C51 COMPILER V9.00   MAIN                                                                  05/08/2016 11:05:34 PAGE 4   
+ 116          //
+ 117          ////GPRS口发送一串字符串
+ 118          //void GPRS_TxString(uchar code *puts)          
+ 119          //{
+ 120          //    for (; *puts != 0;        puts++)  GPRS_TxByte(*puts);    //遇到停止符0结束
+ 121          //}
+ 122          
+ 123          ////GPS输出口发送数据 用于调试数据
+ 124          //void GPS_TxByte(uchar c)
+ 125          //{
+ 126          //      S2BUF = c;
+ 127          //      while(TI2);
+ 128          //      CLR_TI2();
+ 129          //}
+ 130          //
+ 131          ////GPS口发送一串字符串
+ 132          //void GPS_TxString(uchar *puts)                
+ 133          //{
+ 134          //    for (; *puts != '\0';     puts++)  GPS_TxByte(*puts);     //遇到停止符0结束
+ 135          //}
+ 136          
+ 137          //清除GPRS接收数据缓存
+ 138          void clear_gprs_rev_buf()
+ 139          {
+ 140   1              uchar index=0;
+ 141   1               
+ 142   1              for(index = 0 ; index < BUF_LENTH ; index++)
+ 143   1              {
+ 144   2                      GPRS_Buffer[index]='\0';
+ 145   2              }
+ 146   1      
+ 147   1              GPRS_Buffer[0] = 0;             //允许写位
+ 148   1              GPRS_Buffer[1] = 0;             //允许读位
+ 149   1              GPRS_wr = 0;                    //写指针位
+ 150   1      }
+ 151          
+ 152          /**
+ 153          串口1中断响应
+ 154          *************
+ 155          接收GPRS数据
+ 156          *************
+ 157          对应--GPRS模块
+ 158          *************
+ 159          **/
+ 160          void    GPRS_RCV (void) interrupt 4
+ 161          {
+ 162   1              uchar ch;
+ 163   1              if(RI)
+ 164   1              {
+ 165   2                      EA = 0; //暂停中断
+ 166   2                      RI = 0; //复位
+ 167   2      
+ 168   2                      
+ 169   2                      ch = SBUF;
+ 170   2      
+ 171   2                      //GPS_TxString("gprs rev");
+ 172   2                      if(GPRS_Listening != 1)    //GPRS在初始化中,将中断数据返回给GPRS
+ 173   2                      {
+ 174   3                              setRevBuf(ch);  
+ 175   3                      }
+ 176   2                      else
+ 177   2                      {
+C51 COMPILER V9.00   MAIN                                                                  05/10/2016 22:30:52 PAGE 4   
 
- 178   1      
- 179   1              GPRSTxString("串口1--GPRS");
- 180   1      
- 181   1              while(1)
- 182   1              {
- 183   2                      if(uart1_rd != uart1_wr)        //串口1转发
- 184   2                      {
- 185   3                              GPRS_TxByte(RX1_Buffer[uart1_rd]);                //发送数据
- 186   3                              if(++uart1_rd >= BUF_LENTH)             uart1_rd = 0;
- 187   3                      }
- 188   2      
- 189   2                      if(uart2_rd != uart2_wr)        //串口2转发
- 190   2                      {
- 191   3                              //GPS_TxByte(RX2_Buffer[uart2_rd]);
- 192   3                              //if(++uart2_rd >= BUF_LENTH)           uart2_rd = 0;
- 193   3                      }
- 194   2              }
- 195   1      }
+ 178   3                              if(ch == '{')  // 服务器返回有效数据起始位为'{'
+ 179   3                              {
+ 180   4                                      GPRS_Buffer[0] = 1;     //数据缓存允许位置1，表示允许接收
+ 181   4                                      GPRS_Buffer[1] = 0;     //数据缓存可读位置0，表示数据不可读
+ 182   4                                      GPRS_wr = 0;            
+ 183   4                              }
+ 184   3                              else if (GPRS_Buffer[0] == 1 && ch == '}') //服务器返回有效数据结束位为'}'
+ 185   3                              {
+ 186   4                                      GPRS_Buffer[1] = 1;             //数据缓存可读位置1，表示数据可读       
+ 187   4                                      GPRS_wr = 1;    
+ 188   4                              }
+ 189   3                              else if (GPRS_Buffer[0] == 1)
+ 190   3                              {
+ 191   4                                      if(++GPRS_wr < BUF_LENTH -1)            //防止数据溢出
+ 192   4                                      {
+ 193   5                                              GPRS_Buffer[GPRS_wr] = ch;
+ 194   5                                      }
+ 195   4                                      else
+ 196   4                                      {
+ 197   5                                              clear_gprs_rev_buf();
+ 198   5                                      }
+ 199   4                                      
+ 200   4                              }
+ 201   3                              else    //无效数据
+ 202   3                              {
+ 203   4                                      clear_gprs_rev_buf();
+ 204   4                              }       
+ 205   3                      }
+ 206   2      
+ 207   2                      EA = 1; //打开中断
+ 208   2              }
+ 209   1      }
+ 210          
+ 211          /**
+ 212          串口1中断响应
+ 213          *************
+ 214          接收GPS数据
+ 215          *************
+ 216          对应--GPS模块 只解析GPRMC数据
+ 217          *************
+ 218          **/
+ 219          void GPS_RCV (void) interrupt 8
+ 220          {
+ 221   1              uchar ch;       
+ 222   1              ch=S2BUF;
+ 223   1              
+ 224   1              if(GPRS_Listening != 1)
+ 225   1              {
+ 226   2                      CLR_RI2();
+ 227   2                      return;
+ 228   2              }
+ 229   1              GPS_TxString("gps rev");
+ 230   1      
+ 231   1              if (ch == '$')  //如果收到字符'$' 标志为1
+ 232   1              {
+ 233   2                      gps_rev_start = 1;
+ 234   2              }       
+ 235   1              else if (gps_rev_start == 1 && ch == 'G') //如果 标志位为1,收到字符'G'，判断第2位
+ 236   1              {
+ 237   2                      gps_rev_start = 2;                      
+ 238   2              }
+ 239   1              else if (gps_rev_start == 2 && ch == 'P')  //如果 标志位为2,收到字符'P'，判断第3位
+C51 COMPILER V9.00   MAIN                                                                  05/10/2016 22:30:52 PAGE 5   
+
+ 240   1              {
+ 241   2                      gps_rev_start = 3;
+ 242   2              }
+ 243   1              else if (gps_rev_start == 3 && ch == 'R')  //如果 标志位为3,收到字符'R'，判断第4位
+ 244   1              {
+ 245   2                      gps_rev_start = 4;
+ 246   2              }
+ 247   1              else if (gps_rev_start == 4 && ch == 'M')  //如果 标志位为4,收到字符'M'，判断第5位
+ 248   1              {
+ 249   2                      gps_rev_start = 5;
+ 250   2              }
+ 251   1              else if (gps_rev_start == 5 && ch == 'C')  //如果 标志位为5,收到字符'C'，判断第6位
+ 252   1              {
+ 253   2                      gps_rev_start = 6;
+ 254   2              }
+ 255   1              else if (gps_rev_start == 6 && ch == ',')  //如果 标志位为6,收到字符','，开始接收数据
+ 256   1              {
+ 257   2                      gps_rev_start = 7;
+ 258   2                      GPS_wr = 1;
+ 259   2                      GPS_Buffer[1]=0;
+ 260   2              }
+ 261   1      
+ 262   1              if(gps_rev_start == 7)
+ 263   1              {
+ 264   2                      if(1)  //GPS_Buffer[0]==0
+ 265   2                      {
+ 266   3                              GPS_Buffer[++GPS_wr] = ch;  //字符存到数组中
+ 267   3                              if (ch == 0x0D)     //如果接收到换行
+ 268   3                              {
+ 269   4                                      GPS_Buffer[++GPS_wr] = '\0';
+ 270   4                                      GPS_Buffer[0]=1; //close present write
+ 271   4                                      GPS_Buffer[1]=1; //open prensnt read
+ 272   4                              }
+ 273   3                      } 
+ 274   2              }
+ 275   1              CLR_RI2();
+ 276   1      }
+ 277          //入口主函数
+ 278          void main(){
+ 279   1              GPRS_wr = 0;
+ 280   1              GPRS_rd = 0;
+ 281   1              GPRS_Listening = 0;
+ 282   1              
+ 283   1              
+ 284   1              GPS_init();
+ 285   1              GPRS_init();
+ 286   1      
+ 287   1              GPS_TxString("main____\0");
+ 288   1              gprs_start();                                   //启动GPRS初始化功能
+ 289   1      
+ 290   1              GPS_TxString("main start listenning\n");
+ 291   1              delay(20000);
+ 292   1              GPS_TxString("main start listenning2\n");
+ 293   1      
+ 294   1              GPRS_Listening = 1;                             //开始监听网络传输数据
+ 295   1      
+ 296   1              while(1)
+ 297   1              {
+ 298   2                      if(GPS_Buffer[1] == 1)  //GPS数据可读时操作
+ 299   2                      {
+ 300   3                              uchar datas[128] = "GET / HTTP/1.1\r\n\r\ndata=";
+ 301   3                              uchar i = 0;
+C51 COMPILER V9.00   MAIN                                                                  05/10/2016 22:30:52 PAGE 6   
+
+ 302   3                              for(i = 28;i<128;i++)                   //将GPS_Buffer加在datas的尾部
+ 303   3                              {
+ 304   4                                      uchar j = i - 28 + 2;
+ 305   4                                      if(j > BUF_LENTH - 1 || GPS_Buffer[j] == '\0')
+ 306   4                                      {
+ 307   5                                              datas[i] = '\0';        
+ 308   5                                              break;
+ 309   5                                      }
+ 310   4                                      datas[i] = GPS_Buffer[j];       
+ 311   4                              }
+ 312   3                              sendData(datas);
+ 313   3                      }
+ 314   2                      //处理GPRS接收的数据
+ 315   2                      if(GPRS_Buffer[1] == 1) //数据可读时操作
+ 316   2                      {
+ 317   3                              GPS_TxString(&GPRS_Buffer[2]);
+*** WARNING C259 IN LINE 317 OF MAIN.C: 'parameter': pointer: different mspace
+ 318   3                      }
+ 319   2              }
+ 320   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    289    ----
-   CONSTANT SIZE    =     12    ----
+   CODE SIZE        =    648    ----
+   CONSTANT SIZE    =    193    ----
    XDATA SIZE       =    256    ----
-   PDATA SIZE       =      4    ----
+   PDATA SIZE       =      6     132
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
-   BIT SIZE         =      2    ----
+   BIT SIZE         =      1    ----
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -21,7 +21,7 @@
 
 #define MAIN_Fosc	22118400L	//define main clock
 
-#define Baudrate1	19200		//define the baudrate, 如果使用BRT做波特率发生器,则波特率跟串口2一样
+#define Baudrate1	38400		//define the baudrate, 如果使用BRT做波特率发生器,则波特率跟串口2一样
 									//12T mode: 600~115200 for 22.1184MHZ, 300~57600 for 11.0592MHZ
 
 #define Baudrate2	9600		//define the baudrate2,
@@ -35,7 +35,7 @@
 #include 	"GPS.h"
 #include 	"GPRS.h"
 
-#define unsigned char uchar;
+//#define uchar unsigned char;
 
 
 sfr AUXR1 = 0xA2;
@@ -67,9 +67,9 @@ uchar	gps_rev_start;//接收标志
 #define	TimeOut1		(28800 / (unsigned long)Baudrate1 + 2)
 #define	TimeOut2		(28800 / (unsigned long)Baudrate2 + 2)
 
-#define	TI2				(S2CON & 0x02) != 0
+//#define	TI2				(S2CON & 0x02) != 0
 #define	RI2				(S2CON & 0x01) != 0
-#define	CLR_TI2()		S2CON &= ~0x02
+//#define	CLR_TI2()		S2CON &= ~0x02
 #define	CLR_RI2()		S2CON &= ~0x01
 
 /**********************************************************/
@@ -78,11 +78,13 @@ uchar	gps_rev_start;//接收标志
 //GPRS串口初始化
 void	GPRS_init(void)
 {
-	PCON |= 0x80;		//UART0 Double Rate Enable
+	TMOD = 0x20;    //定时器1工作在方式2  8位自动重装
+	//PCON |= 0x80;		//UART0 Double Rate Enable
 	SCON = 0x50;		//UART0 set as 10bit , UART0 RX enable
-	TMOD &= ~(1<<6);		//Timer1 Set as Timer, 12T
-	TMOD = (TMOD & ~0x30) | 0x20;	//Timer1 set as 8 bits auto relaod
+	//TMOD &= ~(1<<6);		//Timer1 Set as Timer, 12T
+	//TMOD = (TMOD & ~0x30) | 0x20;	//Timer1 set as 8 bits auto relaod
 	TH1 = T1_TimerReload;		//Load the timer
+	TL1 = TH1;
 	TR1  = 1;
 	ES  = 1;
 	EA = 1;
@@ -104,42 +106,42 @@ void	GPS_init(void)
 }
 
 
-//GPRS口发送数据
-void	GPRS_TxByte(uchar dat)
-{
-	SBUF = dat;	   	//将接收的数据发送回去
-	while(TI == 0);	//检查发送中断标志位
-	TI = 0;			//令发送中断标志位为0（软件清零）
-}
+////GPRS口发送数据
+//void	GPRS_TxByte(uchar dat)
+//{
+//	SBUF = dat;	   	//将接收的数据发送回去
+//	while(TI == 0);	//检查发送中断标志位
+//	TI = 0;			//令发送中断标志位为0（软件清零）
+//}
+//
+////GPRS口发送一串字符串
+//void GPRS_TxString(uchar code *puts)		
+//{
+//    for (; *puts != 0;	puts++)  GPRS_TxByte(*puts); 	//遇到停止符0结束
+//}
 
-//GPRS口发送一串字符串
-void GPRS_TxString(uchar code *puts)		
-{
-    for (; *puts != 0;	puts++)  GPRS_TxByte(*puts); 	//遇到停止符0结束
-}
-
-//GPS输出口发送数据 用于调试数据
-void GPS_TxByte(uchar c)
-{
-	S2BUF = c;
-	while(TI2);
-	CLR_TI2();
-}
-
-//GPS口发送一串字符串
-void GPS_TxString(uchar *puts)		
-{
-    for (; *puts != '\0';	puts++)  GPS_TxByte(*puts); 	//遇到停止符0结束
-}
+////GPS输出口发送数据 用于调试数据
+//void GPS_TxByte(uchar c)
+//{
+//	S2BUF = c;
+//	while(TI2);
+//	CLR_TI2();
+//}
+//
+////GPS口发送一串字符串
+//void GPS_TxString(uchar *puts)		
+//{
+//    for (; *puts != '\0';	puts++)  GPS_TxByte(*puts); 	//遇到停止符0结束
+//}
 
 //清除GPRS接收数据缓存
 void clear_gprs_rev_buf()
 {
 	uchar index=0;
 	 
-	for(uchar=0;uchar<MAX_LEN;uchar++)
+	for(index = 0 ; index < BUF_LENTH ; index++)
 	{
-		GPRS_Buffer[uchar]='\0';
+		GPRS_Buffer[index]='\0';
 	}
 
 	GPRS_Buffer[0] = 0;		//允许写位
@@ -155,16 +157,18 @@ void clear_gprs_rev_buf()
 对应--GPRS模块
 *************
 **/
-void GPRS_RCV (void) interrupt 4
+void 	GPRS_RCV (void) interrupt 4
 {
+	uchar ch;
 	if(RI)
 	{
 		EA = 0;	//暂停中断
 		RI = 0;	//复位
 
-		uchar ch;
+		
 		ch = SBUF;
 
+		//GPS_TxString("gprs rev");
 		if(GPRS_Listening != 1)	   //GPRS在初始化中,将中断数据返回给GPRS
 		{
 			setRevBuf(ch);	
@@ -216,6 +220,14 @@ void GPS_RCV (void) interrupt 8
 {
 	uchar ch;	
 	ch=S2BUF;
+	
+	if(GPRS_Listening != 1)
+	{
+		CLR_RI2();
+		return;
+	}
+	GPS_TxString("gps rev");
+
 	if (ch == '$')  //如果收到字符'$' 标志为1
 	{
 	 	gps_rev_start = 1;
@@ -243,7 +255,7 @@ void GPS_RCV (void) interrupt 8
 	else if (gps_rev_start == 6 && ch == ',')  //如果 标志位为6,收到字符','，开始接收数据
 	{
 		gps_rev_start = 7;
-		num = 1;
+		GPS_wr = 1;
 		GPS_Buffer[1]=0;
 	}
 
@@ -251,42 +263,46 @@ void GPS_RCV (void) interrupt 8
 	{
 		if(1)  //GPS_Buffer[0]==0
 		{
-			GPS_Buffer[++num] = ch;  //字符存到数组中
+			GPS_Buffer[++GPS_wr] = ch;  //字符存到数组中
 			if (ch == 0x0D)     //如果接收到换行
 			{
-				GPS_Buffer[++num] = '\0';
+				GPS_Buffer[++GPS_wr] = '\0';
 				GPS_Buffer[0]=1; //close present write
 				GPS_Buffer[1]=1; //open prensnt read
 			}
 		} 
 	}
-	S2CON&=~S2RI;
+	CLR_RI2();
 }
 //入口主函数
 void main(){
-	uart1_rd = 0;
-	uart1_wr = 0;
-	uart2_rd = 0;
-	uart2_wr = 0;
+	GPRS_wr = 0;
+	GPRS_rd = 0;
 	GPRS_Listening = 0;
-
-	GPRS_init();
+	
+	
 	GPS_init();
+	GPRS_init();
 
-	GPRS_StartUp();	   				//启动GPRS初始化功能
+	GPS_TxString("main____\0");
+	gprs_start();	   				//启动GPRS初始化功能
+
+	GPS_TxString("main start listenning\n");
+	delay(20000);
+	GPS_TxString("main start listenning2\n");
+
 	GPRS_Listening = 1;				//开始监听网络传输数据
-
-	GPRS_TxString("串口1--GPRS");
 
 	while(1)
 	{
 		if(GPS_Buffer[1] == 1)	//GPS数据可读时操作
 		{
-			uchar datas[256] = "GET / HTTP/1.1\r\n\r\ndata=";
-			for(uchar i = 28;i<256;i++)			//将GPS_Buffer加在datas的尾部
+			uchar datas[128] = "GET / HTTP/1.1\r\n\r\ndata=";
+			uchar i = 0;
+			for(i = 28;i<128;i++)			//将GPS_Buffer加在datas的尾部
 			{
 				uchar j = i - 28 + 2;
-				if(j > BUF_LEN - 1 || GPS_Buffer[j] == '\0')
+				if(j > BUF_LENTH - 1 || GPS_Buffer[j] == '\0')
 				{
 					datas[i] = '\0';	
 					break;
@@ -295,9 +311,6 @@ void main(){
 			}
 		   	sendData(datas);
 		}
-
-
-
 		//处理GPRS接收的数据
 		if(GPRS_Buffer[1] == 1)	//数据可读时操作
 		{

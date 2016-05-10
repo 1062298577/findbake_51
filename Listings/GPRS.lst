@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   GPRS                                                                  05/08/2016 11:05:35 PAGE 1   
+C51 COMPILER V9.00   GPRS                                                                  05/10/2016 22:30:52 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE GPRS
@@ -9,17 +9,535 @@ COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE GPRS.c COMPACT ROM(COMPACT) BROWSE 
 line level    source
 
    1          #include "GPRS.h"
+   2          #include<STC12C5A60S2.h>
+   3          #include "string.h"
+   4          
+   5          #define S2RI            0x01    //串口2接收中断请求标志位
+   6          #define S2TI            0x02    //串口2发送中断请求标志位 
+   7          
+   8          #define RST             0x31
+   9          #define AT              0x32
+  10          #define CCID            0x33
+  11          #define STACK           0x34
+  12          #define APN             0x35
+  13          #define INIT_PPP    0x36
+  14          #define CHECK_PPP   0x37
+  15          #define LINK            0x38
+  16          #define CHECK_NET       0x39
+  17          #define LINK_FINISH 0x3A          
+  18          
+  19          #define MAX_LEN         128             //缓存最大长度
+  20          
+  21          #define TI2                             (S2CON & S2TI)
+  22          #define CLR_TI2()               S2CON &= ~S2TI
+  23          
+  24          uchar   gprs_state;                     //初始化状态标志位
+  25          uint8   num;                            //计数
+  26          
+  27          uchar   xdata   rev_buf[MAX_LEN];       //接收缓存
+  28          uchar   xdata   send_buf[MAX_LEN];      //发送缓存
+  29          
+  30          uchar   xdata   ccid[30];               //存储CCID       
+  31          
+  32          uchar   retry_count=0;          //重试次数标记  
+  33          
+  34          
+  35          /*=========延时=====================*/
+  36          void    delay(int i)               
+  37          {
+  38   1              int j,k;
+  39   1              for(j=0;j<i;j++)
+  40   1                      for(k=0;k<990;k++);
+  41   1      }
+  42          
+  43          //GPRS口发送数据
+  44          void    GPRS_TxByte(uchar dat)
+  45          {
+  46   1              SBUF = dat;             //将接收的数据发送回去
+  47   1              while(TI == 0); //检查发送中断标志位
+  48   1              TI = 0;                 //令发送中断标志位为0（软件清零）
+  49   1      }
+  50          
+  51          //GPRS口发送一串字符串
+  52          void    GPRS_TxString(char *puts)               
+  53          {
+  54   1          while(*puts != 0)  
+C51 COMPILER V9.00   GPRS                                                                  05/10/2016 22:30:52 PAGE 2   
+
+  55   1                      GPRS_TxByte(*puts++);   //遇到停止符0结束
+  56   1      }
+  57          
+  58          //GPS输出口发送数据 用于调试数据
+  59          void    GPS_TxByte(uchar c)
+  60          {
+  61   1              S2BUF = c;
+  62   1              while(!TI2);
+  63   1              CLR_TI2();
+  64   1      }
+  65          
+  66          //GPS口发送一串字符串
+  67          void    GPS_TxString(char *puts)                
+  68          {
+*** WARNING C259 IN LINE 68 OF GPRS.C: pointer: different mspace
+  69   1          while(*puts != 0)  
+  70   1                      GPS_TxByte(*puts++);    //遇到停止符0结束
+  71   1      }
+  72          
+  73          //清除接收缓存
+  74          void    clear_rev_buf()
+  75          {
+  76   1              uint8 index=0;
+  77   1              num = 0;
+  78   1               
+  79   1              for(index=0;index<MAX_LEN;index++)
+  80   1              {
+  81   2                      rev_buf[index]='\0';
+  82   2              }       
+  83   1      }
+  84          
+  85          //检查AT指令是否可用 指令AT\r\n
+  86          void    gprs_at()
+  87          {
+  88   1              GPS_TxString("gprs_at()\n");
+  89   1      
+  90   1              GPS_TxString(rev_buf);
+  91   1              GPS_TxString("\n");
+  92   1      
+  93   1              if(gprs_state == RST)
+  94   1              {       
+  95   2                      clear_rev_buf();
+  96   2                  retry_count=0;
+  97   2                      GPRS_TxString("AT\r\n");
+  98   2                      gprs_state=AT;
+  99   2                      delay(500);
+ 100   2              }
+ 101   1      }
+ 102          
+ 103          //检查SIM卡的CCID号     指令AT+CCID\r\n
+ 104          void    gprs_check_ccid()
+ 105          {
+ 106   1              GPS_TxString("gprs_check_ccid()\n");
+ 107   1              if(gprs_state != AT)
+ 108   1              {
+ 109   2                      return;
+ 110   2              }
+ 111   1              
+ 112   1              GPS_TxString(rev_buf);
+ 113   1              GPS_TxString("\n");
+ 114   1              
+ 115   1              if(rev_buf[2] == 'O' && rev_buf[3]=='K')
+C51 COMPILER V9.00   GPRS                                                                  05/10/2016 22:30:52 PAGE 3   
+
+ 116   1              {       
+ 117   2                      clear_rev_buf();
+ 118   2                  retry_count=0;
+ 119   2                      GPRS_TxString("AT+CCID\r\n");
+ 120   2                      gprs_state=CCID;
+ 121   2                      delay(500);
+ 122   2              }
+ 123   1              else
+ 124   1              {       
+ 125   2                      clear_rev_buf();
+ 126   2                      GPRS_TxString("AT\r\n");
+ 127   2                      gprs_state=AT;
+ 128   2                      delay(500);
+ 129   2                      retry_count++;
+ 130   2                      if(retry_count == 5)
+ 131   2                      {
+ 132   3                        gprs_state = RST ;
+ 133   3                        retry_count=0;
+ 134   3                      }
+ 135   2              }
+ 136   1      }
+ 137          
+ 138          //设置为内部协议 指令AT+XISP=0\r\n
+ 139          void    gprs_stack()
+ 140          {
+ 141   1              GPS_TxString("gprs_stack()\n");
+ 142   1              if(gprs_state != CCID)
+ 143   1                      return;
+ 144   1              
+ 145   1              GPS_TxString(rev_buf);
+ 146   1              GPS_TxString("\n");
+ 147   1                              
+ 148   1              if(rev_buf[2] == '+' && rev_buf[3]=='C')
+ 149   1              {
+ 150   2                  clear_rev_buf();
+ 151   2                      retry_count=0;
+ 152   2                      gprs_state=STACK;
+ 153   2                      GPRS_TxString("AT+XISP=0\r\n");
+ 154   2                      delay(500);
+ 155   2              }
+ 156   1              else
+ 157   1              {       
+ 158   2                      clear_rev_buf();
+ 159   2                      GPRS_TxString("AT+CCID\r\n");
+ 160   2                      gprs_state=CCID;
+ 161   2                      delay(500);
+ 162   2                      retry_count++;
+ 163   2                      if(retry_count == 5)
+ 164   2                      {
+ 165   3                        gprs_state = RST ;
+ 166   3                        retry_count=0;
+ 167   3                      }
+ 168   2              }
+ 169   1      }
+ 170          
+ 171          //设置访问节点APN       指令 AT+CGDCONT=1,"IP","CMNET"\r\n
+ 172          void    gprs_apn()
+ 173          {
+ 174   1              GPS_TxString("gprs_apn()\n");
+ 175   1              if(gprs_state != STACK)
+ 176   1                      return;
+ 177   1      
+C51 COMPILER V9.00   GPRS                                                                  05/10/2016 22:30:52 PAGE 4   
+
+ 178   1              GPS_TxString(rev_buf);
+ 179   1              GPS_TxString("\n");
+ 180   1      
+ 181   1              if(rev_buf[2] == 'O' && rev_buf[3]=='K')
+ 182   1              {
+ 183   2                  clear_rev_buf();
+ 184   2                      retry_count=0;
+ 185   2                  gprs_state=APN;
+ 186   2                      GPRS_TxString("AT+CGDCONT=1,") ;        
+ 187   2                      GPRS_TxByte('"');
+ 188   2                      GPRS_TxString("IP");
+ 189   2                      GPRS_TxByte('"');
+ 190   2                      GPRS_TxByte(',');
+ 191   2                      GPRS_TxByte('"');                                        
+ 192   2                      GPRS_TxString("CMNET" );         
+ 193   2                      GPRS_TxByte('"');
+ 194   2                      GPRS_TxString("\r\n" ); 
+ 195   2                      delay(500);
+ 196   2                              
+ 197   2              }
+ 198   1              else
+ 199   1              {
+ 200   2              clear_rev_buf();
+ 201   2                  gprs_state=STACK;
+ 202   2                      GPRS_TxString("AT+XISP=0\r\n");
+ 203   2                      delay(500);
+ 204   2                      retry_count++;
+ 205   2                      if(retry_count == 5)
+ 206   2                      {
+ 207   3                        gprs_state = RST ;
+ 208   3                        retry_count=0;
+ 209   3                      }
+ 210   2              }
+ 211   1      }
+ 212          
+ 213          //检查网络状态  指令 AT+CREG?\r\n
+ 214          void    gprs_check_net()
+ 215          {
+ 216   1              GPS_TxString("gprs_check_net()\n");
+ 217   1              if(gprs_state != APN)
+ 218   1                      return;
+ 219   1      
+ 220   1              GPS_TxString(rev_buf);
+ 221   1              GPS_TxString("\n");
+ 222   1      
+ 223   1              if(rev_buf[2] == 'O' && rev_buf[3]=='K')
+ 224   1              {
+ 225   2                      clear_rev_buf();
+ 226   2                      retry_count=0;
+ 227   2                      gprs_state=CHECK_NET;
+ 228   2                      GPRS_TxString("AT+CREG?\r\n");            
+ 229   2                      delay(500);
+ 230   2              }
+ 231   1              else
+ 232   1              {
+ 233   2              clear_rev_buf();
+ 234   2                      gprs_state=APN;
+ 235   2                      GPRS_TxString("AT+CGDCONT=1,") ;        
+ 236   2                      GPRS_TxByte('"');
+ 237   2                      GPRS_TxString("IP");
+ 238   2                      GPRS_TxByte('"');
+ 239   2                      GPRS_TxByte(',');
+C51 COMPILER V9.00   GPRS                                                                  05/10/2016 22:30:52 PAGE 5   
+
+ 240   2                      GPRS_TxByte('"');                                        
+ 241   2                      GPRS_TxString("CMNET" );         
+ 242   2                      GPRS_TxByte('"');
+ 243   2                      GPRS_TxString("\r\n" ); 
+ 244   2                      delay(1000);
+ 245   2                      retry_count++;
+ 246   2                      if(retry_count == 5)
+ 247   2                      {
+ 248   3                        gprs_state = RST ;
+ 249   3                        retry_count=0;
+ 250   3                      }
+ 251   2              }
+ 252   1      
+ 253   1      }
+ 254          
+ 255          //初始化PPP连接 指令 AT+XIIC=1\r\n
+ 256          void    gprs_init_ppp()
+ 257          {
+ 258   1              GPS_TxString("gprs_init_ppp()\n");
+ 259   1              if(gprs_state != CHECK_NET)
+ 260   1                      return;
+ 261   1      
+ 262   1              GPS_TxString(rev_buf);
+ 263   1              GPS_TxString("\n");     
+ 264   1      
+ 265   1              if(rev_buf[16] == 'O' && rev_buf[17]=='K')
+ 266   1              {               
+ 267   2                      clear_rev_buf();
+ 268   2                      retry_count=0;
+ 269   2                      gprs_state=INIT_PPP;
+ 270   2                      GPRS_TxString("AT+XIIC=1\r\n");           
+ 271   2                      delay(500);
+ 272   2              }
+ 273   1              else
+ 274   1              {
+ 275   2                      clear_rev_buf();
+ 276   2                      gprs_state=CHECK_NET;
+ 277   2                      GPRS_TxString("AT+CREG?\r\n");            
+ 278   2                      delay(500);
+ 279   2                      retry_count++;
+ 280   2                      if(retry_count == 5)
+ 281   2                      {
+ 282   3                        gprs_state = RST ;
+ 283   3                        retry_count=0;
+ 284   3                      }
+ 285   2              }
+ 286   1      }
+ 287          
+ 288          //检查PPP连接状态       指令AT+XIIC?\r\n
+ 289          void    gprs_check_ppp()
+ 290          {
+ 291   1              GPS_TxString("gprs_check_ppp()\n");
+ 292   1              if(gprs_state != INIT_PPP)
+ 293   1                      return;
+ 294   1      
+ 295   1              GPS_TxString(rev_buf);
+ 296   1              GPS_TxString("\n");
+ 297   1      
+ 298   1              if(rev_buf[2] == 'O' && rev_buf[3]=='K')
+ 299   1              {  
+ 300   2                      clear_rev_buf();
+ 301   2                      retry_count=0;
+C51 COMPILER V9.00   GPRS                                                                  05/10/2016 22:30:52 PAGE 6   
+
+ 302   2                      gprs_state=CHECK_PPP;
+ 303   2                      GPRS_TxString("AT+XIIC?\r\n");            
+ 304   2                      delay(500);
+ 305   2              }
+ 306   1              else
+ 307   1              {       clear_rev_buf();
+ 308   2                      gprs_state=INIT_PPP;
+ 309   2                      GPRS_TxString("AT+XIIC=1\r\n");           
+ 310   2                      delay(500);
+ 311   2                      retry_count++;
+ 312   2                      if(retry_count == 5)
+ 313   2                      {
+ 314   3                        gprs_state = RST ;
+ 315   3                        retry_count=0;
+ 316   3                      }
+ 317   2              }
+ 318   1      
+ 319   1      }
+ 320          
+ 321          //建立连接      指令 AT+TCPSETUP=0,120.27.125.31,80\r\n
+ 322          void    gprs_setup_link()
+ 323          {
+ 324   1              GPS_TxString("gprs_setup_link()\n");
+ 325   1              if(gprs_state != CHECK_PPP)
+ 326   1                      return;
+ 327   1                      
+ 328   1              GPS_TxString(rev_buf);
+ 329   1              GPS_TxString("\n");
+ 330   1                               
+ 331   1              if(rev_buf[12] == '1' )
+ 332   1              {               
+ 333   2                      clear_rev_buf();
+ 334   2                      retry_count=0;
+ 335   2                      gprs_state=LINK;
+ 336   2                      GPRS_TxString("AT+TCPSETUP=0,120.27.125.31,80\r\n");              
+ 337   2                      delay(1000);
+ 338   2              }
+ 339   1              else
+ 340   1              {
+ 341   2                      clear_rev_buf();
+ 342   2                      gprs_state=CHECK_PPP;
+ 343   2                      GPRS_TxString("AT+XIIC? \r\n");           
+ 344   2                      delay(1000);
+ 345   2                      retry_count++;
+ 346   2                      if(retry_count == 5)
+ 347   2                      {
+ 348   3                        gprs_state = RST ;
+ 349   3                        retry_count=0;
+ 350   3                      }
+ 351   2              }
+ 352   1      
+ 353   1      }
+ 354          
+ 355          void    gprs_link_finish()
+ 356          {
+ 357   1              GPS_TxString("gprs_link_finish()\n");
+ 358   1              if(gprs_state != LINK)
+ 359   1                      return; 
+ 360   1              
+ 361   1              GPS_TxString(rev_buf);
+ 362   1              GPS_TxString("\n");
+ 363   1      
+C51 COMPILER V9.00   GPRS                                                                  05/10/2016 22:30:52 PAGE 7   
+
+ 364   1              if(rev_buf[20] == 'O' && rev_buf[21]=='K')
+ 365   1              {
+ 366   2                      retry_count=0;
+ 367   2                      gprs_state=LINK_FINISH;
+ 368   2              }
+ 369   1              else
+ 370   1              {
+ 371   2                      gprs_state=LINK;
+ 372   2                      GPRS_TxString("AT+TCPSETUP=0,120.27.125.31,80\r\n");              
+ 373   2                      delay(1000);
+ 374   2                      retry_count++;
+ 375   2                      if(retry_count == 5)
+ 376   2                      {
+ 377   3                              GPRS_TxString("AT+XIIC=0\r\n");           
+ 378   3                              delay(500);
+ 379   3                              gprs_state = RST ;
+ 380   3                              retry_count=0;
+ 381   3                      }
+ 382   2              }
+ 383   1              clear_rev_buf();
+ 384   1      }
+ 385          
+ 386          //char a[13] = "1gprs_state=0";
+ 387          // gprs模块初始化函数
+ 388          void    gprs_start()
+ 389          {
+ 390   1              GPS_TxString("gprs_s()\n");
+ 391   1              gprs_state=RST;
+ 392   1              clear_rev_buf();
+ 393   1              num = 0;
+ 394   1              
+ 395   1              while(1)
+ 396   1              {
+ 397   2                      delay(2000);
+ 398   2                      gprs_at() ;
+ 399   2                      gprs_check_ccid();
+ 400   2                      gprs_stack();
+ 401   2                      gprs_apn();
+ 402   2                      gprs_check_net();
+ 403   2                      gprs_init_ppp();
+ 404   2                      gprs_check_ppp();
+ 405   2                      gprs_setup_link();
+ 406   2                      gprs_link_finish();
+ 407   2                      delay(2000);
+ 408   2      
+ 409   2                      GPS_TxByte(gprs_state);
+ 410   2                      delay(2000);
+ 411   2                      GPS_TxString("again");
+ 412   2                      if(gprs_state== LINK_FINISH)
+ 413   2                              return;
+ 414   2              }        
+ 415   1              
+ 416   1      }
+ 417          
+ 418          //解析接收到的数据
+ 419          void    GPRS_RECEIVE(uchar revBuf[])    //gprs ---> mcu
+ 420          {
+ 421   1          uchar *p;
+ 422   1              uint8 len=0;
+ 423   1              uint8 index=0;
+ 424   1              if(revBuf[0]=='\0')
+ 425   1                      return;
+C51 COMPILER V9.00   GPRS                                                                  05/10/2016 22:30:52 PAGE 8   
+
+ 426   1      
+ 427   1              p=strstr(revBuf,"TCPRECV");//返回匹配点以后的字符串
+ 428   1              if(p != NULL)
+ 429   1              {
+ 430   2                      p=strstr(p,",");//第一个逗号
+ 431   2                      if(p!=NULL)      
+ 432   2                      {
+ 433   3                              p++;
+ 434   3                              //两个逗号之间是长度
+ 435   3                          p=strstr(p,",");
+ 436   3                              if(p!=NULL)      //第二个逗号
+ 437   3                              {
+ 438   4                                  p++;
+ 439   4                          while(*p!= '\0')
+ 440   4                                      GPRS_TxByte(*p++);
+ 441   4                              }
+ 442   3      
+ 443   3                      }
+ 444   2              }
+ 445   1              else
+ 446   1              {
+ 447   2      
+ 448   2              }
+ 449   1              clear_rev_buf();
+ 450   1      }
+ 451          
+ 452          //发送数据
+ 453          void    sendData(uchar buf[])
+ 454          {
+ 455   1              uint8 index=0,length=0,tmp ; 
+ 456   1              
+ 457   1              while(buf[length ] != '\0')
+ 458   1                  length++;
+ 459   1              
+ 460   1              if(length == 0)
+ 461   1                      return;
+ 462   1              
+ 463   1              tmp=length;
+ 464   1              //send command
+ 465   1              GPRS_TxString("AT+TCPSEND=0,"); 
+ 466   1      
+ 467   1              if(length >=10)
+ 468   1              {
+ 469   2                      uchar shi,ge;
+ 470   2                      shi= length /10 +'0';
+ 471   2                      ge= length %10 +'0';
+ 472   2                      GPRS_TxByte(shi);
+ 473   2                      GPRS_TxByte(ge);
+ 474   2              }
+ 475   1              else
+ 476   1              {
+ 477   2                length=length+'0';
+ 478   2                GPRS_TxByte(length);
+ 479   2              }
+ 480   1              GPRS_TxString("\r\n");
+ 481   1              
+ 482   1              delay(50);
+ 483   1              for(index=0;index<tmp;index++)   
+ 484   1              {
+ 485   2                      GPRS_TxByte(buf[index]);
+ 486   2              }
+ 487   1      
+C51 COMPILER V9.00   GPRS                                                                  05/10/2016 22:30:52 PAGE 9   
+
+ 488   1              GPRS_TxString("\r\n");
+ 489   1      
+ 490   1      }
+ 491          
+ 492          
+ 493          //设置接收数据
+ 494          void    setRevBuf(uchar b)
+ 495          {
+ 496   1              if(num==MAX_LEN-1)
+ 497   1              {
+ 498   2                      num = 0;
+ 499   2                      return;
+ 500   2              }
+ 501   1          rev_buf[num++] = b;
+ 502   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   ----    ----
-   CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
-   PDATA SIZE       =   ----    ----
+   CODE SIZE        =   1736    ----
+   CONSTANT SIZE    =    334    ----
+   XDATA SIZE       =    286    ----
+   PDATA SIZE       =      4      24
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
