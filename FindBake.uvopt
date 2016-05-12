@@ -141,7 +141,7 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>153</LineNumber>
+          <LineNumber>305</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -155,6 +155,66 @@
         </Bp>
         <Bp>
           <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>301</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>303</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>369</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>GPRS.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>153</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
           <Type>0</Type>
           <LineNumber>130</LineNumber>
           <EnabledFlag>1</EnabledFlag>
@@ -211,10 +271,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>20</ColumnNumber>
+      <ColumnNumber>56</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>262</TopLine>
-      <CurrentLine>273</CurrentLine>
+      <TopLine>218</TopLine>
+      <CurrentLine>237</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -227,8 +287,8 @@
       <Focus>0</Focus>
       <ColumnNumber>6</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>31</TopLine>
-      <CurrentLine>31</CurrentLine>
+      <TopLine>411</TopLine>
+      <CurrentLine>411</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\GPS.c</PathWithFileName>
       <FilenameWithoutPath>GPS.c</FilenameWithoutPath>
@@ -239,10 +299,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>16</ColumnNumber>
+      <ColumnNumber>45</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>318</TopLine>
-      <CurrentLine>325</CurrentLine>
+      <TopLine>208</TopLine>
+      <CurrentLine>208</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\GPRS.c</PathWithFileName>
       <FilenameWithoutPath>GPRS.c</FilenameWithoutPath>
@@ -250,9 +310,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>C:\Users\LD\Desktop\51\findbake_51\GPS.H</PathWithFilename>
+    <PathWithFilename>C:\Users\LD\Desktop\51\findbake_51\GPRS.H</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>1</CurrentLine>
+    <CurrentLine>14</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -276,9 +336,9 @@
   </AlienFiles>
 
   <AlienFiles>
-    <PathWithFilename>C:\Users\LD\Desktop\51\findbake_51\GPRS.H</PathWithFilename>
+    <PathWithFilename>C:\Users\LD\Desktop\51\findbake_51\GPS.H</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>6</CurrentLine>
+    <CurrentLine>1</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1646,15 +1706,15 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>20</ColumnNumber>
-          <TopLine>262</TopLine>
-          <CurrentLine>273</CurrentLine>
+          <ColumnNumber>56</ColumnNumber>
+          <TopLine>218</TopLine>
+          <CurrentLine>237</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\GPS.c</Name>
           <ColumnNumber>6</ColumnNumber>
-          <TopLine>31</TopLine>
-          <CurrentLine>31</CurrentLine>
+          <TopLine>411</TopLine>
+          <CurrentLine>411</CurrentLine>
         </Doc>
         <Doc>
           <Name>GPS.H</Name>
@@ -1664,15 +1724,15 @@
         </Doc>
         <Doc>
           <Name>.\GPRS.c</Name>
-          <ColumnNumber>16</ColumnNumber>
-          <TopLine>318</TopLine>
-          <CurrentLine>325</CurrentLine>
+          <ColumnNumber>45</ColumnNumber>
+          <TopLine>208</TopLine>
+          <CurrentLine>208</CurrentLine>
         </Doc>
         <Doc>
           <Name>GPRS.H</Name>
-          <ColumnNumber>15</ColumnNumber>
+          <ColumnNumber>0</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>6</CurrentLine>
+          <CurrentLine>14</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

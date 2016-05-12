@@ -9,865 +9,47 @@ Project File Date:  05/08/2016
 <h2>Output:</h2>
 Build target 'Target 1'
 compiling main.c...
+MAIN.C(298): error C141: syntax error near 'else'
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(331): warning C206: 'GPS_TxString': missing function-prototype
-GPRS.C(331): error C267: 'GPS_TxString': requires ANSI-style prototype
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 Target not created
 Build target 'Target 1'
 compiling main.c...
-MAIN.C(278): warning C206: 'GPS_TxString': missing function-prototype
-MAIN.C(278): error C267: 'GPS_TxString': requires ANSI-style prototype
+MAIN.C(382): warning C260: '=': pointer truncation
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(60): error C202: 'TI2': undefined identifier
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(278): warning C206: 'GPS_TxString': missing function-prototype
-MAIN.C(278): error C267: 'GPS_TxString': requires ANSI-style prototype
-compiling GPS.c...
-compiling GPRS.c...
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(278): warning C206: 'GPS_TxString': missing function-prototype
-MAIN.C(278): error C267: 'GPS_TxString': requires ANSI-style prototype
-compiling GPS.c...
-compiling GPRS.c...
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(278): warning C206: 'GPS_TxString': missing function-prototype
-MAIN.C(278): error C267: 'GPS_TxString': requires ANSI-style prototype
-compiling GPS.c...
-compiling GPRS.c...
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(278): warning C206: 'GPS_TxString': missing function-prototype
-MAIN.C(278): error C267: 'GPS_TxString': requires ANSI-style prototype
-compiling GPS.c...
-compiling GPRS.c...
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(302): warning C206: 'GPS_TxString': missing function-prototype
-MAIN.C(302): error C267: 'GPS_TxString': requires ANSI-style prototype
-compiling GPS.c...
-compiling GPRS.c...
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(302): warning C206: 'GPS_TxString': missing function-prototype
-MAIN.C(302): error C267: 'GPS_TxString': requires ANSI-style prototype
-compiling GPS.c...
-compiling GPRS.c...
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(302): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GET_INT_NUMBER?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  008EH
-Program Size: data=9.1 xdata=842 code=7976
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(302): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  008EH
-Program Size: data=9.1 xdata=842 code=8002
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(302): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  008EH
-Program Size: data=9.1 xdata=842 code=8002
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(300): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  008EH
-Program Size: data=9.1 xdata=842 code=8012
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  008EH
-Program Size: data=9.1 xdata=842 code=8031
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  008EH
-Program Size: data=9.1 xdata=842 code=8031
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(305): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  008EH
-Program Size: data=9.1 xdata=842 code=8031
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(278): warning C206: 'GPS_TxByte': missing function-prototype
-MAIN.C(278): error C267: 'GPS_TxByte': requires ANSI-style prototype
-compiling GPS.c...
-compiling GPRS.c...
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  008EH
-Program Size: data=9.1 xdata=842 code=8036
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  008EH
-Program Size: data=9.1 xdata=842 code=8036
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(67): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  008EH
-Program Size: data=9.1 xdata=842 code=8047
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(67): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  008EH
-Program Size: data=9.1 xdata=842 code=8084
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=845 code=8187
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=845 code=8187
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(309): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=845 code=8201
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(309): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=845 code=8205
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(309): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=845 code=8205
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=845 code=8336
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(365): error C141: syntax error near 'char'
-GPRS.C(365): error C202: 'p': undefined identifier
-GPRS.C(366): error C202: 'p': undefined identifier
-GPRS.C(367): error C202: 'p': undefined identifier
-GPRS.C(368): error C202: 'p': undefined identifier
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(354): error C141: syntax error near 'char'
-GPRS.C(354): error C202: 'p': undefined identifier
-GPRS.C(367): error C202: 'p': undefined identifier
-GPRS.C(368): error C202: 'p': undefined identifier
-GPRS.C(369): error C202: 'p': undefined identifier
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(354): error C141: syntax error near 'char'
-GPRS.C(354): error C202: 'p': undefined identifier
-GPRS.C(366): error C202: 'p': undefined identifier
-GPRS.C(367): error C202: 'p': undefined identifier
-GPRS.C(368): error C202: 'p': undefined identifier
-GPRS.C(369): error C202: 'p': undefined identifier
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(354): error C141: syntax error near 'char'
-GPRS.C(354): error C202: 'p': undefined identifier
-GPRS.C(366): error C202: 'p': undefined identifier
-GPRS.C(367): error C202: 'p': undefined identifier
-GPRS.C(368): error C202: 'p': undefined identifier
-GPRS.C(369): error C202: 'p': undefined identifier
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(367): error C214: illegal pointer conversion
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(366): warning C260: '=': pointer truncation
-GPRS.C(367): error C214: illegal pointer conversion
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(366): error C141: syntax error near ':'
-GPRS.C(366): error C202: 'string': undefined identifier
-GPRS.C(367): error C141: syntax error near ':'
-GPRS.C(367): error C202: 'string': undefined identifier
-GPRS.C(368): error C141: syntax error near ':'
-GPRS.C(368): error C202: 'string': undefined identifier
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(366): error C141: syntax error near 'char'
-GPRS.C(366): error C202: 'a': undefined identifier
-GPRS.C(367): error C202: 'a': undefined identifier
-GPRS.C(368): error C202: 'a': undefined identifier
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(366): error C141: syntax error near 'unsigned'
-GPRS.C(366): error C202: 'a': undefined identifier
-GPRS.C(367): error C202: 'a': undefined identifier
-GPRS.C(368): error C202: 'a': undefined identifier
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=861 code=8371
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=861 code=8373
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=861 code=8375
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=861 code=8372
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=861 code=8380
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=861 code=8380
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=861 code=8380
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=861 code=8380
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=861 code=8378
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(303): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=861 code=8387
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(306): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0091H
-Program Size: data=9.1 xdata=861 code=8427
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
 *** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
+    CALLER1: ?PR?GPS_RCV?MAIN
     CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0094H
-Program Size: data=9.1 xdata=864 code=8443
+Program Size: data=9.1 xdata=806 code=9211
 creating hex file from ".\Objects\FindBake"...
 ".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
 compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
+MAIN.C(383): warning C260: '=': pointer truncation
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -875,41 +57,24 @@ linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_INT_TO_STR?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
 *** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
+    CALLER1: ?PR?GPS_RCV?MAIN
     CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0094H
-Program Size: data=9.1 xdata=864 code=8419
+Program Size: data=9.1 xdata=806 code=9227
 creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
+".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
 compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
+MAIN.C(383): warning C260: '=': pointer truncation
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -917,49 +82,132 @@ linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_INT_TO_STR?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
+    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
+    CALLER1: ?PR?GPS_RCV?MAIN
+    CALLER2: ?C_C51STARTUP
+Program Size: data=9.1 xdata=806 code=9227
+creating hex file from ".\Objects\FindBake"...
+".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(383): warning C260: '=': pointer truncation
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
+linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
+    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
+    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
+    SEGMENT: ?PR?_INT_TO_STR?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
 *** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
+    CALLER1: ?PR?GPS_RCV?MAIN
     CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0094H
-Program Size: data=9.1 xdata=864 code=8419
+Program Size: data=9.1 xdata=806 code=9227
 creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
+".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
 compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
+MAIN.C(383): warning C260: '=': pointer truncation
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(348): error C243: 'array[]': string out of bounds
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INT_TO_STR?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
+    CALLER1: ?PR?GPS_RCV?MAIN
+    CALLER2: ?C_C51STARTUP
+Program Size: data=9.1 xdata=806 code=9227
+creating hex file from ".\Objects\FindBake"...
+".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(383): warning C260: '=': pointer truncation
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INT_TO_STR?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
+    CALLER1: ?PR?GPS_RCV?MAIN
+    CALLER2: ?C_C51STARTUP
+Program Size: data=9.1 xdata=806 code=9227
+creating hex file from ".\Objects\FindBake"...
+".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(383): warning C260: '=': pointer truncation
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INT_TO_STR?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
+    CALLER1: ?PR?GPS_RCV?MAIN
+    CALLER2: ?C_C51STARTUP
+Program Size: data=9.1 xdata=806 code=9227
+creating hex file from ".\Objects\FindBake"...
+".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(308): error C141: syntax error near '}'
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 Target not created
 Build target 'Target 1'
 compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
+MAIN.C(384): warning C260: '=': pointer truncation
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -967,546 +215,26 @@ linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_INT_TO_STR?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
 *** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0094H
-Program Size: data=9.1 xdata=864 code=8419
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(307): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0094H
-Program Size: data=9.1 xdata=864 code=8419
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(308): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
     CALLER1: ?PR?GPS_RCV?MAIN
     CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8485
+Program Size: data=9.1 xdata=806 code=9218
 creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(308): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8489
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(312): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8494
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(312): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8494
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(312): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8494
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(312): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8490
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(312): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8490
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(312): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8487
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 18 Warning(s).
-Build target 'Target 1'
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8487
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(312): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8487
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 18 Warning(s).
+".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
 Clean started: Project: 'FindBake'
    deleting intermediate output files for target 'Target 1'
 Build target 'Target 1'
 compiling main.c...
-MAIN.C(312): warning C259: 'parameter': pointer: different mspace
+MAIN.C(384): warning C260: '=': pointer truncation
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -1514,1224 +242,24 @@ linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_INT_TO_STR?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
 *** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
     CALLER1: ?PR?GPS_RCV?MAIN
     CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8487
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 18 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-Program Size: data=9.1 xdata=741 code=8030
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7947
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
-Build target 'Target 1'
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7947
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 15 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7947
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
-Build target 'Target 1'
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7947
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 15 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7947
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7947
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT?MAIN
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPS_INIT?MAIN
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7913
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 18 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7918
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-Program Size: data=9.1 xdata=741 code=7934
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-Program Size: data=9.1 xdata=741 code=7935
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7923
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
-Build target 'Target 1'
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7923
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 15 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7923
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_START?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_SENDDATA?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-Program Size: data=9.1 xdata=738 code=7925
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 16 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(315): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8501
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(315): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8497
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(315): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8497
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(315): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8501
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(315): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8501
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(315): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8505
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(315): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8505
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(316): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8494
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_STACK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_APN?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_NET?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_INIT_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_PPP?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_SETUP_LINK?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_LINK_FINISH?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8497
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 17 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8547
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 10 Warning(s).
-Build target 'Target 1'
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?GPRS_CHECK_CCID?GPRS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8547
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8550
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
-Build target 'Target 1'
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8550
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8550
+Program Size: data=9.1 xdata=806 code=9218
 creating hex file from ".\Objects\FindBake"...
 ".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
 compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
+MAIN.C(385): warning C260: '=': pointer truncation
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -2741,27 +269,22 @@ linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
 *** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
     CALLER1: ?PR?GPS_RCV?MAIN
     CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8564
+Program Size: data=9.1 xdata=806 code=9238
 creating hex file from ".\Objects\FindBake"...
 ".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
 compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
+MAIN.C(385): warning C260: '=': pointer truncation
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -2771,32 +294,22 @@ linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
 *** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
     CALLER1: ?PR?GPS_RCV?MAIN
     CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8559
+Program Size: data=9.1 xdata=806 code=9238
 creating hex file from ".\Objects\FindBake"...
 ".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
 compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
+MAIN.C(382): warning C260: '=': pointer truncation
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(352): error C243: 'array[]': string out of bounds
-Target not created
-Build target 'Target 1'
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -2806,57 +319,22 @@ linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
 *** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
     CALLER1: ?PR?GPS_RCV?MAIN
     CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8559
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8559
+Program Size: data=9.1 xdata=806 code=9170
 creating hex file from ".\Objects\FindBake"...
 ".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
 compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
+MAIN.C(381): warning C260: '=': pointer truncation
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -2866,27 +344,22 @@ linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
 *** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
     CALLER1: ?PR?GPS_RCV?MAIN
     CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8560
+Program Size: data=9.1 xdata=806 code=9173
 creating hex file from ".\Objects\FindBake"...
 ".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
 Build target 'Target 1'
 compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
+MAIN.C(381): warning C260: '=': pointer truncation
 compiling GPS.c...
 compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
+GPRS.C(70): warning C259: pointer: different mspace
+GPRS.C(532): warning C275: expression with possibly no effect
 linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
@@ -2896,329 +369,9 @@ linking...
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
 *** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPRS_RCV?MAIN
-    CALLER2: ?PR?GPS_RCV?MAIN
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
+    SEGMENT: ?PR?_TEST_TXSTRING?MAIN
     CALLER1: ?PR?GPS_RCV?MAIN
     CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0098H
-Program Size: data=9.1 xdata=868 code=8552
+Program Size: data=9.1 xdata=806 code=9174
 creating hex file from ".\Objects\FindBake"...
 ".\Objects\FindBake" - 0 Error(s), 9 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=865 code=8540
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=865 code=8540
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 6 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=865 code=8562
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=865 code=8567
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=862 code=8564
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-GPRS.C(373): error C141: syntax error near 'char'
-GPRS.C(373): error C202: 'a': undefined identifier
-GPRS.C(375): error C202: 'a': undefined identifier
-Target not created
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=849 code=8536
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=849 code=8536
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 6 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=849 code=8536
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=849 code=8539
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=849 code=8549
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=849 code=8555
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-MAIN.C(317): warning C259: 'parameter': pointer: different mspace
-compiling GPS.c...
-compiling GPRS.c...
-GPRS.C(68): warning C259: pointer: different mspace
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_INT_TO_STR?GPS
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
-*** WARNING L15: MULTIPLE CALL TO SEGMENT
-    SEGMENT: ?PR?_GPS_TXSTRING?GPRS
-    CALLER1: ?PR?GPS_RCV?MAIN
-    CALLER2: ?C_C51STARTUP
-*** WARNING L18: SEGMENT DOES NOT FIT IN PDATA PAGE
-    SPACE:   XDATA   
-    SEGMENT: _PDATA_GROUP_
-    LENGTH:  0095H
-Program Size: data=9.1 xdata=849 code=8663
-creating hex file from ".\Objects\FindBake"...
-".\Objects\FindBake" - 0 Error(s), 8 Warning(s).
