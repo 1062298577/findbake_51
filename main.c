@@ -64,7 +64,8 @@ unsigned int	gps_rev_start = 0;//接收标志
 
 uchar 	count = 0;		//计数
 
-uchar 	xdata 	datas[80] = "GET /?gps=0000.0000,0000.0000 HTTP/1.1\r\nHost:www.luodongseu.top\r\n\r\n\r\n";
+//请求数据18,43,57
+uchar 	xdata 	request[128] = "GET /?data=1&ccid=00000000000000000000&lon=0000.0000&lat=0000.0000 HTTP/1.1\r\nHost:www.luodongseu.top\r\n\r\n\r\n";
 
 /****************** 编译器自动生成，用户请勿修改 ************************************/
 
@@ -229,7 +230,9 @@ void 	GPRS_RCV (void) interrupt 4
 		//EA = 1;	//打开中断
 	}
 }
-uchar a[5] = "abc\n";
+
+uchar a[5] = "abc\n";//测试的数据
+
 /**
 串口1中断响应
 *************
@@ -338,6 +341,13 @@ void main(){
 
 	Test_TxString("main start listenning\n");
 	
+	//填充request中的CCID号
+	uchar[]	ccid = getCcid();
+	for(uchar index = 0;index < 20;index++)
+	{
+		request[18+index] = ccid[index];
+	}
+	
 	GPRS_Listening = 1;				//开始监听网络传输数据
 
 	//EA = 0;
@@ -352,8 +362,8 @@ void main(){
 			Test_TxString("\n");
 			/**
 			**[13]-定位结果状态V/A
-			**[15-23]-纬度 ddmm.mmmm
-			**[27-35]-经度 ddmm.mmmm
+			**[43-51]-纬度 ddmm.mmmm
+			**[57-65]-经度 ddmm.mmmm
 			**/
 			if(GPS_Buffer[13] != 'A')
 			{
@@ -363,25 +373,26 @@ void main(){
 			else
 			{
 				//填充真实坐标数据
-				datas[10]=GPS_Buffer[15];					
-				datas[11]=GPS_Buffer[16];
-				datas[12]=GPS_Buffer[17];
-				datas[13]=GPS_Buffer[18];
-				datas[14]=GPS_Buffer[19];
-				datas[15]=GPS_Buffer[20];
-				datas[16]=GPS_Buffer[21];
-				datas[17]=GPS_Buffer[22];
-				datas[18]=GPS_Buffer[23];
-				datas[19]=",";
-				datas[20]=GPS_Buffer[27];
-				datas[21]=GPS_Buffer[28];
-				datas[22]=GPS_Buffer[29];
-				datas[23]=GPS_Buffer[30];
-				datas[24]=GPS_Buffer[31];
-				datas[25]=GPS_Buffer[32];
-				datas[26]=GPS_Buffer[33];
-				datas[27]=GPS_Buffer[34];
-				datas[28]=GPS_Buffer[35];
+				//纬度
+				request[43]=GPS_Buffer[15];					
+				request[44]=GPS_Buffer[16];
+				request[45]=GPS_Buffer[17];
+				request[46]=GPS_Buffer[18];
+				//request[47]=GPS_Buffer[19];//小数点
+				request[48]=GPS_Buffer[20];
+				request[49]=GPS_Buffer[21];
+				request[50]=GPS_Buffer[22];
+				request[51]=GPS_Buffer[23];
+				//经度
+				request[57]=GPS_Buffer[27];
+				request[58]=GPS_Buffer[28];
+				request[59]=GPS_Buffer[29];
+				request[60]=GPS_Buffer[30];
+				//request[61]=GPS_Buffer[31];//小数点
+				request[62]=GPS_Buffer[32];
+				request[63]=GPS_Buffer[33];
+				request[64]=GPS_Buffer[34];
+				request[65]=GPS_Buffer[35];
 
 		   		sendData(datas);
 			}

@@ -28,10 +28,9 @@ uint8 	num;				//计数
 
 uchar  	xdata	rev_buf[MAX_LEN]; 	//接收缓存
 uchar 	xdata	send_buf[MAX_LEN];	//发送缓存
+uchar	xdata	ccid[20];			//存储CCID   	 
 
-uchar	xdata	ccid[30];		//存储CCID   	 
-
-uchar 	retry_count=0; 		//重试次数标记  
+uchar 	retry_count=0; 				//重试次数标记  
 
 
 /*=========延时=====================*/
@@ -140,6 +139,7 @@ void 	gprs_check_ccid()
 //检查网络状态	指令 AT+CREG?\r\n
 void 	gprs_check_net()
 {
+	uchar index = 0;
 	GPS_TxString("4:gprs_check_net()\n");
 	if(gprs_state != CCID)
 		return;
@@ -149,6 +149,12 @@ void 	gprs_check_net()
 
 	if(rev_buf[33] == 'O' && rev_buf[34]=='K')
 	{
+		//存储CCID号
+		for(index = 0 ; index < 20 ; index ++)
+		{
+			ccid[index] = rev[index + 9];//从第9个开始
+		}		
+
 		clear_rev_buf();
 		retry_count=0;
 		gprs_state=CHECK_NET;
@@ -466,9 +472,35 @@ void 	gprs_start()
 {
 	GPS_TxString("gprs_s()\n");
 	gprs_state=RST;
-	clear_rev_buf();
 	num = 0;
+	clear_rev_buf();	
 	
+	//检查是否硬件启动完成，即是否接收到+PBREADY
+	uchar plusIndex = 0;//记录遇到+号的位置
+	uchar ready = 0;
+	while(!ready){	//一直循环检测
+		delay(1000);
+		for(uchar i = 0;i < MAX_LEN;i++)
+		{
+			//此处仅匹配了+......Y的格式
+			if(rev_buf[i] == '+')
+			{
+				plusIndx = i;
+			}
+			else if(rev_buf[i] == 'Y' && plusIndx != 0 && i = plusIndex + 7)
+			{
+				ready = 1;
+				break;
+			}
+			else if(plusIndx != 0 && i >= plusIndex + 7)
+			{
+				plusIndx = 0;
+				break;
+			}
+		}
+	}
+	
+	//按步骤初始化
 	while(gprs_state != LINK_FINISH)
 	{	
 		gprs_at() ;
@@ -482,10 +514,11 @@ void 	gprs_start()
 		gprs_setup_link();
 		gprs_check_r0();
 		gprs_link_finish();
-		delay(2000);
-		GPS_TxString("state:");
-		GPS_TxByte(gprs_state);
-		GPS_TxString("\n\n");
+		
+		delay(500);
+//		GPS_TxString("state:");
+//		GPS_TxByte(gprs_state);
+//		GPS_TxString("\n\n");
 	}	 
 }
 
@@ -591,3 +624,9 @@ void	setRevBuf(uchar b)
 	}
     rev_buf[num++] = b;
 }
+
+//获取CCID号
+unsigned char[]	getCcid()
+{
+	return ccid;
+}		
