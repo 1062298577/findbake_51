@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   GPS                                                                   05/13/2016 00:22:20 PAGE 1   
+C51 COMPILER V9.00   GPS                                                                   05/13/2016 08:43:12 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE GPS
@@ -62,7 +62,7 @@ line level    source
   52   3                              GPS->direction = Get_Float_Number(&buf[GetComma(8, buf)]); //角度                       
   53   3      
   54   3                              GPS->D.hour    = (buf[7] - '0') * 10 + (buf[8] - '0');          //时间
-C51 COMPILER V9.00   GPS                                                                   05/13/2016 00:22:20 PAGE 2   
+C51 COMPILER V9.00   GPS                                                                   05/13/2016 08:43:12 PAGE 2   
 
   55   3                              GPS->D.minute  = (buf[9] - '0') * 10 + (buf[10] - '0');
   56   3                              GPS->D.second  = (buf[11] - '0') * 10 + (buf[12] - '0');
@@ -126,7 +126,7 @@ line level    source
  114   3                                      dat = 9;
  115   3                                      break;
  116   3                      }
-C51 COMPILER V9.00   GPS                                                                   05/13/2016 00:22:20 PAGE 3   
+C51 COMPILER V9.00   GPS                                                                   05/13/2016 08:43:12 PAGE 3   
 
  117   2      
  118   2                      rev = rev * 10 + dat;
@@ -190,7 +190,7 @@ line level    source
  176   3                              case '5':
  177   3                                      dat = 5;
  178   3                                      break;
-C51 COMPILER V9.00   GPS                                                                   05/13/2016 00:22:20 PAGE 4   
+C51 COMPILER V9.00   GPS                                                                   05/13/2016 08:43:12 PAGE 4   
 
  179   3                              case '6':
  180   3                                      dat = 6;
@@ -254,7 +254,7 @@ line level    source
  238          // 实现功能： 把一个字符串转化成浮点数
  239          // 参    数：字符串
  240          // 返 回 值：转化后双精度值
-C51 COMPILER V9.00   GPS                                                                   05/13/2016 00:22:20 PAGE 5   
+C51 COMPILER V9.00   GPS                                                                   05/13/2016 08:43:12 PAGE 5   
 
  241          //====================================================================//
  242          static double Str_To_Double(char *buf)
@@ -318,7 +318,7 @@ line level    source
  300   3                              rev = rev + dat / (10 * i);
  301   3                              i = i * 10 ;
  302   3                      }
-C51 COMPILER V9.00   GPS                                                                   05/13/2016 00:22:20 PAGE 6   
+C51 COMPILER V9.00   GPS                                                                   05/13/2016 08:43:12 PAGE 6   
 
  303   2                      str ++;
  304   2              }
@@ -382,7 +382,7 @@ line level    source
  362   2                      if(GPS->minute > 59)
  363   2                      {
  364   3                              GPS->minute = 0;
-C51 COMPILER V9.00   GPS                                                                   05/13/2016 00:22:20 PAGE 7   
+C51 COMPILER V9.00   GPS                                                                   05/13/2016 08:43:12 PAGE 7   
 
  365   3                              GPS->hour ++;
  366   3                      }
@@ -446,7 +446,7 @@ line level    source
  424          void Int_To_Str(int x,char *Str)
  425          {
  426   1              int t;
-C51 COMPILER V9.00   GPS                                                                   05/13/2016 00:22:20 PAGE 8   
+C51 COMPILER V9.00   GPS                                                                   05/13/2016 08:43:12 PAGE 8   
 
  427   1              char *Ptr,Buf[5];
  428   1              int i = 0;

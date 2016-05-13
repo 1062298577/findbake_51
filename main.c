@@ -66,6 +66,8 @@ uchar 	count = 0;		//计数
 
 //请求数据18,43,57
 uchar 	xdata 	request[128] = "GET /?data=1&ccid=00000000000000000000&lon=0000.0000&lat=0000.0000 HTTP/1.1\r\nHost:www.luodongseu.top\r\n\r\n\r\n";
+//定位失败时的请求19
+uchar 	xdata 	fail_request[128] = "GET /?data=-1_ccid=00000000000000000000 HTTP/1.1\r\nHost:www.luodongseu.top\r\n\r\n\r\n";
 
 /****************** 编译器自动生成，用户请勿修改 ************************************/
 
@@ -203,11 +205,12 @@ void 	GPRS_RCV (void) interrupt 4
 			{
 				GPRS_Buffer[0] = 1;	//数据缓存允许位置1，表示允许接收
 				GPRS_Buffer[1] = 2;	//数据缓存可读位置2，表示数据不可读
-				GPRS_wr = 0;		
+				GPRS_wr = 1;		
 			}
 			else if (GPRS_Buffer[0] == 1 && ch == '}') //服务器返回有效数据结束位为'}'
 			{
-				GPRS_Buffer[1] = 1;		//数据缓存可读位置1，表示数据可读		
+				GPRS_Buffer[1] = 1;		//数据缓存可读位置1，表示数据可读
+				GPRS_Buffer[0] = 2;		//数据缓存允许位置2，表示不允许接收		
 			}
 			else if (GPRS_Buffer[0] == 1)
 			{
@@ -324,8 +327,11 @@ void GPS_RCV (void) interrupt 8
 	CLR_RI2();
 }
 
+
 //入口主函数
 void main(){
+	uchar index = 0;
+	uchar*  ccid = getCcid();
 	GPRS_wr = 0;
 	GPS_wr = 0;
 	GPRS_Listening = 0;
@@ -336,16 +342,18 @@ void main(){
 	GPS_init();
 	GPRS_init();
 
-	Test_TxString("main____\0");
+	Test_TxString("main____\n");
 	gprs_start();	   				//启动GPRS初始化功能
 
 	Test_TxString("main start listenning\n");
 	
 	//填充request中的CCID号
-	uchar[]	ccid = getCcid();
-	for(uchar index = 0;index < 20;index++)
+	
+	
+	for(index = 0;index < 20;index++)
 	{
 		request[18+index] = ccid[index];
+		fail_request[19+index] = ccid[index];
 	}
 	
 	GPRS_Listening = 1;				//开始监听网络传输数据
@@ -368,7 +376,7 @@ void main(){
 			if(GPS_Buffer[13] != 'A')
 			{
 				//定位失败,发送-1		
-				sendData("GET /?data=-1 HTTP/1.1\r\nHost:www.luodongseu.top\r\n\r\n\r\n");
+				sendData(fail_request);
 			}
 			else
 			{
@@ -394,7 +402,7 @@ void main(){
 				request[64]=GPS_Buffer[34];
 				request[65]=GPS_Buffer[35];
 
-		   		sendData(datas);
+		   		sendData(request);
 			}
 			clear_gps_rev_buf();
 		}

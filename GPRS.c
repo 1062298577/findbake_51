@@ -152,7 +152,7 @@ void 	gprs_check_net()
 		//存储CCID号
 		for(index = 0 ; index < 20 ; index ++)
 		{
-			ccid[index] = rev[index + 9];//从第9个开始
+			ccid[index] = rev_buf[index + 9];//从第9个开始
 		}		
 
 		clear_rev_buf();
@@ -443,14 +443,14 @@ void 	gprs_link_finish()
 	if(rev_buf[14] == 'O' && rev_buf[15]=='K')
 	{
 		clear_rev_buf();
-		GPS_TxString("link success");
+		GPS_TxString("link success\n");
 		retry_count=0;
 		gprs_state=LINK_FINISH;
 	}
 	else
 	{	
 		clear_rev_buf();
-		GPS_TxString("link failed");
+		GPS_TxString("link failed\n");
 		gprs_state=LINK;
 		GPRS_TxString("AT+IPSTATUS=0\r\n");		  
 		delay(1000);
@@ -470,31 +470,38 @@ void 	gprs_link_finish()
 // gprs模块初始化函数
 void 	gprs_start()
 {
+	uchar plusIndex = 0;//记录遇到+号的位置
+	uchar ready = 0;
+	uchar i = 0;
+	
 	GPS_TxString("gprs_s()\n");
 	gprs_state=RST;
 	num = 0;
 	clear_rev_buf();	
 	
 	//检查是否硬件启动完成，即是否接收到+PBREADY
-	uchar plusIndex = 0;//记录遇到+号的位置
-	uchar ready = 0;
 	while(!ready){	//一直循环检测
 		delay(1000);
-		for(uchar i = 0;i < MAX_LEN;i++)
+		//GPS_TxString(rev_buf);
+		if(rev_buf[0] == '\0')
+		{
+			continue;
+		}
+		for(i = 0;i < MAX_LEN;i++)
 		{
 			//此处仅匹配了+......Y的格式
 			if(rev_buf[i] == '+')
 			{
-				plusIndx = i;
+				plusIndex = i;
 			}
-			else if(rev_buf[i] == 'Y' && plusIndx != 0 && i = plusIndex + 7)
+			else if(rev_buf[i] == 'Y' && plusIndex != 0 && i == plusIndex + 7)
 			{
 				ready = 1;
 				break;
 			}
-			else if(plusIndx != 0 && i >= plusIndex + 7)
+			else if(plusIndex != 0 && i >= plusIndex + 7)
 			{
-				plusIndx = 0;
+				plusIndex = 0;
 				break;
 			}
 		}
@@ -626,7 +633,7 @@ void	setRevBuf(uchar b)
 }
 
 //获取CCID号
-unsigned char[]	getCcid()
+unsigned 	char*	getCcid()
 {
 	return ccid;
 }		

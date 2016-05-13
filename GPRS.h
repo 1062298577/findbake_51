@@ -15,6 +15,6 @@ void	GPS_TxString(uchar code *p);//GPS发送字符串
 
 void 	delay(int i);	//延时
 
-unsigned char[]	getCcid();		//获取CCID号   
+unsigned char*	getCcid();		//获取CCID号   
 
 #endif

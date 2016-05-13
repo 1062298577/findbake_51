@@ -7,3 +7,331 @@ C:\Users\LD\Desktop\51\findbake_51\FindBake.uvproj
 Project File Date:  05/08/2016
 
 <h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+GPRS.H(18): error C141: syntax error near '['
+MAIN.C(347): error C141: syntax error near 'unsigned'
+MAIN.C(347): error C202: 'ccid': undefined identifier
+MAIN.C(348): error C141: syntax error near 'unsigned'
+MAIN.C(348): error C202: 'index': undefined identifier
+MAIN.C(348): error C202: 'index': undefined identifier
+MAIN.C(348): error C202: 'index': undefined identifier
+MAIN.C(348): error C141: syntax error near ')'
+MAIN.C(351): error C202: 'index': undefined identifier
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.H(18): error C141: syntax error near '['
+Target not created
+Build target 'Target 1'
+compiling main.c...
+GPRS.H(18): error C141: syntax error near '['
+MAIN.C(347): error C141: syntax error near 'unsigned'
+MAIN.C(347): error C202: 'ccid': undefined identifier
+MAIN.C(348): error C141: syntax error near 'unsigned'
+MAIN.C(348): error C202: 'index': undefined identifier
+MAIN.C(349): error C202: 'index': undefined identifier
+MAIN.C(351): error C202: 'index': undefined identifier
+MAIN.C(352): error C202: 'index': undefined identifier
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.H(18): error C141: syntax error near '['
+Target not created
+Build target 'Target 1'
+compiling main.c...
+GPRS.H(18): error C141: syntax error near '['
+MAIN.C(334): error C141: syntax error near 'unsigned'
+MAIN.C(334): error C202: 'index': undefined identifier
+MAIN.C(347): error C141: syntax error near 'unsigned'
+MAIN.C(347): error C202: 'ccid': undefined identifier
+MAIN.C(349): error C202: 'index': undefined identifier
+MAIN.C(351): error C202: 'index': undefined identifier
+MAIN.C(352): error C202: 'index': undefined identifier
+compiling GPRS.c...
+GPRS.H(18): error C141: syntax error near '['
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(349): error C141: syntax error near '='
+MAIN.C(353): error C202: 'ccid': undefined identifier
+MAIN.C(354): error C202: 'ccid': undefined identifier
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(155): error C202: 'rev': undefined identifier
+GPRS.C(479): error C141: syntax error near 'unsigned'
+GPRS.C(479): error C202: 'plusIndex': undefined identifier
+GPRS.C(480): error C141: syntax error near 'unsigned'
+GPRS.C(480): error C202: 'ready': undefined identifier
+GPRS.C(481): error C202: 'ready': undefined identifier
+GPRS.C(483): error C141: syntax error near 'unsigned'
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C141: syntax error near ')'
+GPRS.C(488): error C202: 'plusIndx': undefined identifier
+GPRS.C(490): error C202: 'i': undefined identifier
+GPRS.C(490): error C141: syntax error near '='
+GPRS.C(490): error C202: 'plusIndex': undefined identifier
+GPRS.C(490): error C141: syntax error near ')'
+GPRS.C(495): error C141: syntax error near 'else'
+GPRS.C(495): error C202: 'plusIndx': undefined identifier
+GPRS.C(497): error C202: 'plusIndx': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(333): error C141: syntax error near '['
+MAIN.C(333): error C202: 'ccid': undefined identifier
+MAIN.C(354): error C202: 'ccid': undefined identifier
+MAIN.C(355): error C202: 'ccid': undefined identifier
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(155): error C202: 'rev': undefined identifier
+GPRS.C(479): error C141: syntax error near 'unsigned'
+GPRS.C(479): error C202: 'plusIndex': undefined identifier
+GPRS.C(480): error C141: syntax error near 'unsigned'
+GPRS.C(480): error C202: 'ready': undefined identifier
+GPRS.C(481): error C202: 'ready': undefined identifier
+GPRS.C(483): error C141: syntax error near 'unsigned'
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C141: syntax error near ')'
+GPRS.C(488): error C202: 'plusIndx': undefined identifier
+GPRS.C(490): error C202: 'i': undefined identifier
+GPRS.C(490): error C141: syntax error near '='
+GPRS.C(490): error C202: 'plusIndex': undefined identifier
+GPRS.C(490): error C141: syntax error near ')'
+GPRS.C(495): error C141: syntax error near 'else'
+GPRS.C(495): error C202: 'plusIndx': undefined identifier
+GPRS.C(497): error C202: 'plusIndx': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(155): error C202: 'rev': undefined identifier
+GPRS.C(479): error C141: syntax error near 'unsigned'
+GPRS.C(479): error C202: 'plusIndex': undefined identifier
+GPRS.C(480): error C141: syntax error near 'unsigned'
+GPRS.C(480): error C202: 'ready': undefined identifier
+GPRS.C(481): error C202: 'ready': undefined identifier
+GPRS.C(483): error C141: syntax error near 'unsigned'
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C141: syntax error near ')'
+GPRS.C(488): error C202: 'plusIndx': undefined identifier
+GPRS.C(490): error C202: 'i': undefined identifier
+GPRS.C(490): error C141: syntax error near '='
+GPRS.C(490): error C202: 'plusIndex': undefined identifier
+GPRS.C(490): error C141: syntax error near ')'
+GPRS.C(495): error C141: syntax error near 'else'
+GPRS.C(495): error C202: 'plusIndx': undefined identifier
+GPRS.C(497): error C202: 'plusIndx': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(479): error C141: syntax error near 'unsigned'
+GPRS.C(479): error C202: 'plusIndex': undefined identifier
+GPRS.C(480): error C141: syntax error near 'unsigned'
+GPRS.C(480): error C202: 'ready': undefined identifier
+GPRS.C(481): error C202: 'ready': undefined identifier
+GPRS.C(483): error C141: syntax error near 'unsigned'
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C202: 'i': undefined identifier
+GPRS.C(483): error C141: syntax error near ')'
+GPRS.C(488): error C202: 'plusIndx': undefined identifier
+GPRS.C(490): error C202: 'i': undefined identifier
+GPRS.C(490): error C141: syntax error near '='
+GPRS.C(490): error C202: 'plusIndex': undefined identifier
+GPRS.C(490): error C141: syntax error near ')'
+GPRS.C(495): error C141: syntax error near 'else'
+GPRS.C(495): error C202: 'plusIndx': undefined identifier
+GPRS.C(497): error C202: 'plusIndx': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(484): error C141: syntax error near 'unsigned'
+GPRS.C(484): error C202: 'i': undefined identifier
+GPRS.C(484): error C202: 'i': undefined identifier
+GPRS.C(484): error C202: 'i': undefined identifier
+GPRS.C(484): error C141: syntax error near ')'
+GPRS.C(489): error C202: 'plusIndx': undefined identifier
+GPRS.C(491): error C202: 'i': undefined identifier
+GPRS.C(491): error C141: syntax error near '='
+GPRS.C(491): error C141: syntax error near ')'
+GPRS.C(496): error C141: syntax error near 'else'
+GPRS.C(496): error C202: 'plusIndx': undefined identifier
+GPRS.C(498): error C202: 'plusIndx': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(490): error C202: 'plusIndx': undefined identifier
+GPRS.C(492): error C202: 'plusIndx': undefined identifier
+GPRS.C(492): error C141: syntax error near '='
+GPRS.C(492): error C141: syntax error near ')'
+GPRS.C(497): error C141: syntax error near 'else'
+GPRS.C(497): error C202: 'plusIndx': undefined identifier
+GPRS.C(499): error C202: 'plusIndx': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(492): error C141: syntax error near '='
+GPRS.C(492): error C141: syntax error near ')'
+GPRS.C(497): error C141: syntax error near 'else'
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(567): warning C275: expression with possibly no effect
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INT_TO_STR?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
+Program Size: data=9.1 xdata=975 code=9463
+creating hex file from ".\Objects\FindBake"...
+".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(567): warning C275: expression with possibly no effect
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INT_TO_STR?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
+Program Size: data=9.1 xdata=975 code=9463
+creating hex file from ".\Objects\FindBake"...
+".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(568): warning C275: expression with possibly no effect
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INT_TO_STR?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
+Program Size: data=9.1 xdata=975 code=9466
+creating hex file from ".\Objects\FindBake"...
+".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(568): warning C275: expression with possibly no effect
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INT_TO_STR?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
+Program Size: data=9.1 xdata=975 code=9466
+creating hex file from ".\Objects\FindBake"...
+".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(572): warning C275: expression with possibly no effect
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INT_TO_STR?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
+Program Size: data=9.1 xdata=975 code=9471
+creating hex file from ".\Objects\FindBake"...
+".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(572): warning C275: expression with possibly no effect
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INT_TO_STR?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
+Program Size: data=9.1 xdata=975 code=9471
+creating hex file from ".\Objects\FindBake"...
+".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+compiling GPS.c...
+compiling GPRS.c...
+GPRS.C(69): warning C259: pointer: different mspace
+GPRS.C(572): warning C275: expression with possibly no effect
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_TEST_TXBYTE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPS_RMC_PARSE?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GET_INT_NUMBER?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INT_TO_STR?GPS
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_GPRS_RECEIVE?GPRS
+Program Size: data=9.1 xdata=975 code=9476
+creating hex file from ".\Objects\FindBake"...
+".\Objects\FindBake" - 0 Error(s), 7 Warning(s).
