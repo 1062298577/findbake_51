@@ -312,7 +312,7 @@
   <AlienFiles>
     <PathWithFilename>C:\Users\LD\Desktop\51\findbake_51\GPRS.H</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>14</CurrentLine>
+    <CurrentLine>18</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1706,15 +1706,15 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>56</ColumnNumber>
-          <TopLine>218</TopLine>
-          <CurrentLine>237</CurrentLine>
+          <ColumnNumber>10</ColumnNumber>
+          <TopLine>155</TopLine>
+          <CurrentLine>174</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\GPS.c</Name>
-          <ColumnNumber>6</ColumnNumber>
-          <TopLine>411</TopLine>
-          <CurrentLine>411</CurrentLine>
+          <ColumnNumber>23</ColumnNumber>
+          <TopLine>185</TopLine>
+          <CurrentLine>185</CurrentLine>
         </Doc>
         <Doc>
           <Name>GPS.H</Name>
@@ -1724,15 +1724,15 @@
         </Doc>
         <Doc>
           <Name>.\GPRS.c</Name>
-          <ColumnNumber>45</ColumnNumber>
-          <TopLine>208</TopLine>
-          <CurrentLine>208</CurrentLine>
+          <ColumnNumber>62</ColumnNumber>
+          <TopLine>451</TopLine>
+          <CurrentLine>475</CurrentLine>
         </Doc>
         <Doc>
           <Name>GPRS.H</Name>
-          <ColumnNumber>0</ColumnNumber>
+          <ColumnNumber>13</ColumnNumber>
           <TopLine>1</TopLine>
-          <CurrentLine>14</CurrentLine>
+          <CurrentLine>18</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

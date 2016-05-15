@@ -5,18 +5,18 @@
 
 #define S2TI 		0x02	//串口2发送中断请求标志位 
 
-#define RST      	0x31
-#define AT     		0x32
-#define CCID  		0x33
-#define CHECK_NET 	0x34
-#define STACK     	0x35
-#define APN     	0x36
-#define INIT_PPP    0x37
-#define CHECK_PPP   0x38
-#define CLOSE     	0x39
-#define LINK     	0x3A
-#define CONNECT 	0x3B
-#define LINK_FINISH 0x3C	  
+#define RST      	48
+#define AT     		49
+#define CCID  		50
+#define CHECK_NET 	51
+#define STACK     	52
+#define APN     	53
+#define INIT_PPP    54
+#define CHECK_PPP   55
+#define CLOSE     	56
+#define LINK     	57
+#define CONNECT 	65
+#define LINK_FINISH 66	  
 
 #define MAX_LEN 	128	  	//缓存最大长度
 
@@ -86,10 +86,11 @@ void 	clear_rev_buf()
 //检查AT指令是否可用 指令AT\r\n
 void 	gprs_at()
 {
-	GPS_TxString("2:gprs_at()\n");
+	GPS_TxString("init AT\n");
+	//GPS_TxString("2:gprs_at()\n");
 
-	GPS_TxString(rev_buf);
-	GPS_TxString("\n");
+	//GPS_TxString(rev_buf);
+	//GPS_TxString("\n");
 
 	if(gprs_state == RST)
 	{	
@@ -104,14 +105,14 @@ void 	gprs_at()
 //检查SIM卡的CCID号	指令AT+CCID\r\n
 void 	gprs_check_ccid()
 {
-	GPS_TxString("3:gprs_check_ccid()\n");
+	//GPS_TxString("3:gprs_check_ccid()\n");
 	if(gprs_state != AT)
 	{
 		return;
 	}
 	
-	GPS_TxString(rev_buf);
-	GPS_TxString("\n");
+	//GPS_TxString(rev_buf);
+	//GPS_TxString("\n");
 	
 	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
 	{	
@@ -140,12 +141,12 @@ void 	gprs_check_ccid()
 void 	gprs_check_net()
 {
 	uchar index = 0;
-	GPS_TxString("4:gprs_check_net()\n");
+	//GPS_TxString("4:gprs_check_net()\n");
 	if(gprs_state != CCID)
 		return;
 
-	GPS_TxString(rev_buf);
-	GPS_TxString("\n");
+	//GPS_TxString(rev_buf);
+	//GPS_TxString("\n");
 
 	if(rev_buf[33] == 'O' && rev_buf[34]=='K')
 	{
@@ -188,12 +189,12 @@ void 	gprs_check_net()
 //设置为内部协议 指令AT+XISP=0\r\n
 void 	gprs_stack()
 {
-	GPS_TxString("5:gprs_stack()\n");
+	//GPS_TxString("5:gprs_stack()\n");
 	if(gprs_state != CHECK_NET)
 		return;
 	
-	GPS_TxString(rev_buf);
-	GPS_TxString("\n");
+	//GPS_TxString(rev_buf);
+	//GPS_TxString("\n");
 			
 	if(rev_buf[16] == 'O' && rev_buf[17]=='K')
 	{
@@ -221,12 +222,12 @@ void 	gprs_stack()
 //设置访问节点APN	指令 AT+CGDCONT=1,"IP","CMNET"\r\n
 void 	gprs_apn()
 {
-	GPS_TxString("6:gprs_apn()\n");
+	//GPS_TxString("6:gprs_apn()\n");
 	if(gprs_state != STACK)
 		return;
 
-	GPS_TxString(rev_buf);
-	GPS_TxString("\n");
+	//GPS_TxString(rev_buf);
+	//GPS_TxString("\n");
 
 	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
 	{
@@ -265,12 +266,12 @@ void 	gprs_apn()
 //初始化PPP连接	指令 AT+XIIC=1\r\n
 void 	gprs_init_ppp()
 {
-	GPS_TxString("7:gprs_init_ppp()\n");
+	//GPS_TxString("7:gprs_init_ppp()\n");
 	if(gprs_state != APN)
 		return;
 
-	GPS_TxString(rev_buf);
-	GPS_TxString("\n");	
+	//GPS_TxString(rev_buf);
+	//GPS_TxString("\n");	
 
 	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
 	{	   	
@@ -298,12 +299,12 @@ void 	gprs_init_ppp()
 //检查PPP连接状态	指令AT+XIIC?\r\n
 void 	gprs_check_ppp()
 {
-	GPS_TxString("8:gprs_check_ppp()\n");
+	//GPS_TxString("8:gprs_check_ppp()\n");
 	if(gprs_state != INIT_PPP)
 		return;
 
-	GPS_TxString(rev_buf);
-	GPS_TxString("\n");
+	//GPS_TxString(rev_buf);
+	//GPS_TxString("\n");
 
 	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
 	{  
@@ -331,12 +332,16 @@ void 	gprs_check_ppp()
 //关闭0链路	指令 AT+TCPCLOSE=0\r\n
 void 	gprs_close_r0()
 {
-	 GPS_TxString("9:gprs_close_r0()\n");
+//	uchar xx[8] = "g_s:0\n"; 
+//	xx[4] = gprs_state;
+//	GPS_TxString(xx);//打印进度	
+
+	//GPS_TxString("9:gprs_close_r0()\n");
 	if(gprs_state != CHECK_PPP)
 		return;
 		
-	GPS_TxString(rev_buf);
-	GPS_TxString("\n");
+	//GPS_TxString(rev_buf);
+	//GPS_TxString("\n");
 			 
 	if(rev_buf[12] == '1' )
 	{		
@@ -365,12 +370,17 @@ void 	gprs_close_r0()
 //建立连接	指令 AT+TCPSETUP=0,120.27.125.31,80\r\n
 void 	gprs_setup_link()
 {
-	GPS_TxString("10:gprs_setup_link()\n");
+//	uchar xx[8] = "g_s:0\n"; 
+//	xx[4] = gprs_state;
+//	GPS_TxString(xx);//打印进度	
+
+
+	//GPS_TxString("10:gprs_setup_link()\n");
 	if(gprs_state != CLOSE)
 		return;
 		
-	GPS_TxString(rev_buf);
-	GPS_TxString("\n");
+	//GPS_TxString(rev_buf);
+	//GPS_TxString("\n");
 			 
 //	if(1)//rev_buf[12] == '1' )
 //	{		
@@ -399,14 +409,21 @@ void 	gprs_setup_link()
 //查看链路0状态	指令 AT+IPSTATUS=0\r\n
 void 	gprs_check_r0()
 {
-	GPS_TxString("11:gprs_check_r0()\n");
+	uchar i = 0;
+
+//	uchar xx[8] = "g_s:0\n"; 
+//	xx[4] = gprs_state;
+//	GPS_TxString(xx);//打印进度
+
+	//GPS_TxString("11:gprs_check_r0()\n");
 	if(gprs_state != LINK)
 		return;	
 
-	GPS_TxString(rev_buf);
-	GPS_TxString("\n");
+	//GPS_TxString(rev_buf);
+	//GPS_TxString("\n");
 
-	if(rev_buf[2] == 'O' && rev_buf[3]=='K')
+
+	if(rev_buf[2]=='O' && rev_buf[3]=='K')
 	{
 		retry_count=0;
 		gprs_state=CONNECT;
@@ -416,6 +433,22 @@ void 	gprs_check_r0()
 	}
 	else
 	{
+		for(i=0;i<MAX_LEN;i++)	   //判断+IPSTATUS:0,CONNECT,TCP,2047
+		{
+			if(rev_buf[i]=='\0')
+			{
+				break;
+			}
+			if(rev_buf[i]==',' && i < MAX_LEN - 9 && rev_buf[i+1]=='C' && rev_buf[i+7]=='T' && rev_buf[i+8]==',')
+			{
+				clear_rev_buf();
+				GPS_TxString("link success\n");
+				retry_count=0;
+				gprs_state=LINK_FINISH;
+				return;
+			}
+		}
+		
 		clear_rev_buf();
 		gprs_state=CLOSE;
 		GPRS_TxString("AT+TCPCLOSE=0\r\n");		  
@@ -433,12 +466,18 @@ void 	gprs_check_r0()
 
 void 	gprs_link_finish()
 {
-	GPS_TxString("12:gprs_link_finish()\n");
+	uchar i = 0;	
+	
+//	uchar xx[8] = "g_s:0\n"; 
+//	xx[4] = gprs_state;
+//	GPS_TxString(xx);//打印进度
+//	
+	//GPS_TxString("12:gprs_link_finish()\n");
 	if(gprs_state != CONNECT)
 		return;	
 
-	GPS_TxString(rev_buf);
-	GPS_TxString("\n");
+	//GPS_TxString(rev_buf);
+	//GPS_TxString("\n");
 
 	if(rev_buf[14] == 'O' && rev_buf[15]=='K')
 	{
@@ -449,6 +488,22 @@ void 	gprs_link_finish()
 	}
 	else
 	{	
+		for(i=0;i<MAX_LEN;i++)	   //判断+IPSTATUS:0,CONNECT,TCP,2047
+		{
+			if(rev_buf[i]=='\0')
+			{
+				break;
+			}
+			if(rev_buf[i]==',' && i < MAX_LEN - 9 && rev_buf[i+1]=='C' && rev_buf[i+7]=='T' && rev_buf[i+8]==',')
+			{
+				clear_rev_buf();
+				GPS_TxString("link success\n");
+				retry_count=0;
+				gprs_state=LINK_FINISH;
+				return;
+			}
+		}
+		
 		clear_rev_buf();
 		GPS_TxString("link failed\n");
 		gprs_state=LINK;
@@ -459,7 +514,7 @@ void 	gprs_link_finish()
 		{
 		  	GPRS_TxString("AT+XIIC=0\r\n");		  
 			delay(500);
-		  	gprs_state = RST ;
+		  	gprs_state=RST ;
 		  	retry_count=0;
 		}
 	}
@@ -471,17 +526,18 @@ void 	gprs_link_finish()
 void 	gprs_start()
 {
 	uchar plusIndex = 0;//记录遇到+号的位置
-	uchar ready = 0;
+	uchar ready = 1;
 	uchar i = 0;
 	
-	GPS_TxString("gprs_s()\n");
+	GPS_TxString("gprs_start()\n");
 	gprs_state=RST;
 	num = 0;
 	clear_rev_buf();	
-	
+	 	
 	//检查是否硬件启动完成，即是否接收到+PBREADY
 	while(!ready){	//一直循环检测
-		delay(1000);
+		delay(2000);
+		GPS_TxString("check gsm ready()\n");
 		//GPS_TxString(rev_buf);
 		if(rev_buf[0] == '\0')
 		{
@@ -530,60 +586,63 @@ void 	gprs_start()
 }
 
 //解析接收到的数据
-void 	GPRS_RECEIVE(uchar revBuf[])	//gprs ---> mcu
-{
-    uchar *p;
-	uint8 len=0;
-	uint8 index=0;
-	if(revBuf[0]=='\0')
-		return;
-
-	p=strstr(revBuf,"TCPRECV");//返回匹配点以后的字符串
-	if(p != NULL)
-	{
-		p=strstr(p,",");//第一个逗号
-		if(p!=NULL)	 
-		{
-			p++;
-			//两个逗号之间是长度
-		    p=strstr(p,",");
-			if(p!=NULL)	 //第二个逗号
-			{
-			    p++;
-	            while(*p!= '\0')
-				GPRS_TxByte(*p++);
-			}
-
-		}
-	}
-	else
-	{
-
-	}
-	//clear_rev_buf();
-}
+//void 	GPRS_RECEIVE(uchar revBuf[])	//gprs ---> mcu
+//{
+//    uchar *p;
+//	uint8 len=0;
+//	uint8 index=0;
+//	if(revBuf[0]=='\0')
+//		return;
+//
+//	p=strstr(revBuf,"TCPRECV");//返回匹配点以后的字符串
+//	if(p != NULL)
+//	{
+//		p=strstr(p,",");//第一个逗号
+//		if(p!=NULL)	 
+//		{
+//			p++;
+//			//两个逗号之间是长度
+//		    p=strstr(p,",");
+//			if(p!=NULL)	 //第二个逗号
+//			{
+//			    p++;
+//	            while(*p!= '\0')
+//				GPRS_TxByte(*p++);
+//			}
+//
+//		}
+//	}
+//	else
+//	{
+//
+//	}
+//	//clear_rev_buf();
+//}
 
 //发送数据
 void 	sendData(uchar buf[])
 {
 	uint8 index=0,length=0,tmp ; 
-
+	gprs_state = CHECK_PPP;
 	//关闭链路，重新连接
-	gprs_close_r0;
 	while(gprs_state != LINK_FINISH)
-	{
+	{	
+		clear_rev_buf();
+		rev_buf[12] = '1';
+		gprs_close_r0();
 		gprs_setup_link();
 		gprs_check_r0();
 		gprs_link_finish();
 		
-		if(gprs_state == RST)
+		if(gprs_state==RST)
 		{
 			gprs_start();
 		}
-		delay(2000);
+		//delay(2000); 
 	}	
 
 	//开始发送
+	//EA = 0;	//中断关闭
 
 	while(buf[length ] != '\0')
 	    length++;
@@ -593,8 +652,7 @@ void 	sendData(uchar buf[])
 	
 	tmp=length;
 	//send command
-	GPRS_TxString("AT+TCPSEND=0,"); 
-
+	GPRS_TxString("AT+TCPSEND=0,");
 	if(length >=10)
 	{
 		uchar shi,ge;
@@ -610,14 +668,32 @@ void 	sendData(uchar buf[])
 	}
 	GPRS_TxString("\r\n");
 	
-	delay(50);
+	//while(rev_buf[2]!='>')
+	retry_count = 0;
+	while(rev_buf[2] != '>')
+	{
+		delay(50);
+		retry_count++;
+		if(retry_count>10)
+		{
+			return;
+		}
+		GPS_TxString("wait >\n");
+	}
+	
+	//GPS_TxString(rev_buf);
+	EA = 0;
 	for(index=0;index<tmp;index++)	 
 	{
 		GPRS_TxByte(buf[index]);
 	}
-
 	GPRS_TxString("\r\n");
-
+	EA = 1;
+	//GPRS_TxString(buf);
+	//GPRS_TxString("");
+	//GPS_TxString("SEND FIN\n");
+	//GPS_TxString(rev_buf);
+	
 }
 
 
