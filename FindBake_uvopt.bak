@@ -271,10 +271,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>56</ColumnNumber>
+      <ColumnNumber>26</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>218</TopLine>
-      <CurrentLine>237</CurrentLine>
+      <TopLine>363</TopLine>
+      <CurrentLine>363</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -285,10 +285,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>6</ColumnNumber>
+      <ColumnNumber>23</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>411</TopLine>
-      <CurrentLine>411</CurrentLine>
+      <TopLine>185</TopLine>
+      <CurrentLine>185</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\GPS.c</PathWithFileName>
       <FilenameWithoutPath>GPS.c</FilenameWithoutPath>
@@ -299,10 +299,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>45</ColumnNumber>
+      <ColumnNumber>4</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>208</TopLine>
-      <CurrentLine>208</CurrentLine>
+      <TopLine>600</TopLine>
+      <CurrentLine>600</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\GPRS.c</PathWithFileName>
       <FilenameWithoutPath>GPRS.c</FilenameWithoutPath>
@@ -1706,9 +1706,9 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>10</ColumnNumber>
-          <TopLine>155</TopLine>
-          <CurrentLine>174</CurrentLine>
+          <ColumnNumber>26</ColumnNumber>
+          <TopLine>363</TopLine>
+          <CurrentLine>363</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\GPS.c</Name>
@@ -1724,13 +1724,13 @@
         </Doc>
         <Doc>
           <Name>.\GPRS.c</Name>
-          <ColumnNumber>62</ColumnNumber>
-          <TopLine>451</TopLine>
-          <CurrentLine>475</CurrentLine>
+          <ColumnNumber>4</ColumnNumber>
+          <TopLine>600</TopLine>
+          <CurrentLine>600</CurrentLine>
         </Doc>
         <Doc>
           <Name>GPRS.H</Name>
-          <ColumnNumber>13</ColumnNumber>
+          <ColumnNumber>14</ColumnNumber>
           <TopLine>1</TopLine>
           <CurrentLine>18</CurrentLine>
         </Doc>

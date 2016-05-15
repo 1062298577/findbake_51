@@ -336,12 +336,12 @@ void 	gprs_close_r0()
 //	xx[4] = gprs_state;
 //	GPS_TxString(xx);//打印进度	
 
-	//GPS_TxString("9:gprs_close_r0()\n");
+//	GPS_TxString("9:gprs_close_r0()\n");
 	if(gprs_state != CHECK_PPP)
 		return;
 		
-	//GPS_TxString(rev_buf);
-	//GPS_TxString("\n");
+//	GPS_TxString(rev_buf);
+//	GPS_TxString("\n");
 			 
 	if(rev_buf[12] == '1' )
 	{		
@@ -375,12 +375,12 @@ void 	gprs_setup_link()
 //	GPS_TxString(xx);//打印进度	
 
 
-	//GPS_TxString("10:gprs_setup_link()\n");
+//	GPS_TxString("10:gprs_setup_link()\n");
 	if(gprs_state != CLOSE)
 		return;
 		
-	//GPS_TxString(rev_buf);
-	//GPS_TxString("\n");
+//	GPS_TxString(rev_buf);
+//	GPS_TxString("\n");
 			 
 //	if(1)//rev_buf[12] == '1' )
 //	{		
@@ -415,12 +415,12 @@ void 	gprs_check_r0()
 //	xx[4] = gprs_state;
 //	GPS_TxString(xx);//打印进度
 
-	//GPS_TxString("11:gprs_check_r0()\n");
+//	GPS_TxString("11:gprs_check_r0()\n");
 	if(gprs_state != LINK)
 		return;	
 
-	//GPS_TxString(rev_buf);
-	//GPS_TxString("\n");
+//	GPS_TxString(rev_buf);
+//	GPS_TxString("\n");
 
 
 	if(rev_buf[2]=='O' && rev_buf[3]=='K')
@@ -468,16 +468,16 @@ void 	gprs_link_finish()
 {
 	uchar i = 0;	
 	
-//	uchar xx[8] = "g_s:0\n"; 
-//	xx[4] = gprs_state;
-//	GPS_TxString(xx);//打印进度
+ 	uchar xx[8] = "g_s:0\n"; 
+	xx[4] = gprs_state;
+	GPS_TxString(xx);//打印进度
 //	
-	//GPS_TxString("12:gprs_link_finish()\n");
+//	GPS_TxString("12:gprs_link_finish()\n");
 	if(gprs_state != CONNECT)
 		return;	
-
-	//GPS_TxString(rev_buf);
-	//GPS_TxString("\n");
+//
+//	GPS_TxString(rev_buf);
+//	GPS_TxString("\n");
 
 	if(rev_buf[14] == 'O' && rev_buf[15]=='K')
 	{
@@ -624,6 +624,7 @@ void 	sendData(uchar buf[])
 {
 	uint8 index=0,length=0,tmp ; 
 	gprs_state = CHECK_PPP;
+	clear_rev_buf();
 	//关闭链路，重新连接
 	while(gprs_state != LINK_FINISH)
 	{	
@@ -672,24 +673,25 @@ void 	sendData(uchar buf[])
 	retry_count = 0;
 	while(rev_buf[2] != '>')
 	{
+		GPS_TxString("wait >\n");
 		delay(50);
 		retry_count++;
 		if(retry_count>10)
 		{
 			return;
-		}
-		GPS_TxString("wait >\n");
+		}	
 	}
 	
 	//GPS_TxString(rev_buf);
-	EA = 0;
-	for(index=0;index<tmp;index++)	 
-	{
-		GPRS_TxByte(buf[index]);
-	}
-	GPRS_TxString("\r\n");
-	EA = 1;
-	//GPRS_TxString(buf);
+	//EA = 0;
+//	for(index=0;index<tmp;index++)	 
+//	{
+//		GPRS_TxByte(buf[index]);
+//	}
+	GPRS_TxString(buf);
+	GPRS_TxString("\r\n\r\n\r\n");
+	//EA = 1;
+	
 	//GPRS_TxString("");
 	//GPS_TxString("SEND FIN\n");
 	//GPS_TxString(rev_buf);

@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   MAIN                                                                  05/15/2016 20:09:59 PAGE 1   
+C51 COMPILER V9.00   MAIN                                                                  05/16/2016 00:44:55 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
@@ -62,505 +62,531 @@ line level    source
   52          uchar   GPRS_wr;                //写指针
   53          uchar   GPRS_rd;                //读指针
   54          uchar   xdata   GPRS_Buffer[BUF_LENTH];//接收缓存：
-C51 COMPILER V9.00   MAIN                                                                  05/15/2016 20:09:59 PAGE 2   
+C51 COMPILER V9.00   MAIN                                                                  05/16/2016 00:44:55 PAGE 2   
 
   55          bit             B_TI;                   //中断标志位
   56          bit             GPRS_Listening; //启动成功后监听
   57          bit             GPRS_SEND;              //发送标志
-  58          
+  58          bit             GPRS_REV;               //接收标志
   59          
-  60          //串口2读写
-  61          uchar   GPS_wr = 0;             //写指针
-  62          uchar   GPS_rd = 0;             //读指针
-  63          uchar   xdata   GPS_Buffer[BUF_LENTH];//接收缓存        [0]表示写允许位 [1]表示读允许位
-  64          unsigned int    gps_rev_start = 0;//接收标志
-  65          
+  60          
+  61          //串口2读写
+  62          uchar   GPS_wr = 0;             //写指针
+  63          uchar   GPS_rd = 0;             //读指针
+  64          uchar   xdata   GPS_Buffer[BUF_LENTH];//接收缓存        [0]表示写允许位 [1]表示读允许位
+  65          unsigned int    gps_rev_start = 0;//接收标志
   66          
-  67          bit     voice = 0;              //蜂鸣器
-  68          
-  69          uchar   UPLOAD_FREQ     = 30;//计数频率，单位秒
-  70          uchar   count = 0;              //计数
-  71          
-  72          //请求数据18,43,57
-  73          uchar   xdata   request[128] = "GET /?data=1&ccid=00000000000000000000&lon=0000.0000&lat=0000.0000 HTTP/1.1\
-             -r\n\r\n\r\n";
-  74          //定位失败时的请求19
-  75          uchar   xdata   fail_request[128] = "GET /?data=-1&ccid=00000000000000000000 HTTP/1.1\r\n\r\n\r\n";
-  76          
-  77          /****************** 编译器自动生成，用户请勿修改 ************************************/
-  78          
-  79          #define T1_TimerReload  (256 - MAIN_Fosc / 192 / Baudrate1)                     //Calculate the timer1 reload value     at 12T mo
+  67          
+  68          bit     voice = 0;              //蜂鸣器
+  69          
+  70          uchar   UPLOAD_FREQ     = 10;//计数频率，单位秒
+  71          uchar   count = 0;              //计数
+  72          
+  73          //请求数据18,43,57
+  74          uchar   xdata   request[128] = "GET /?data=1&ccid=00000000000000000000&lon=0000.0000&lat=0000.0000 HTTP/1.1\
+             -r\nHost:\r\n\r\n";
+  75          //定位失败时的请求19
+  76          uchar   xdata   fail_request[128] = "GET /?data=-1&ccid=00000000000000000000 HTTP/1.1\r\nHost:\r\n\r\n";
+  77          
+  78          /****************** 编译器自动生成，用户请勿修改 ************************************/
+  79          
+  80          #define T1_TimerReload  (256 - MAIN_Fosc / 192 / Baudrate1)                     //Calculate the timer1 reload value     at 12T mo
              -de
-  80          #define BRT_Reload              (256 - MAIN_Fosc / 12 / 16 / Baudrate2)         //Calculate BRT reload value
-  81          
-  82          #define TimeOut1                (28800 / (unsigned long)Baudrate1 + 2)
-  83          #define TimeOut2                (28800 / (unsigned long)Baudrate2 + 2)
-  84          
-  85          #define TI2                             (S2CON & 0x02) != 0
-  86          #define RI2                             (S2CON & 0x01) != 0
-  87          #define CLR_TI2()               S2CON &= ~0x02
-  88          #define CLR_RI2()               S2CON &= ~0x01
-  89          
-  90          /**********************************************************/
-  91          /*********************************************************
-  92           500us延时函数
-  93           晶振：22.1184MHz
-  94          *********************************************************/
-  95          void delay500us(void)
-  96          {
-  97   1              uchar  i,j;
-  98   1              for(j=500;j>0;j--)
-  99   1                      for(i=81;i>0;i--);
- 100   1      }
- 101          
- 102          //GPRS串口初始化
- 103          void    GPRS_init(void)
- 104          {
- 105   1              TMOD = 0x20;    //定时器1工作在方式2  8位自动重装
- 106   1              //PCON |= 0x80;         //UART0 Double Rate Enable
- 107   1              SCON = 0x50;            //UART0 set as 10bit , UART0 RX enable
- 108   1              //TMOD &= ~(1<<6);              //Timer1 Set as Timer, 12T
- 109   1              //TMOD = (TMOD & ~0x30) | 0x20; //Timer1 set as 8 bits auto relaod
- 110   1              TH1 = T1_TimerReload;           //Load the timer
- 111   1              TL1 = TH1;
- 112   1              TR1  = 1;
- 113   1              ES  = 1;
- 114   1              EA = 1;
-C51 COMPILER V9.00   MAIN                                                                  05/15/2016 20:09:59 PAGE 3   
+  81          #define BRT_Reload              (256 - MAIN_Fosc / 12 / 16 / Baudrate2)         //Calculate BRT reload value
+  82          
+  83          #define TimeOut1                (28800 / (unsigned long)Baudrate1 + 2)
+  84          #define TimeOut2                (28800 / (unsigned long)Baudrate2 + 2)
+  85          
+  86          #define TI2                             (S2CON & 0x02) != 0
+  87          #define RI2                             (S2CON & 0x01) != 0
+  88          #define CLR_TI2()               S2CON &= ~0x02
+  89          #define CLR_RI2()               S2CON &= ~0x01
+  90          
+  91          /**********************************************************/
+  92          /*********************************************************
+  93           500us延时函数
+  94           晶振：22.1184MHz
+  95          *********************************************************/
+  96          void delay500us(void)
+  97          {
+  98   1              uchar  i,j;
+  99   1              for(j=500;j>0;j--)
+ 100   1                      for(i=81;i>0;i--);
+ 101   1      }
+ 102          
+ 103          //GPRS串口初始化
+ 104          void    GPRS_init(void)
+ 105          {
+ 106   1              TMOD = 0x20;    //定时器1工作在方式2  8位自动重装
+ 107   1              //PCON |= 0x80;         //UART0 Double Rate Enable
+ 108   1              SCON = 0x50;            //UART0 set as 10bit , UART0 RX enable
+ 109   1              //TMOD &= ~(1<<6);              //Timer1 Set as Timer, 12T
+ 110   1              //TMOD = (TMOD & ~0x30) | 0x20; //Timer1 set as 8 bits auto relaod
+ 111   1              TH1 = T1_TimerReload;           //Load the timer
+ 112   1              TL1 = TH1;
+ 113   1              TR1  = 1;
+ 114   1              ES  = 1;
+C51 COMPILER V9.00   MAIN                                                                  05/16/2016 00:44:55 PAGE 3   
 
- 115   1      }                                                                                                        
- 116          
- 117          //GPS串口初始化
- 118          void    GPS_init(void)
- 119          {
- 120   1              AUXR1 |= (1<<4);        //将UART2从P1口切换到 RXD2--P1.2切换到P4.2   TXD2---P1.3切换到P4.3
- 121   1              AUXR |=  (1 << 3);              //串口2波特率加倍
- 122   1              S2CON  = (S2CON & 0x3f) | (1<<6);       //串口2模式1，8位UART，(2^S2SMOD / 32) * BRT溢出率
- 123   1              S2CON |= 1 << 4;                //允许串2接收
- 124   1              //S2CON = 0x50;   //串口2工作在方式1  10位异步收发 S2REN=1允许接收
- 125   1      
- 126   1              AUXR |=  1 << 4;        //baudrate use BRT
- 127   1              BRT = BRT_Reload;
- 128   1      
- 129   1              IE2 |=  1;                      //允许串口2中断
- 130   1      }
- 131          
+ 115   1              EA = 1;
+ 116   1      }                                                                                                        
+ 117          
+ 118          //GPS串口初始化
+ 119          void    GPS_init(void)
+ 120          {
+ 121   1              AUXR1 |= (1<<4);        //将UART2从P1口切换到 RXD2--P1.2切换到P4.2   TXD2---P1.3切换到P4.3
+ 122   1              AUXR |=  (1 << 3);              //串口2波特率加倍
+ 123   1              S2CON  = (S2CON & 0x3f) | (1<<6);       //串口2模式1，8位UART，(2^S2SMOD / 32) * BRT溢出率
+ 124   1              S2CON |= 1 << 4;                //允许串2接收
+ 125   1              //S2CON = 0x50;   //串口2工作在方式1  10位异步收发 S2REN=1允许接收
+ 126   1      
+ 127   1              AUXR |=  1 << 4;        //baudrate use BRT
+ 128   1              BRT = BRT_Reload;
+ 129   1      
+ 130   1              IE2 |=  1;                      //允许串口2中断
+ 131   1      }
  132          
- 133          ////GPRS口发送数据
- 134          //void  GPRS_TxByte(uchar dat)
- 135          //{
- 136          //      SBUF = dat;             //将接收的数据发送回去
- 137          //      while(TI == 0); //检查发送中断标志位
- 138          //      TI = 0;                 //令发送中断标志位为0（软件清零）
- 139          //}
- 140          //
- 141          ////GPRS口发送一串字符串
- 142          //void GPRS_TxString(uchar code *puts)          
- 143          //{
- 144          //    for (; *puts != 0;        puts++)  GPRS_TxByte(*puts);    //遇到停止符0结束
- 145          //}
- 146          
- 147          //GPS输出口发送数据 用于调试数据
- 148          void Test_TxByte(uchar c)
- 149          {
- 150   1              S2BUF = c;
- 151   1              while(TI2);
- 152   1              CLR_TI2();
- 153   1      }
- 154          
- 155          //GPS口发送一串字符串
- 156          void Test_TxString(uchar *puts)         
- 157          {
- 158   1          for (; *puts != '\0';       puts++)  GPS_TxByte(*puts);     //遇到停止符0结束
- 159   1      }
- 160          
- 161          //清除GPRS接收数据缓存
- 162          void clear_gprs_rev_buf()
- 163          {
- 164   1              uchar index=0;
- 165   1               
- 166   1              for(index = 0 ; index < BUF_LENTH ; index++)
- 167   1              {
- 168   2                      GPRS_Buffer[index]='0';
- 169   2              }
- 170   1              GPRS_Buffer[BUF_LENTH-1] = '\0';
- 171   1              GPRS_Buffer[0] = '0';           //允许写位
- 172   1              GPRS_Buffer[1] = '0';           //允许读位
- 173   1              GPRS_wr = 0;                    //写指针位
- 174   1      }
- 175          
- 176          //清除GPS接收数据缓存
-C51 COMPILER V9.00   MAIN                                                                  05/15/2016 20:09:59 PAGE 4   
+ 133          
+ 134          ////GPRS口发送数据
+ 135          //void  GPRS_TxByte(uchar dat)
+ 136          //{
+ 137          //      SBUF = dat;             //将接收的数据发送回去
+ 138          //      while(TI == 0); //检查发送中断标志位
+ 139          //      TI = 0;                 //令发送中断标志位为0（软件清零）
+ 140          //}
+ 141          //
+ 142          ////GPRS口发送一串字符串
+ 143          //void GPRS_TxString(uchar code *puts)          
+ 144          //{
+ 145          //    for (; *puts != 0;        puts++)  GPRS_TxByte(*puts);    //遇到停止符0结束
+ 146          //}
+ 147          
+ 148          //GPS输出口发送数据 用于调试数据
+ 149          void Test_TxByte(uchar c)
+ 150          {
+ 151   1              S2BUF = c;
+ 152   1              while(TI2);
+ 153   1              CLR_TI2();
+ 154   1      }
+ 155          
+ 156          //GPS口发送一串字符串
+ 157          void Test_TxString(uchar *puts)         
+ 158          {
+ 159   1          for (; *puts != '\0';       puts++)  GPS_TxByte(*puts);     //遇到停止符0结束
+ 160   1      }
+ 161          
+ 162          //清除GPRS接收数据缓存
+ 163          void clear_gprs_rev_buf()
+ 164          {
+ 165   1              uchar index=0;
+ 166   1               
+ 167   1              for(index = 0 ; index < BUF_LENTH ; index++)
+ 168   1              {
+ 169   2                      GPRS_Buffer[index]='\0';
+ 170   2              }
+ 171   1      //      GPRS_Buffer[BUF_LENTH-1] = '\0';
+ 172   1              GPRS_Buffer[0] = '0';           //允许写位
+ 173   1              GPRS_Buffer[1] = '0';           //允许读位
+ 174   1              GPRS_wr = 0;                    //写指针位
+ 175   1      }
+ 176          
+C51 COMPILER V9.00   MAIN                                                                  05/16/2016 00:44:55 PAGE 4   
 
- 177          void clear_gps_rev_buf()
- 178          {
- 179   1              uchar index=0;
- 180   1               
- 181   1              for(index = 0 ; index < BUF_LENTH ; index++)
- 182   1              {
- 183   2                      GPS_Buffer[index]='\0';
- 184   2              }
- 185   1      
- 186   1              GPS_Buffer[0] = 2;              //允许写位
- 187   1              GPS_Buffer[1] = 2;              //允许读位
- 188   1              GPS_wr = 0;                     //写指针位
- 189   1              gps_rev_start = 0;      
- 190   1      }
- 191          uchar a[5] = "abc\n";//测试的数据
- 192          /**
- 193          串口1中断响应
- 194          *************
- 195          接收GPRS数据
- 196          *************
- 197          对应--GPRS模块
- 198          *************
- 199          **/
- 200          void    GPRS_RCV (void) interrupt 4
- 201          {
- 202   1              uchar ch;
- 203   1              if(RI)
- 204   1              {
- 205   2                      
- 206   2                      //EA = 0;       //暂停中断
- 207   2                      RI = 0; //复位
- 208   2                      BEEP = 1;       //蜂鸣器暂停
- 209   2      
- 210   2                      ch = SBUF;
- 211   2      
- 212   2                      if(!GPRS_Listening)       //GPRS在初始化中,将中断数据返回给GPRS  
- 213   2                      {
- 214   3                              setRevBuf(ch);  
- 215   3                      }
- 216   2                      else
- 217   2                      {
- 218   3                              if('{'==ch)     // 服务器返回有效数据起始位为'{'
- 219   3                              {
- 220   4                                      clear_gprs_rev_buf();
- 221   4                                      GPRS_Buffer[0] = '1';   //数据缓存允许位置1，表示允许接收
- 222   4                                      GPRS_Buffer[1] = '0';   //数据缓存可读位置0，表示数据不可读
- 223   4                                      GPRS_wr = 2;
- 224   4                                      //      GPRS_SEND = 0;                  
- 225   4                              }
- 226   3                              else if(GPRS_Buffer[0]=='1' && ch=='}') //服务器返回有效数据结束位为'}'
- 227   3                              {
- 228   4                                      GPRS_Buffer[1] = '1';           //数据缓存可读位置1，表示数据可读
- 229   4                                      GPRS_Buffer[0] = '0';           //数据缓存允许位置2，表示不允许接收             
- 230   4                              }                                          
- 231   3                              else if(GPRS_Buffer[0]=='1')
- 232   3                              {
- 233   4                                      if(GPRS_wr != BUF_LENTH)                //防止数据溢出
- 234   4                                      {
- 235   5                                              GPRS_Buffer[GPRS_wr] = ch;
- 236   5                                              
- 237   5                                              GPRS_wr = 1 + GPRS_wr;;
- 238   5                                      }
-C51 COMPILER V9.00   MAIN                                                                  05/15/2016 20:09:59 PAGE 5   
+ 177          //清除GPS接收数据缓存
+ 178          void clear_gps_rev_buf()
+ 179          {
+ 180   1              uchar index=0;
+ 181   1               
+ 182   1              for(index = 0 ; index < BUF_LENTH ; index++)
+ 183   1              {
+ 184   2                      GPS_Buffer[index]='\0';
+ 185   2              }
+ 186   1      
+ 187   1              GPS_Buffer[0] = 2;              //允许写位
+ 188   1              GPS_Buffer[1] = 2;              //允许读位
+ 189   1              GPS_wr = 0;                     //写指针位
+ 190   1              gps_rev_start = 0;      
+ 191   1      }
+ 192          uchar a[5] = "__";//测试的数据
+ 193          /**
+ 194          串口1中断响应
+ 195          *************
+ 196          接收GPRS数据
+ 197          *************
+ 198          对应--GPRS模块
+ 199          *************
+ 200          **/
+ 201          void    GPRS_RCV (void) interrupt 4
+ 202          {
+ 203   1              uchar ch;
+ 204   1              if(RI)
+ 205   1              {
+ 206   2                      
+ 207   2                      //EA = 0;       //暂停中断
+ 208   2                      RI = 0; //复位
+ 209   2                      //BEEP = 1;     //蜂鸣器暂停
+ 210   2      
+ 211   2                      ch = SBUF;
+ 212   2      
+ 213   2                      if(!GPRS_Listening)       //GPRS在初始化中,将中断数据返回给GPRS  
+ 214   2                      {
+ 215   3                              setRevBuf(ch);  
+ 216   3                      }
+ 217   2                      else
+ 218   2                      {       
+ 219   3                              //if(GPRS_REV)
+ 220   3                              {
+ 221   4                                      if(ch=='{')     // 服务器返回有效数据起始位为'{'
+ 222   4                                      {
+ 223   5                                              clear_gprs_rev_buf();
+ 224   5                                              GPRS_Buffer[0] = '1';   //数据缓存允许位置1，表示允许接收
+ 225   5                                              GPRS_Buffer[1] = '0';   //数据缓存可读位置0，表示数据不可读
+ 226   5                                              GPRS_wr = 2;
+ 227   5                                              GPRS_SEND = 0;
+ 228   5                                              //GPRS_Buffer[9] = 'B'; //调试状态              
+ 229   5                                      }
+ 230   4                                      else if(GPRS_Buffer[0]=='1') 
+ 231   4                                      {
+ 232   5                                              if(ch=='}')      //服务器返回有效数据结束位为'}'
+ 233   5                                              {
+ 234   6                                                      GPRS_Buffer[1] = '1';           //数据缓存可读位置1，表示数据可读
+ 235   6                                                      GPRS_Buffer[0] = '0';           //数据缓存允许位置2，表示不允许接收
+ 236   6                                                      GPRS_REV == 0;
+*** WARNING C275 IN LINE 236 OF MAIN.C: expression with possibly no effect
+ 237   6                                                      //GPRS_Buffer[10] = 'C';  //调试状态
+C51 COMPILER V9.00   MAIN                                                                  05/16/2016 00:44:55 PAGE 5   
 
- 239   4                                      else
- 240   4                                      {
- 241   5                                              clear_gprs_rev_buf();
- 242   5                                      }
- 243   4      //                              Test_TxString("Got GPRS Buffer:");
- 244   4      //                              Test_TxString(&GPRS_Buffer[3]);
- 245   4      //                              Test_TxString("\n");    
- 246   4                              }
- 247   3                              else if(GPRS_Buffer[1]=='0')    //无效数据
- 248   3                              {
- 249   4                                      //处理ERROR情况
- 250   4                                      clear_gprs_rev_buf();
- 251   4                              }
- 252   3                              
- 253   3                              if(GPRS_Buffer[0]=='0' && GPRS_SEND == 1)  //发送数据时,由于设备初始化，因此需要回设接收的数据   
- 254   3                              {
- 255   4                                      setRevBuf(ch);
- 256   4                              }
- 257   3              
- 258   3                      }
- 259   2      
- 260   2                      //EA = 1;       //打开中断
- 261   2              }
- 262   1      }
- 263          
- 264          
- 265          
- 266          /**
- 267          串口1中断响应
- 268          *************
- 269          接收GPS数据
- 270          *************
- 271          对应--GPS模块 只解析GPRMC数据
- 272          *************
- 273          **/
- 274          void GPS_RCV (void) interrupt 8
- 275          {
- 276   1              uchar ch;
- 277   1              
- 278   1              if(!RI2)
- 279   1              {
- 280   2                      return;
- 281   2              }
- 282   1      
- 283   1              if(GPRS_Listening != 1 ) //只有当计数为最大值时，且处于监听状态才可以读取数据
- 284   1              {
- 285   2                      CLR_RI2();
- 286   2                      return;
- 287   2              }
- 288   1      
- 289   1              ch=S2BUF;
- 290   1              BEEP = 1;       //蜂鸣器暂停
- 291   1      
- 292   1              if (gps_rev_start == 0 && ch == '$')  //如果收到字符'$' 标志为1
- 293   1              {
- 294   2                      gps_rev_start = 1;
- 295   2              }       
- 296   1              else if (gps_rev_start == 1 && ch == 'G') //如果 标志位为1,收到字符'G'，判断第2位
- 297   1              {
- 298   2                      gps_rev_start = 2;                      
- 299   2              }
- 300   1              else if (gps_rev_start == 2 && ch == 'P')  //如果 标志位为2,收到字符'P'，判断第3位
-C51 COMPILER V9.00   MAIN                                                                  05/15/2016 20:09:59 PAGE 6   
+ 238   6                                              }
+ 239   5                                              else
+ 240   5                                              {
+ 241   6                                                      if(GPRS_wr < BUF_LENTH)         //防止数据溢出
+ 242   6                                                      {
+ 243   7                                                              GPRS_Buffer[GPRS_wr] = ch;
+ 244   7                                                              
+ 245   7                                                              GPRS_wr = 1 + GPRS_wr;
+ 246   7                                                      }
+ 247   6              //                                      else
+ 248   6              //                                      {
+ 249   6              //                                              clear_gprs_rev_buf();
+ 250   6              //                                      }
+ 251   6                                              }               
+ 252   5                                      }
+ 253   4                              }                                                  
+ 254   3                              
+ 255   3                              if(GPRS_SEND)  //发送数据时,由于设备初始化，因此需要回设接收的数据 && GPRS_Buffer[0]=='0'        
+ 256   3                              {
+ 257   4                                      setRevBuf(ch);
+ 258   4                              }
+ 259   3                              
+ 260   3                              //*********************************************************************
+ 261   3                              //*********************************************************************
+ 262   3                              //调试GPRS接收数据专用代码
+ 263   3                              //
+ 264   3      //                      if(GPRS_wr == BUF_LENTH)
+ 265   3      //                      {
+ 266   3      //                              GPRS_wr = 0;
+ 267   3      //                      }
+ 268   3      //                      GPRS_Buffer[GPRS_wr++] = ch;
+ 269   3                              //*********************************************************************
+ 270   3                              //*********************************************************************
+ 271   3              
+ 272   3                      }
+ 273   2                      
+ 274   2      //              a[2] = ch;
+ 275   2      //              Test_TxString(a);
+ 276   2      //              //EA = 1;       //打开中断
+ 277   2              }
+ 278   1      }
+ 279          
+ 280          
+ 281          
+ 282          /**
+ 283          串口1中断响应
+ 284          *************
+ 285          接收GPS数据
+ 286          *************
+ 287          对应--GPS模块 只解析GPRMC数据
+ 288          *************
+ 289          **/
+ 290          void GPS_RCV (void) interrupt 8
+ 291          {
+ 292   1              uchar ch;
+ 293   1              
+ 294   1              if(!RI2)
+ 295   1              {
+ 296   2                      return;
+ 297   2              }
+ 298   1      
+ 299   1              if(GPRS_Listening != 1 ) //只有当计数为最大值时，且处于监听状态才可以读取数据
+C51 COMPILER V9.00   MAIN                                                                  05/16/2016 00:44:55 PAGE 6   
 
- 301   1              {
- 302   2                      gps_rev_start = 3;
+ 300   1              {
+ 301   2                      CLR_RI2();
+ 302   2                      return;
  303   2              }
- 304   1              else if (gps_rev_start == 3 && ch == 'R')  //如果 标志位为3,收到字符'R'，判断第4位
- 305   1              {
- 306   2                      gps_rev_start = 4;
- 307   2              }
- 308   1              else if (gps_rev_start == 4 && ch == 'M')  //如果 标志位为4,收到字符'M'，判断第5位
+ 304   1      
+ 305   1              ch=S2BUF;
+ 306   1              BEEP = 1;       //蜂鸣器暂停
+ 307   1      
+ 308   1              if (gps_rev_start == 0 && ch == '$')  //如果收到字符'$' 标志为1
  309   1              {
- 310   2                      gps_rev_start = 5;
- 311   2              }
- 312   1              else if (gps_rev_start == 5 && ch == 'C')  //如果 标志位为5,收到字符'C'，判断第6位
+ 310   2                      gps_rev_start = 1;
+ 311   2              }       
+ 312   1              else if (gps_rev_start == 1 && ch == 'G') //如果 标志位为1,收到字符'G'，判断第2位
  313   1              {
- 314   2                      gps_rev_start = 6;
+ 314   2                      gps_rev_start = 2;                      
  315   2              }
- 316   1              else if (gps_rev_start == 6 && ch == ',')  //如果 标志位为6,收到字符','，开始接收数据
+ 316   1              else if (gps_rev_start == 2 && ch == 'P')  //如果 标志位为2,收到字符'P'，判断第3位
  317   1              {
- 318   2                      gps_rev_start = 7;
- 319   2                      GPS_wr = 2;
- 320   2                      GPS_Buffer[1]=2;        //不允许读
- 321   2                      GPS_Buffer[0]=1;        //允许写
- 322   2              }
- 323   1              else if(gps_rev_start >= 1 && gps_rev_start < 7)
- 324   1              {
- 325   2                      gps_rev_start = 0;      
- 326   2              }
- 327   1      
- 328   1              if(gps_rev_start == 7 && GPS_Buffer[1] != 1)
+ 318   2                      gps_rev_start = 3;
+ 319   2              }
+ 320   1              else if (gps_rev_start == 3 && ch == 'R')  //如果 标志位为3,收到字符'R'，判断第4位
+ 321   1              {
+ 322   2                      gps_rev_start = 4;
+ 323   2              }
+ 324   1              else if (gps_rev_start == 4 && ch == 'M')  //如果 标志位为4,收到字符'M'，判断第5位
+ 325   1              {
+ 326   2                      gps_rev_start = 5;
+ 327   2              }
+ 328   1              else if (gps_rev_start == 5 && ch == 'C')  //如果 标志位为5,收到字符'C'，判断第6位
  329   1              {
- 330   2      
- 331   2                      if (ch == '\n')     //如果接收到换行
- 332   2                      {
- 333   3                              count = count + 1;
- 334   3                              gps_rev_start = 0;      //只要遇到换行符，必须重新匹配开头
- 335   3                              //Test_TxString("GO END\n");
- 336   3                              if(count >= UPLOAD_FREQ + 1) // 当计数等于count+1 的时候才记录数据,让等于10的时候记录数据
- 337   3                              {
- 338   4                                      //Test_TxString("GOT A END\n");         
- 339   4                                      GPS_Buffer[0]=2; //不允许写
- 340   4                                      GPS_Buffer[1]=1; //允许读 
- 341   4                                      count = 0;              //重置计数器
- 342   4                                      delay(1000);
- 343   4                              }                       
- 344   3                      }
- 345   2                      else //$GPRMC，与换行符中间的数据
- 346   2                      {                               
- 347   3                              if(count >= UPLOAD_FREQ && GPS_Buffer[0] == 1)//可写
- 348   3                              {
- 349   4                                      GPS_Buffer[GPS_wr] = ch;  //字符存到数组中
- 350   4                                      GPS_wr = GPS_wr + 1;
- 351   4                              }                               
- 352   3                      }
- 353   2                              
- 354   2              }
- 355   1              CLR_RI2();
- 356   1      }
- 357          
- 358          
- 359          //入口主函数
- 360          void main(){
- 361   1              uchar index = 0;
- 362   1              uchar*  ccid = getCcid();
-C51 COMPILER V9.00   MAIN                                                                  05/15/2016 20:09:59 PAGE 7   
+ 330   2                      gps_rev_start = 6;
+ 331   2              }
+ 332   1              else if (gps_rev_start == 6 && ch == ',')  //如果 标志位为6,收到字符','，开始接收数据
+ 333   1              {
+ 334   2                      gps_rev_start = 7;
+ 335   2                      GPS_wr = 2;
+ 336   2                      GPS_Buffer[1]=2;        //不允许读
+ 337   2                      GPS_Buffer[0]=1;        //允许写
+ 338   2              }
+ 339   1              else if(gps_rev_start >= 1 && gps_rev_start < 7)
+ 340   1              {
+ 341   2                      gps_rev_start = 0;      
+ 342   2              }
+ 343   1      
+ 344   1              if(gps_rev_start == 7 && GPS_Buffer[1] != 1)
+ 345   1              {
+ 346   2      
+ 347   2                      if (ch == '\n')     //如果接收到换行
+ 348   2                      {
+ 349   3                              count = count + 1;
+ 350   3                              gps_rev_start = 0;      //只要遇到换行符，必须重新匹配开头
+ 351   3                              //Test_TxString("GO END\n");
+ 352   3                              if(count >= UPLOAD_FREQ + 1) // 当计数等于count+1 的时候才记录数据,让等于10的时候记录数据
+ 353   3                              {
+ 354   4                                      //Test_TxString("GOT A END\n");         
+ 355   4                                      GPS_Buffer[0]=2; //不允许写
+ 356   4                                      GPS_Buffer[1]=1; //允许读 
+ 357   4                                      count = 0;              //重置计数器
+ 358   4                                      delay(1000);
+ 359   4                              }                       
+ 360   3                      }
+ 361   2                      else //$GPRMC，与换行符中间的数据
+C51 COMPILER V9.00   MAIN                                                                  05/16/2016 00:44:55 PAGE 7   
 
- 363   1              uchar fmq = 0;
- 364   1              uchar orderIndex = 0;
- 365   1      
- 366   1              GPRS_wr = 0;
- 367   1              GPS_wr = 0;
- 368   1              GPRS_Listening = 0;
- 369   1              GPRS_SEND = 0;
- 370   1              
- 371   1              clear_gps_rev_buf();
- 372   1              clear_gprs_rev_buf();
- 373   1              
- 374   1              GPS_init();
- 375   1              GPRS_init();
- 376   1      
- 377   1              Test_TxString("main____\n");
- 378   1              gprs_start();                                   //启动GPRS初始化功能
- 379   1      
- 380   1              Test_TxString("main start listenning\n");
- 381   1              
- 382   1              //填充request中的CCID号
- 383   1              
- 384   1              
- 385   1              for(index = 0;index < 20;index++)
- 386   1              {
- 387   2                      request[18+index] = ccid[index];
- 388   2                      fail_request[19+index] = ccid[index];
- 389   2              }
- 390   1              
- 391   1              GPRS_Listening = 1;                             //开始监听网络传输数据
+ 362   2                      {                               
+ 363   3                              if(count >= UPLOAD_FREQ && GPS_Buffer[0] == 1)//可写
+ 364   3                              {
+ 365   4                                      GPS_Buffer[GPS_wr] = ch;  //字符存到数组中
+ 366   4                                      GPS_wr = GPS_wr + 1;
+ 367   4                              }                               
+ 368   3                      }
+ 369   2                              
+ 370   2              }
+ 371   1              CLR_RI2();
+ 372   1      }
+ 373          
+ 374          
+ 375          //入口主函数
+ 376          void main(){
+ 377   1              uchar index = 0;
+ 378   1              uchar*  ccid = getCcid();
+ 379   1              uchar fmq = 0;
+ 380   1              uchar orderIndex = 0;
+ 381   1      
+ 382   1              GPRS_wr = 0;
+ 383   1              GPS_wr = 0;
+ 384   1              GPRS_Listening = 0;
+ 385   1              GPRS_SEND = 0;
+ 386   1              
+ 387   1              clear_gps_rev_buf();
+ 388   1              clear_gprs_rev_buf();
+ 389   1              
+ 390   1              GPS_init();
+ 391   1              GPRS_init();
  392   1      
- 393   1              //EA = 0;
- 394   1              while(1)
- 395   1              {       
- 396   2                      if(GPS_Buffer[1] == 1)  //GPS数据可读时操作
- 397   2                      {
- 398   3                              //EA = 0;
- 399   3                              Test_TxString("Send GPS Buffer:");
- 400   3                              Test_TxString(&GPS_Buffer[2]);
- 401   3                              Test_TxString("\n");
- 402   3                              /**
- 403   3                              **[13]-定位结果状态V/A
- 404   3                              **[43-51]-纬度 ddmm.mmmm
- 405   3                              **[57-65]-经度 ddmm.mmmm
- 406   3                              **/
- 407   3                              if(GPS_Buffer[13] != 'A')
- 408   3                              {
- 409   4                                      //定位失败,发送-1
- 410   4                                      Test_TxString(fail_request);
- 411   4                                      GPRS_SEND = 1;
- 412   4                                      //EA = 1;               
- 413   4                                      sendData(fail_request);
- 414   4                                      GPRS_SEND = 0;
- 415   4                              }
- 416   3                              else
- 417   3                              {
- 418   4                                      //填充真实坐标数据
- 419   4                                      //纬度
- 420   4                                      request[43]=GPS_Buffer[15];                                     
- 421   4                                      request[44]=GPS_Buffer[16];
- 422   4                                      request[45]=GPS_Buffer[17];
- 423   4                                      request[46]=GPS_Buffer[18];
- 424   4                                      //request[47]=GPS_Buffer[19];//小数点
-C51 COMPILER V9.00   MAIN                                                                  05/15/2016 20:09:59 PAGE 8   
+ 393   1              Test_TxString("main____\n");
+ 394   1              gprs_start();                                   //启动GPRS初始化功能
+ 395   1      
+ 396   1              Test_TxString("main start listenning\n");
+ 397   1              
+ 398   1              //填充request中的CCID号
+ 399   1              
+ 400   1              
+ 401   1              for(index = 0;index < 20;index++)
+ 402   1              {
+ 403   2                      request[18+index] = ccid[index];
+ 404   2                      fail_request[19+index] = ccid[index];
+ 405   2              }
+ 406   1              
+ 407   1              GPRS_Listening = 1;                             //开始监听网络传输数据
+ 408   1      
+ 409   1              //EA = 0;
+ 410   1              while(1)
+ 411   1              {       
+ 412   2                      if(GPS_Buffer[1] == 1)  //GPS数据可读时操作
+ 413   2                      {
+ 414   3                              //EA = 0;
+ 415   3                              Test_TxString("GPS Buffer:");
+ 416   3                              Test_TxString(&GPS_Buffer[2]);
+ 417   3                              Test_TxString("\n");
+ 418   3                              /**
+ 419   3                              **[13]-定位结果状态V/A
+ 420   3                              **[43-51]-纬度 ddmm.mmmm
+ 421   3                              **[57-65]-经度 ddmm.mmmm
+ 422   3                              **/
+ 423   3                              if(GPS_Buffer[13] != 'A')
+C51 COMPILER V9.00   MAIN                                                                  05/16/2016 00:44:55 PAGE 8   
 
- 425   4                                      request[48]=GPS_Buffer[20];
- 426   4                                      request[49]=GPS_Buffer[21];
- 427   4                                      request[50]=GPS_Buffer[22];
- 428   4                                      request[51]=GPS_Buffer[23];
- 429   4                                      //经度
- 430   4                                      request[57]=GPS_Buffer[27];
- 431   4                                      request[58]=GPS_Buffer[28];
- 432   4                                      request[59]=GPS_Buffer[29];
- 433   4                                      request[60]=GPS_Buffer[30];
- 434   4                                      //request[61]=GPS_Buffer[31];//小数点
- 435   4                                      request[62]=GPS_Buffer[32];
- 436   4                                      request[63]=GPS_Buffer[33];
- 437   4                                      request[64]=GPS_Buffer[34];
- 438   4                                      request[65]=GPS_Buffer[35];
- 439   4      
- 440   4                                      GPRS_SEND = 1;
- 441   4                                      //EA = 1;
- 442   4                                      sendData(request);
- 443   4                                      GPRS_SEND = 0;
- 444   4                              }
- 445   3                              clear_gps_rev_buf();
- 446   3                              
- 447   3                      }
- 448   2                      
- 449   2                      
- 450   2                      Test_TxString("Got GPRS Buffer2:");
- 451   2                      Test_TxString(GPRS_Buffer);
- 452   2                      Test_TxString("\n");
- 453   2      
- 454   2                      if(GPRS_Buffer[1]=='1')  //处理GPRS接收的数据 //GPRS收到服务器返回的数据
- 455   2                      {
- 456   3                              EA = 0;
- 457   3                              Test_TxString("Got GPRS Buffer:");
- 458   3                              Test_TxString(&GPRS_Buffer[2]);
- 459   3                              Test_TxString("\n");
- 460   3      
- 461   3                              //TODO 处理接收到的数据
- 462   3                              if(GPRS_Buffer[2]=='2' && GPRS_Buffer[3]=='0' && GPRS_Buffer[4]=='1')   //如果返回了指令
- 463   3                              {
- 464   4                                      //提取声音指令
- 465   4                                      for(orderIndex=6;orderIndex<BUF_LENTH;orderIndex++)
- 466   4                                      {
- 467   5                                              if(GPRS_Buffer[orderIndex]=='\0')
- 468   5                                              {
- 469   6                                                      break;
- 470   6                                              }
- 471   5                                              if(GPRS_Buffer[orderIndex]=='S' && GPRS_Buffer[orderIndex+2] != '\0') //如果存在S_X指令
- 472   5                                              {
- 473   6                                                      if(GPRS_Buffer[orderIndex+2] == 'O')     //打开指令
- 474   6                                                      {
- 475   7                                                              voice = 1;
- 476   7                                                              //break;
- 477   7                                                      }
- 478   6                                                      else if(GPRS_Buffer[orderIndex+2] == 'C')        //关闭指令
- 479   6                                                      {
- 480   7                                                              voice = 0;
- 481   7                                                              //break;
- 482   7                                                      }
- 483   6                                              }
- 484   5      
- 485   5                                              if(GPRS_Buffer[orderIndex]=='F' && GPRS_Buffer[orderIndex+2] != '\0') //如果存在F_X指令
- 486   5                                              {
-C51 COMPILER V9.00   MAIN                                                                  05/15/2016 20:09:59 PAGE 9   
+ 424   3                              {
+ 425   4                                      //定位失败,发送-1
+ 426   4                                      Test_TxString(fail_request);
+ 427   4                                      GPRS_SEND = 1;
+ 428   4                                      GPRS_REV = 1;
+ 429   4                                      //EA = 1;               
+ 430   4                                      sendData(fail_request);
+ 431   4                                      GPRS_SEND = 0;
+ 432   4                              }
+ 433   3                              else
+ 434   3                              {
+ 435   4                                      //填充真实坐标数据
+ 436   4                                      //纬度
+ 437   4                                      request[43]=GPS_Buffer[15];                                     
+ 438   4                                      request[44]=GPS_Buffer[16];
+ 439   4                                      request[45]=GPS_Buffer[17];
+ 440   4                                      request[46]=GPS_Buffer[18];
+ 441   4                                      //request[47]=GPS_Buffer[19];//小数点
+ 442   4                                      request[48]=GPS_Buffer[20];
+ 443   4                                      request[49]=GPS_Buffer[21];
+ 444   4                                      request[50]=GPS_Buffer[22];
+ 445   4                                      request[51]=GPS_Buffer[23];
+ 446   4                                      //经度
+ 447   4                                      request[57]=GPS_Buffer[27];
+ 448   4                                      request[58]=GPS_Buffer[28];
+ 449   4                                      request[59]=GPS_Buffer[29];
+ 450   4                                      request[60]=GPS_Buffer[30];
+ 451   4                                      //request[61]=GPS_Buffer[31];//小数点
+ 452   4                                      request[62]=GPS_Buffer[32];
+ 453   4                                      request[63]=GPS_Buffer[33];
+ 454   4                                      request[64]=GPS_Buffer[34];
+ 455   4                                      request[65]=GPS_Buffer[35];
+ 456   4      
+ 457   4                                      GPRS_SEND = 1;
+ 458   4                                      GPRS_REV = 1;
+ 459   4                                      //EA = 1;
+ 460   4                                      sendData(request);
+ 461   4                                      GPRS_SEND = 0;
+ 462   4                              }
+ 463   3                              clear_gps_rev_buf();
+ 464   3                              
+ 465   3                      }
+ 466   2                      
+ 467   2                      //*********************************************************************
+ 468   2                      //*********************************************************************
+ 469   2                      //调试GPRS接收数据专用代码
+ 470   2                      //
+ 471   2      //              Test_TxString("Got GPRS Buffer2:");
+ 472   2      //              Test_TxString(GPRS_Buffer);
+ 473   2      //              Test_TxString("\n");
+ 474   2                      //*********************************************************************
+ 475   2                      //*********************************************************************
+ 476   2      
+ 477   2                      if(GPRS_Buffer[1]=='1')  //处理GPRS接收的数据 //GPRS收到服务器返回的数据
+ 478   2                      {
+ 479   3                              //EA = 0;
+ 480   3                              Test_TxString("Got GPRS Buffer:");
+ 481   3                              Test_TxString(&GPRS_Buffer[2]);
+ 482   3                              Test_TxString("\n");
+ 483   3      
+ 484   3                              //TODO 处理接收到的数据
+ 485   3                              if(GPRS_Buffer[2]=='2' && GPRS_Buffer[3]=='0' && GPRS_Buffer[4]=='1')   //如果返回了指令
+C51 COMPILER V9.00   MAIN                                                                  05/16/2016 00:44:55 PAGE 9   
 
- 487   6                                                      if(GPRS_Buffer[orderIndex+2] == 'R')     //正常速度指令
- 488   6                                                      {
- 489   7                                                              UPLOAD_FREQ = 30;
- 490   7                                                              //break;
- 491   7                                                      }
- 492   6                                                      else if(GPRS_Buffer[orderIndex+2] == 'H')        //高速指令
- 493   6                                                      {
- 494   7                                                              UPLOAD_FREQ = 10;;
- 495   7                                                              //break;
- 496   7                                                      }
- 497   6                                              }
- 498   5                                      }
- 499   4                              }
- 500   3      
- 501   3                              clear_gprs_rev_buf();//清空缓存
- 502   3                              EA = 1;
- 503   3                      }
- 504   2                      
- 505   2              
- 506   2                      if(voice == 1)          //蜂鸣器控制
- 507   2                      {       
- 508   3                              for(fmq=100;fmq>0;fmq--)
- 509   3                              {
- 510   4                                BEEP=~BEEP;       //输出频率1KHz
- 511   4                                delay500us();       //延时500us
- 512   4                              }
- 513   3                      
- 514   3                              for(fmq=100;fmq>0;fmq--)
- 515   3                              {
- 516   4                                BEEP=~BEEP;       //输出频率500Hz
- 517   4                                delay500us();       //延时1ms
- 518   4                                delay500us();
- 519   4                              }
- 520   3                      }
- 521   2      
- 522   2                      //delay(2000);
- 523   2              }
- 524   1      }
+ 486   3                              {
+ 487   4                                      //提取声音指令
+ 488   4                                      for(orderIndex=6;orderIndex<BUF_LENTH;orderIndex++)
+ 489   4                                      {
+ 490   5                                              if(GPRS_Buffer[orderIndex]=='\0')
+ 491   5                                              {
+ 492   6                                                      break;
+ 493   6                                              }
+ 494   5                                              if(GPRS_Buffer[orderIndex]=='S' && GPRS_Buffer[orderIndex+2] != '\0') //如果存在S_X指令
+ 495   5                                              {
+ 496   6                                                      if(GPRS_Buffer[orderIndex+2] == 'O')     //打开指令
+ 497   6                                                      {
+ 498   7                                                              voice = 1;
+ 499   7                                                              //break;
+ 500   7                                                      }
+ 501   6                                                      else if(GPRS_Buffer[orderIndex+2] == 'C')        //关闭指令
+ 502   6                                                      {
+ 503   7                                                              voice = 0;
+ 504   7                                                              //break;
+ 505   7                                                      }
+ 506   6                                              }
+ 507   5      
+ 508   5                                              if(GPRS_Buffer[orderIndex]=='F' && GPRS_Buffer[orderIndex+2] != '\0') //如果存在F_X指令
+ 509   5                                              {
+ 510   6                                                      if(GPRS_Buffer[orderIndex+2] == 'R')     //正常速度指令
+ 511   6                                                      {
+ 512   7                                                              UPLOAD_FREQ = 30;
+ 513   7                                                              //break;
+ 514   7                                                      }
+ 515   6                                                      else if(GPRS_Buffer[orderIndex+2] == 'H')        //高速指令
+ 516   6                                                      {
+ 517   7                                                              UPLOAD_FREQ = 10;;
+ 518   7                                                              //break;
+ 519   7                                                      }
+ 520   6                                              }
+ 521   5                                      }
+ 522   4                              }
+ 523   3      
+ 524   3                              clear_gprs_rev_buf();//清空缓存
+ 525   3                              //EA = 1;
+ 526   3                      }
+ 527   2                      
+ 528   2              
+ 529   2                      if(voice == 1)          //蜂鸣器控制
+ 530   2                      {       
+ 531   3                              for(fmq=100;fmq>0;fmq--)
+ 532   3                              {
+ 533   4                                BEEP=~BEEP;       //输出频率1KHz
+ 534   4                                delay500us();       //延时500us
+ 535   4                              }
+ 536   3                      
+ 537   3                              for(fmq=100;fmq>0;fmq--)
+ 538   3                              {
+ 539   4                                BEEP=~BEEP;       //输出频率500Hz
+ 540   4                                delay500us();       //延时1ms
+ 541   4                                delay500us();
+ 542   4                              }
+ 543   3                      }
+ 544   2      
+ 545   2                      //delay(2000);
+ 546   2              }
+ 547   1      }
+C51 COMPILER V9.00   MAIN                                                                  05/16/2016 00:44:55 PAGE 10  
+
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1360    ----
-   CONSTANT SIZE    =     87    ----
+   CODE SIZE        =   1310    ----
+   CONSTANT SIZE    =     64    ----
    XDATA SIZE       =    512    ----
    PDATA SIZE       =     13      10
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
-   BIT SIZE         =      4    ----
+   BIT SIZE         =      5    ----
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
