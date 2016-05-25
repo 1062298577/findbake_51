@@ -385,7 +385,6 @@ void 	gprs_setup_link()
 //	if(1)//rev_buf[12] == '1' )
 //	{		
 		clear_rev_buf();
-		retry_count=0;
 		gprs_state=LINK;
 		GPRS_TxString("AT+TCPSETUP=0,120.27.125.31,80\r\n");		  
 		delay(1000);

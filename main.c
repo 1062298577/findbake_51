@@ -71,7 +71,7 @@ uchar 	UPLOAD_FREQ	= 10;//计数频率，单位秒
 uchar 	count = 0;		//计数
 
 //请求数据18,43,57
-uchar 	xdata 	request[128] = "GET /?data=1&ccid=00000000000000000000&lon=0000.0000&lat=0000.0000 HTTP/1.1\r\nHost:\r\n\r\n";
+uchar 	xdata 	request[128] = "GET /?data=1&ccid=00000000000000000000&lat=0000.0000&lon=00000.0000 HTTP/1.1\r\nHost:\r\n\r\n";
 //定位失败时的请求19
 uchar 	xdata 	fail_request[128] = "GET /?data=-1&ccid=00000000000000000000 HTTP/1.1\r\nHost:\r\n\r\n";
 
@@ -420,7 +420,7 @@ void main(){
 			**[43-51]-纬度 ddmm.mmmm
 			**[57-65]-经度 ddmm.mmmm
 			**/
-			if(GPS_Buffer[13] != 'A')
+			if(GPS_Buffer[14] != 'A')
 			{
 				//定位失败,发送-1
 				Test_TxString(fail_request);
@@ -434,26 +434,27 @@ void main(){
 			{
 				//填充真实坐标数据
 				//纬度
-				request[43]=GPS_Buffer[15];					
-				request[44]=GPS_Buffer[16];
-				request[45]=GPS_Buffer[17];
-				request[46]=GPS_Buffer[18];
-				//request[47]=GPS_Buffer[19];//小数点
-				request[48]=GPS_Buffer[20];
-				request[49]=GPS_Buffer[21];
-				request[50]=GPS_Buffer[22];
-				request[51]=GPS_Buffer[23];
+				request[43]=GPS_Buffer[16];					
+				request[44]=GPS_Buffer[17];
+				request[45]=GPS_Buffer[18];
+				request[46]=GPS_Buffer[19];
+				//request[47]=GPS_Buffer[20];//小数点
+				request[48]=GPS_Buffer[21];
+				request[49]=GPS_Buffer[22];
+				request[50]=GPS_Buffer[23];
+				request[51]=GPS_Buffer[24];
 				//经度
-				request[57]=GPS_Buffer[27];
-				request[58]=GPS_Buffer[28];
-				request[59]=GPS_Buffer[29];
-				request[60]=GPS_Buffer[30];
-				//request[61]=GPS_Buffer[31];//小数点
-				request[62]=GPS_Buffer[32];
-				request[63]=GPS_Buffer[33];
-				request[64]=GPS_Buffer[34];
-				request[65]=GPS_Buffer[35];
-
+				request[57]=GPS_Buffer[28];
+				request[58]=GPS_Buffer[29];
+				request[59]=GPS_Buffer[30];
+				request[60]=GPS_Buffer[31];
+				request[61]=GPS_Buffer[32];
+				//request[62]=GPS_Buffer[33];//小数点
+				request[63]=GPS_Buffer[34];
+				request[64]=GPS_Buffer[35];
+				request[65]=GPS_Buffer[36];
+				request[66]=GPS_Buffer[37];
+			   	Test_TxString(request);
 				GPRS_SEND = 1;
 				GPRS_REV = 1;
 				//EA = 1;
